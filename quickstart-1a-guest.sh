@@ -6,7 +6,8 @@ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | s
 
 # Install virtual kernel.  Better performance.
 # Removed for 10.10 - http://bugs.launchpad.net/ubuntu/+source/linux/+bug/69224
-#sudo apt-get -yq install linux-virtual linux-headers-virtual 
+sudo apt-get -yq install linux-virtual linux-headers-virtual
+sudo apt-get -yq remove linux-generic linux-headers-generic
 
 # dkms recommended on virtualbox.org for upgrade compatibility
 sudo apt-get -yq install build-essential linux-headers-$(uname -r)
@@ -19,7 +20,7 @@ sudo apt-get -yq install virtualbox-ose-guest-x11
 # Note difference between shared and vbox-shared.  That's important.  Requires reboot
 sudo sed -i 's/# By default this script does nothing./mount -t vboxsf -o uid=1000,gid=1000 shared \/mnt\/vbox-shared/g'     /etc/rc.local
 sudo mkdir /mnt/vbox-shared
-sudo chmod 777 /mnt/vbox-shared
+sudo chmod 770 /mnt/vbox-shared
 cat > /mnt/vbox-shared/readme.txt <<END
 If you are seeing this file, then virtualbox's shared folders are not configured correctly.
 

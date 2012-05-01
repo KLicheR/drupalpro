@@ -25,8 +25,3 @@ df -h -T > ~/quickstart/quickstart-size-start.txt
 # turn off screen saver
 gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
 
-# turn off sounds - first 2 are event sounds (bongos).  last is login sound (hummm) - brutish but works.
-gconftool-2 -s /apps/gdm/simple-greeter/settings-manager-plugins/sound/active --type=bool false
-gconftool-2 -s /gnome/sound/event_sounds --type=bool false
-sudo mv /usr/share/gnome/autostart/libcanberra-login-sound.desktop /usr/share/gnome/autostart/libcanberra-login-sound.desktop.old
-

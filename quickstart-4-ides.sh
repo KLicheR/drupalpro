@@ -1,11 +1,14 @@
 #!/bin/bash
 
-NETBEANS_URL="http://download.netbeans.org/netbeans/7.0/final/bundles/netbeans-7.0-ml-php-linux.sh"
-if [ `uname -p` == "x86_64" ] 
+NETBEANS_URL="http://download.netbeans.org/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
+if [ `uname -p` == "x86_64" ]
+# new eclipe?  http://code.google.com/p/zend-sdk/downloads/list
 then
-  ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
+#mdrmike old:@fixme(purge) |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
+  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v2011102768-x86_64.tar.gz"
 else
-  ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
+#mdrmike old:@fixme(purge) |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
+  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v2011102768-x86.tar.gz"
 fi
 echo "*** ECLIPSE URL: $ECLIPSE_URL"
 
@@ -34,11 +37,12 @@ gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_unlimited --type
 
 # Install graphical version control - weighs about 58mb
 # sudo add-apt-repository ppa:rabbitvcs/ppa && sudo apt-get update # ppa not working 2011-05-25
-sudo apt-get -yq install rabbitvcs-nautilus
+#sudo apt-get -yq install rabbitvcs-nautilus
 sudo killall nautilus
 
 # Install graphics editors - weights about 25mb
-sudo apt-get -yq install gimp
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp && sudo apt-get update
+#sudo apt-get -yq install gimp #don't install yet.  ppa currently at gimp-2.8~RC1
 
 
 ## GUI IDE's
@@ -46,7 +50,7 @@ sudo apt-get -yq install gimp
 # Download and install eclipse - 167mb
 wget -nv -O eclipse.tar.gz $ECLIPSE_URL
 tar -xvf eclipse.tar.gz
-sudo ln -s /home/quickstart/eclipse/eclipse /usr/bin/eclipse 
+sudo ln -s /home/quickstart/eclipse/eclipse /usr/bin/eclipse
 rm eclipse.tar.gz
 # PPA's are a good idea, but about 458mb!
 #sudo add-apt-repository ppa:yogarine/eclipse/ubuntu && sudo apt-get update
