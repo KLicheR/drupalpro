@@ -10,7 +10,7 @@
 
 
 ## Synaptic Xchat gnote compass
-sudo apt-get install synaptic xchat gnote ruby1.9.1
+sudo apt-get install -yq synaptic xchat gnote ruby1.9.1 geany guake
 sudo gem1.9.1 install compass
 
 
