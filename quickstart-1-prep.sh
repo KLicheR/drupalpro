@@ -17,7 +17,7 @@ echo "quickstart ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers > /dev/null
 ## Disk size Accounting
 
 # Starting size:
-df -h -T > ~/quickstart/quickstart-size-start.txt
+df -h -T > ~/quickstart/logs/quickstart-size-start.txt
 
 
 ## Some configuration

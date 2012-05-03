@@ -56,11 +56,11 @@ sudo apt-get -yq clean
 
 # What's installed: look in file whats_installed.txt
 for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/quickstart/quickstart-slim-package-list.txt; rm -f pkgs.tmp;
-echo "------------  -------------------" >> ~/quickstart/quickstart-slim-package-list.txt
-echo "size(kb)         packagename" >> ~/quickstart/quickstart-slim-package-list.txt
+echo "------------  -------------------" >> ~/quickstart/logs/quickstart-slim-package-list.txt
+echo "size(kb)         packagename" >> ~/quickstart/logs/quickstart-slim-package-list.txt
 
 # Ending size
-df -h -T > ~/quickstart/quickstart-size-slim.txt
+df -h -T > ~/quickstart/logs/quickstart-size-slim.txt
 
 # 3.0gb -> 2.2gb
 

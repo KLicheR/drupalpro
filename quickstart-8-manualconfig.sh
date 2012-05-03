@@ -7,7 +7,7 @@ drush qc --domain=example6.dev --makefile=d6.make
 
 
 # final size
-df -h -T > ~/quickstart/quickstart-size-end.txt
+df -h -T > ~/quickstart/logs/quickstart-size-end.txt
 
 
 # Manual config instructions.
