@@ -9,13 +9,19 @@
 #sudo apt-get install epiphany-browser
 
 
+## Synaptic Xchat gnote compass
+sudo apt-get install synaptic xchat gnote ruby1.9.1
+sudo gem1.9.1 install compass
+
+
+
 ## Firefox
 # sudo add-apt-repository ppa:mozillateam/ppa #not working 2011-05-25
 
 
 # Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
 sudo apt-get -yq install chromium-browser
-#sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
+sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
 
 
 # Install firefox browser (gecko)

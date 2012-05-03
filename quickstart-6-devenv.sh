@@ -375,7 +375,7 @@ echo "Alias /xhprof /home/quickstart/websites/logs/xhprof/xhprof_html
 </Directory>
 " | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
 
-chmod -R 777 /home/quickstart/websites/logs/xhprof
+chmod -R 770 /home/quickstart/websites/logs/xhprof
 
 
 # ################################################################################ Restart apache
