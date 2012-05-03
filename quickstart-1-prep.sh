@@ -12,7 +12,8 @@ This script shouldn't be run more than once."
 
 # add to sudoers file - careful, this line could brick the box.
 
-echo "quickstart ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers > /dev/null
+echo "quickstart ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/quickstart > /dev/null
+sudo chmod 440 /etc/sudoers.d/quickstart
 
 ## Disk size Accounting
 
