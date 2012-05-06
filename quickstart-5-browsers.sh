@@ -9,8 +9,8 @@
 #sudo apt-get install epiphany-browser
 
 
-## Synaptic Xchat gnote compass
-sudo apt-get install -yq synaptic xchat gnote ruby1.9.1 geany guake
+## Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
+sudo apt-get install -yq synaptic xchat gnote ruby1.9.1 geany guake gufw
 sudo gem1.9.1 install compass
 
 
