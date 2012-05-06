@@ -18,7 +18,7 @@ sudo apt-get -yq install wget curl
 
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5"
-LAMP_MYSQL="mysql-server-core-5.5 libmysqlclient18 mysql-common"
+LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
 echo mysql-server-5.5 mysql-server/root_password        password quickstart | sudo debconf-set-selections
 echo mysql-server-5.5 mysql-server/root_password_again  password quickstart | sudo debconf-set-selections
 #LAMP_PHP="php5 php5-dev php5-common php5-xsl php5-curl php5-gd php5-pgsql php5-cli php5-mcrypt php5-sqlite php5-mysql php-pear php5-imap php5-xdebug php-apc"
@@ -44,13 +44,13 @@ sudo a2dismod cgi
 sudo a2dismod autoindex
 # configure default site
 echo "<VirtualHost *:80>
-	DocumentRoot /var/www
-	<Directory /var/www/>
-		Options Indexes FollowSymLinks MultiViews
-		AllowOverride All
-		Order allow,deny
-		allow from all
-	</Directory>
+  DocumentRoot /var/www
+  <Directory /var/www/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
 </VirtualHost>" | sudo tee /etc/apache2/sites-available/000-default  > /dev/null
 sudo a2ensite 000-default
 
@@ -110,7 +110,7 @@ sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/mcrypt.ini
 sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/imap.ini
 
 # Install upload progress (warning in D7)
-sudo pecl -q install uploadprogress 
+sudo pecl -q install uploadprogress
 echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadprogress.ini > /dev/null
 
 
@@ -158,7 +158,7 @@ ln -s /etc/mysql/my.cnf              $CONFIGS/mysql.cnf
 sudo chmod g+w /etc/hosts
 ln -s /etc/hosts                     $CONFIGS/hosts
 
-echo "This folder contains links (shortcuts) to LAMP configuration files located around 
+echo "This folder contains links (shortcuts) to LAMP configuration files located around
 quickstart.  To see the links, and where they point to, start a terminal and type:
 
 ll
@@ -168,5 +168,4 @@ This will list the files and where they link to." > $CONFIGS/README.txt
 # ###### Restart web server
 
 sudo service mysql restart
-sudo service apache2 graceful
-
+sudo /etc/init.d/apache2 restart
