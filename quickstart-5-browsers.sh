@@ -28,8 +28,8 @@ sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-br
 sudo apt-get -yq install firefox flashplugin-installer
 
 cd ~
-wget -nv http://mediadoneright.com/sites/mediadoneright.com/files/Quickstart.fbu
-mv Quickstart.fbu profileFx4{default}.fbu
+wget -nv http://mediadoneright.com/sites/mediadoneright.com/files/Quickstart1204.fbu
+mv Quickstart1204.fbu profileFx4{default}.fbu
 
 zenity --info --text="Firefox will start (creating default profile).\n\nPlease CLOSE FIREFOX. " &
 firefox
