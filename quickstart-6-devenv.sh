@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#mdrmike using pear install instead DRUSH_VERSION="7.x-5.1"
-DRUSH_MAKE_VERSION="6.x-2.3"
-
 cd ~
 
 # ################################################################################ Configure phpmyadmin
@@ -68,15 +65,6 @@ For more information:
 # ################################################################################ Drush
 # Install drush
 
-#mdrmike @FIXME(purge) |git clone http://git.drupal.org/project/drush.git
-#mdrmike @FIXME(purge) |cd ~/drush
-#mdrmike @FIXME(purge) |git checkout $DRUSH_VERSION
-
-#mdrmike @FIXME (purge or need?):
-#sudo pear upgrade --force Console_Getopt
-#sudo pear upgrade --force pear
-#sudo pear upgrade-all
-
 sudo pear channel-discover pear.drush.org
 sudo pear install drush/drush
 
@@ -87,9 +75,6 @@ sudo pear install drush/drush
 # Install drush make and drush site-install6
 mkdir ~/.drush
 cd ~/.drush
-git clone http://git.drupal.org/project/drush_make.git
-cd drush_make
-git checkout $DRUSH_MAKE_VERSION
 cd ~
 
 # Install drush quickstart
