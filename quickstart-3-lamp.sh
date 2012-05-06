@@ -23,7 +23,7 @@ git config --global core.whitespace trailing-space,tab-in-indent
 # ##### Install LAMP packages
 
 # Define package names, and debconf config values.  Keep package names in sync.
-LAMP_APACHE="libapache2-mod-php5"
+LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
 echo mysql-server-5.5 mysql-server/root_password        password quickstart | sudo debconf-set-selections
 echo mysql-server-5.5 mysql-server/root_password_again  password quickstart | sudo debconf-set-selections
