@@ -2,11 +2,6 @@
 
 ## install guest additions 
 
-# Install virtual kernel.  Better performance.
-# Removed for 10.10 - http://bugs.launchpad.net/ubuntu/+source/linux/+bug/69224
-sudo apt-get -yq install linux-virtual linux-headers-virtual
-sudo apt-get -yq remove linux-generic linux-headers-generic
-
 # dkms recommended on virtualbox.org for upgrade compatibility
 sudo apt-get -yq install build-essential linux-headers-$(uname -r)
 sudo apt-get -yq install dkms

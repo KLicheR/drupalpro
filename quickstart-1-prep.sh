@@ -26,3 +26,7 @@ df -h -T > ~/quickstart/logs/quickstart-size-start.txt
 # turn off screen saver
 gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
 
+# Install virtual kernel.  Better performance.
+sudo apt-get -yq remove linux-generic linux-headers-generic
+sudo apt-get -yq install linux-virtual linux-headers-virtual
+
