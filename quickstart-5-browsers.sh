@@ -31,21 +31,22 @@ cd ~
 wget -nv http://mediadoneright.com/sites/mediadoneright.com/files/Quickstart1204.fbu
 mv Quickstart1204.fbu profileFx4{default}.fbu
 
-zenity --info --text="Firefox will start (creating default profile).\n\nPlease CLOSE FIREFOX. " &
+#zenity --info --text="Firefox will start (creating default profile).\n\nPlease CLOSE FIREFOX. " &
 firefox
 
 firefox -CreateProfile temp
 
-zenity --info --text="Firefox will start.\n\n1) Please install the FEBE backup extension.\n2) Then CLOSE FIREFOX." &
+#zenity --info --text="Firefox will start.\n\n1) Please install the FEBE backup extension.\n2) Then CLOSE FIREFOX." &
+zenity --info --text="Firefox will start.\n\n1) Please install the FEBE backup extension.\n2) Tools -> FEBE -> Restore profile.\n3) Click 'default' in list (create if it's not there).\n4) Select button at bottom 'Restore local backup'.\n5) Choose file: ~/profileFx4{default}.fbu.\n6) Start profile restore.\n7) Ok, ok, then CLOSE FIREFOX" &
+
 #firefox -P temp https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi?src=addondetail
 firefox -P temp http://softwarebychuck.com/xpis/FEBE7.0.3.3.xpi
 
-zenity --info --text="Firefox will start.\n\n1) Tools -> FEBE -> Restore profile.\n2) Click 'default' in list (create if it's not there).\n3) 'Select local backup' in the list.\n4) Choose file: ~/profileFx4{default}.fbu.\n5) Start profile restore.\n6) Ok, ok, then CLOSE FIREFOX" &
 firefox -P temp
 
 zenity --info --text="Firefox profile manager will start.\n1) Delete temp profile.\n2) THEN CLOSE MANAGER." &
 firefox -ProfileManager
-rm profileFx3{default}.fbu
+rm profileFx4{default}.fbu
 
 # Use firefox as default browser.  Chrome, I'm looking at you...
 sudo update-alternatives --set gnome-www-browser /usr/bin/firefox
