@@ -41,8 +41,9 @@ gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_unlimited --type
 sudo killall nautilus
 
 # Install graphics editors - weights about 25mb
-sudo add-apt-repository ppa:otto-kesselgulasch/gimp && sudo apt-get update
-#sudo apt-get -yq install gimp #don't install yet.  ppa currently at gimp-2.8~RC1
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp 
+sudo apt-get update
+sudo apt-get -yq install gimp #beware.  ppa currently at gimp-2.8~RC1
 
 
 ## GUI IDE's
