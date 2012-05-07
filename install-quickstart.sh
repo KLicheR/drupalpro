@@ -33,6 +33,7 @@ cd ~
 
 case "$1" in
 "")
+  bash -x ~/quickstart/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-1-prep.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   reboot 20
   ;;
