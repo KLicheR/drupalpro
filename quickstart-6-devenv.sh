@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DRUSH_VERSION="7.x-5.1"
 cd ~
 
 # ################################################################################ Configure phpmyadmin
@@ -65,12 +66,13 @@ For more information:
 # ################################################################################ Drush
 # Install drush
 
-sudo pear channel-discover pear.drush.org
-sudo pear install drush/drush
+git clone http://git.drupal.org/project/drush.git
+cd ~/drush
+git checkout $DRUSH_VERSION
 
 #mdrmike @FIXME (purge or need?):
-#chmod u+x ~/drush/drush
-#sudo ln -s ~/drush/drush /usr/local/bin/drush
+chmod u+x ~/drush/drush
+sudo ln -s ~/drush/drush /usr/local/bin/drush
 
 # Install drush make and drush site-install6
 mkdir ~/.drush
