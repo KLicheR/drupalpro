@@ -15,7 +15,7 @@ echo "qs1204" | sudo tee /etc/hostname
 function reboot {
   # update .profile file to continue the next step of the script.
   # @FIXME: change 'sleep 15' to actually test for active network connection before continuing
-  echo "echo \"sleeping 15\"; sleep 15 &" >> ~/.profile
+  echo "echo \"sleeping 15\"; sleep 15" >> ~/.profile
   echo "gnome-terminal -x bash -c \"~/quickstart/install-quickstart.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/quickstart/logs/quickstart-install.log
   sleep 2
@@ -24,7 +24,7 @@ function reboot {
 }
 
 # Undo any previous reboot script
-sed -i 's/sleeping 15/# deleteme /g' ~/.profile
+sed -i 's/echo \"sleeping 15/# deleteme /g' ~/.profile
 sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 
 # ################################################################################ Install it!
