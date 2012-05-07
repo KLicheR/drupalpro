@@ -222,8 +222,20 @@ function quickstart_create_code($domain, $params) {
     if (!file_exists($makefile)) throw new Exception("Makefile ". $makefile ." not found.");
   }
 
-  drush_backend_invoke("make --prepare-install $makefile $codepath");
-  drush_backend_invoke("quickstart-fixperms --domain=$domain --codepath=$codepath");
+  drush_invoke_process(
+    drush_sitealias_get_record('@self'),
+    'make',
+    array($makefile, $codepath),
+    array('--prepare-install'),
+    array('#integrate' => TRUE)
+  );
+  drush_invoke_process(
+    drush_sitealias_get_record('@self'),
+    'quickstart-fixperms',
+    array(),
+    array("--domain=$domain", "--codepath=$codepath"),
+    array('#integrate' => TRUE)
+  );
 }
 
 /**
@@ -281,27 +293,48 @@ function quickstart_create_install($domain, $params) {
   }
   
   // Nuff foreplay, let's install!
-  drush_backend_invoke("site-install"
-      . " " . $params['profile']
-      . " --root=" . $params['codepath']
-      . " --db-url=" . $params['db-url']
-      . " --db-prefix=" . $params['db-prefix']
-      . " --account-name=" . $params['account-name']
-      . " --account-pass=" . $params['account-pass']
-      . " --account-mail=" . $params['account-mail']
-      . " --locale=" . $params['locale']
-      . " --clean-url=" . $params['clean-url']
-      . " --site-name=" . $params['site-name']
-      . " --site-mail=" . $params['site-mail']
-      . " --sites-subdir=" . $params['sites-subdir']
+  $opts = array(
+    "--root=" . $params['codepath'],
+    "--db-url=" . $params['db-url'],
+    "--db-prefix=" . $params['db-prefix'],
+    "--account-name=" . $params['account-name'],
+    "--account-pass=" . $params['account-pass'],
+    "--account-mail=" . $params['account-mail'],
+    "--locale=" . $params['locale'],
+    "--clean-url=" . $params['clean-url'],
+    "--site-name=" . $params['site-name'],
+    "--site-mail=" . $params['site-mail'],
+    "--sites-subdir=" . $params['sites-subdir'],
+  );
+
+  drush_invoke_process(
+    drush_sitealias_get_record('@self'),
+    'site-install',
+    array($params['profile']),
+    $opts,
+    array('#integrate' => TRUE)
   );
 
   // D7 specific
   if ($dversion=='d7') {
     // Create a private files folder.  This is done to make fix-perms not break configuring a private files directory
-    quickstart_shell_exec("sudo mkdir $codepath/sites/default/files_private");
-    drush_backend_invoke("variable-set file_private_path sites/default/files_private --always-set --root=$codepath");
-    drush_backend_invoke("quickstart-fixperms --domain=$domain --codepath=$codepath");
+    if (!file_exists($codepath . '/sites/default/files_private')) {
+      quickstart_shell_exec("sudo mkdir $codepath/sites/default/files_private");
+    }
+    drush_invoke_process(
+      drush_sitealias_get_record('@self'),
+      'variable-set',
+      array('file_private_path', 'sites/default/files_private'),
+      array('--always-set', "--root=$codepath"),
+      array('#integrate' => TRUE)
+    );
+    drush_invoke_process(
+      drush_sitealias_get_record('@self'),
+      'quickstart-fixperms',
+      array(),
+      array("--domain=$domain", "--codepath=$codepath"),
+      array('#integrate' => TRUE)
+    );
   }
 
   drush_log("\nURL:  http://".$params['domain']."\nAdmin user:  ".$params['account-name']."\nAdmin password: ".$params['account-pass'], 'ok');
