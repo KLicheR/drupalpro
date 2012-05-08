@@ -32,7 +32,8 @@ ini_set('session.gc_maxlifetime', \$cfg['LoginCookieValidity']);
 # Make quickstart a user of group www-data
 sudo adduser quickstart www-data
 # Make quickstart a user of group root to edit config files
-#mdrmike unsafe for newbies ## sudo adduser quickstart root
+# note: seems unsafe for anyone unaware.  @FIXME -- add note to documentation
+sudo adduser quickstart root
 
 
 # ################################################################################ Drupal sites
@@ -70,7 +71,7 @@ git clone http://git.drupal.org/project/drush.git
 cd ~/drush
 git checkout $DRUSH_VERSION
 
-#mdrmike @FIXME (purge or need?):
+#mdrmike @FIXME (don't need once pear install works):
 chmod u+x ~/drush/drush
 sudo ln -s ~/drush/drush /usr/local/bin/drush
 
