@@ -36,16 +36,15 @@ cd ~
 
 case "$1" in
 "")
-  bash -x ~/quickstart/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-1-prep.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   reboot 20
   ;;
 "20")
-  bash -x ~/quickstart/quickstart-1a-guest.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
+  bash -x ~/quickstart/quickstart-2-slim.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   reboot 30
   ;;
 "30")
-  bash -x ~/quickstart/quickstart-2-slim.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
+  bash -x ~/quickstart/quickstart-1a-guest.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   reboot 40
   ;;
