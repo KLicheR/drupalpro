@@ -54,12 +54,12 @@ case "$1" in
   reboot 50
   ;;
 "50")
-  bash -x ~/quickstart/quickstart-5-browsers.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-6-devenv.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-7-config.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   reboot 70
   ;;
 "70")
+  bash -x ~/quickstart/quickstart-5-browsers.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   bash -x ~/quickstart/quickstart-8-manualconfig.sh  2>&1 | tee -a ~/quickstart/logs/quickstart-install.log
   ;;
 *)
