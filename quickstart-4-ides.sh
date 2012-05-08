@@ -43,7 +43,7 @@ sudo killall nautilus
 # Install graphics editors - weights about 25mb
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp 
 sudo apt-get update
-sudo apt-get -yq install gimp #beware.  ppa currently at gimp-2.8~RC1
+sudo apt-get -yq install gimp icc-profiles #beware.  ppa currently at gimp-2.8~RC1
 
 
 ## GUI IDE's
