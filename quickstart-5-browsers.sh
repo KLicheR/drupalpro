@@ -42,8 +42,6 @@ zenity --info --text="Firefox will start.\n\n1) Please install the FEBE backup e
 #firefox -P temp https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi?src=addondetail
 firefox -P temp http://softwarebychuck.com/xpis/FEBE7.0.3.3.xpi
 
-firefox -P temp
-
 zenity --info --text="Firefox profile manager will start.\n1) Delete temp profile.\n2) THEN CLOSE MANAGER." &
 firefox -ProfileManager
 rm profileFx4{default}.fbu

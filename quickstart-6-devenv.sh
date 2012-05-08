@@ -94,7 +94,7 @@ sudo chmod 750 /var/www/index.php
 # ################################################################################ Command line shortcuts (bash aliases)
 
 # Don't sudo here...
-cat > ~/.bash_aliases <<END
+cat > ~/.bash_aliases <<ALIASEND
 #mdr svn_add_all [folder]            - recursive add folders unversioned files (espects svn:ignore and spaces in filenames)
 #mdr svn_rid_all [folder]            - recursive svn-deletes missing files (deleted by user, but not svn-deleted)
 #mdr svn_revert_all [folder]         - recursive revert any change in folder
@@ -239,10 +239,11 @@ else \
   echo " '$Yellow$PathShort$Color_Off'\$ "; \
 fi)'
 
-END
+ALIASEND
 
 
 # ################################################################################ Desktop shortcuts
+# @FIXME -- none of this works well in Unity
 
 cat > ~/Desktop/README.desktop <<END
 #!/usr/bin/env xdg-open
