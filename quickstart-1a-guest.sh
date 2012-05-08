@@ -3,9 +3,9 @@
 ## install guest additions 
 
 # dkms recommended on virtualbox.org for upgrade compatibility
-sudo apt-get -yq install build-essential linux-headers-$(uname -r)
-sudo apt-get -yq install dkms
-sudo apt-get -yq install virtualbox-ose-guest-x11
+sudo apt-get -yq install build-essential linux-headers-virtual
+sudo apt-get -yq install virtualbox-ose-guest-x11 virtualbox-guest-dkms virtualbox-guest-source
+#if that doesnt work, try manual install per http://www.webupd8.org/2012/02/virtualbox-ubuntu-1204-guest-fixes.html
 
 ## Shared folders
 
