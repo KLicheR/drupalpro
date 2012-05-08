@@ -4,7 +4,7 @@
 #
 # 1) Open a terminal window in the virtual machine (Applications->Accessories->Terminal)
 #
-# 2) bash ~/quickstart/install-quickstart.sh
+# 2) bash ~/quickstart/setup_scripts/install-quickstart.sh
 
 
 # ################################################################################ Shorten prompt and set version
@@ -14,7 +14,7 @@ echo "qs1204" | sudo tee /etc/hostname
 # ################################################################################ Reboot functions
 function reboot {
   # update .profile file to continue the next step of the script.
-  echo "gnome-terminal -x bash -c \"~/quickstart/install-quickstart.sh $1\" &" >> ~/.profile
+  echo "gnome-terminal -x bash -c \"~/quickstart/setup_scripts/install-quickstart.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   sleep 2
   sudo reboot now
@@ -36,31 +36,31 @@ cd ~
 
 case "$1" in
 "")
-  bash -x ~/quickstart/quickstart-1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 20
   ;;
 "20")
-  bash -x ~/quickstart/quickstart-2-slim.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-2-slim.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 30
   ;;
 "30")
-  bash -x ~/quickstart/quickstart-1a-guest.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-1a-guest.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 40
   ;;
 "40")
-  bash -x ~/quickstart/quickstart-3-lamp.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/quickstart-4-ides.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-3-lamp.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-4-ides.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 50
   ;;
 "50")
-  bash -x ~/quickstart/quickstart-6-devenv.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/quickstart-7-config.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-6-devenv.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-7-config.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 70
   ;;
 "70")
-  bash -x ~/quickstart/quickstart-5-browsers.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/quickstart-8-manualconfig.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-5-browsers.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/quickstart-8-manualconfig.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   ;;
 *)
   echo " *** BAD BAD BAD SOMETHING WENT WRONG!  CALL A DOCTOR! *** "

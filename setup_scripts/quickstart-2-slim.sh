@@ -55,7 +55,7 @@ sudo apt-get -yq autoremove
 sudo apt-get -yq clean
 
 # What's installed: look in file whats_installed.txt
-for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/quickstart/quickstart-slim-package-list.txt; rm -f pkgs.tmp;
+for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/quickstart/setup_scripts/quickstart-slim-package-list.txt; rm -f pkgs.tmp;
 echo "------------  -------------------" >> ~/quickstart/setup_scripts/logs/quickstart-slim-package-list.txt
 echo "size(kb)         packagename" >> ~/quickstart/setup_scripts/logs/quickstart-slim-package-list.txt
 
