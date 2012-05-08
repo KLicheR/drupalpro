@@ -49,5 +49,5 @@ APT::Periodic::Unattended-Upgrade \"1\";
 #mdrmike sudo sed -i 's/# store-plaintext-passwords = no/store-plaintext-passwords = yes/g' ~/.subversion/servers
 
 # final size
-df -h -T > ~/quickstart/logs/quickstart-size-end.txt
+df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-end.txt
 

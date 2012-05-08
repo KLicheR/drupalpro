@@ -18,7 +18,7 @@ sudo chmod 440 /etc/sudoers.d/quickstart
 ## Disk size Accounting
 
 # Starting size:
-df -h -T > ~/quickstart/logs/quickstart-size-start.txt
+df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-start.txt
 
 
 ## Some configuration
