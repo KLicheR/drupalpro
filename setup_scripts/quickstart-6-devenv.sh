@@ -60,7 +60,7 @@ To delete a site:
 
 For more information:
   $ drush help quickstart-create
-  $ drush help quickstart-delete
+  $ drush help quickstart-destroy
   Or goto http://drupal.org/node/819398" > ~/websites/README.txt
 
 
