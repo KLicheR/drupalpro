@@ -255,7 +255,7 @@ function quickstart_destroy_code($domain, $params) {
 }
 
 /**
- * Install the site.  D6 and D7 versions.
+ * Install the site. D6, D7, and D8 versions.
  *
  * @param <type> $domain
  * @param <type> $params
@@ -266,13 +266,21 @@ function quickstart_create_install($domain, $params) {
   $codepath = $params['codepath'];
 
   // load make file into string
-  $str=file_get_contents($codepath . '/CHANGELOG.txt');
+  // CHANGELOG.txt lives in the core directory in d8. Test for it there first.
+  $changelog = $codepath . '/core/CHANGELOG.txt';
+  if (!file_exists($changelog)) {
+    $changelog = $codepath . '/CHANGELOG.txt';
+  }
+  $str = file_get_contents($changelog);
   if ( preg_match("/^Drupal 6./m", $str) ) {
     $dversion = 'd6';
   }
   // regex magic.
   if ( preg_match("/^Drupal 7./m", $str) ) {
     $dversion = 'd7';
+  }
+  if ( preg_match("/^Drupal 8./m", $str) ) {
+    $dversion = 'd8';
   }
   
   // D6 specific
