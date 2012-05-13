@@ -62,8 +62,16 @@ function quickstart_fixpath($pathin) {
  * @param <type> $params
  */
 function quickstart_create_dns($domain, $params) {
-  // FIXME detect duplicates
-  quickstart_shell_exec("echo '127.0.0.1 $domain #quickstart' | sudo tee -a /etc/hosts");
+  $file = file_get_contents("/etc/hosts");
+  // make sure to test for fully spaces parsed domain in hosts file.
+  // otherwise shortened partial domains will throw an exception.
+  $domainplus = " " . $domain . " ";
+  if(!strpos($file, $domainplus)) {
+    quickstart_shell_exec("echo '127.0.0.1 $domain #quickstart' | sudo tee -a /etc/hosts");
+  }else{
+    $msg = $domain . " already exists...doing nothing";
+    throw new Exception($msg);
+  }
 }
 
 /**
@@ -134,7 +142,7 @@ function quickstart_create_apache($domain, $params) {
   fwrite($config_handle, $str_config);
 
   // enable using script
-  quickstart_shell_exec("sudo a2ensite $domain"); 
+  quickstart_shell_exec("sudo a2ensite $domain");
 
   // restart apache
   quickstart_shell_exec("sudo apache2ctl restart");
@@ -202,9 +210,9 @@ function quickstart_destroy_database($domain, $params) {
 }
 
 /**
- * Download the code using drush make.  
+ * Download the code using drush make.
  * If path already exists, moves it to path.old.
- * 
+ *
  * @param <type> $domain
  * @param <type> $params 'codepath' 'makefile'
  */
@@ -282,7 +290,7 @@ function quickstart_create_install($domain, $params) {
   if ( preg_match("/^Drupal 8./m", $str) ) {
     $dversion = 'd8';
   }
-  
+
   // D6 specific
   if ($dversion=='d6') {
     // D6 and D7 have different names for the default profile.
@@ -299,7 +307,7 @@ function quickstart_create_install($domain, $params) {
           $str);
     file_put_contents("$codepath/sites/".$params['sites-subdir']."/settings.php",$str);
   }
-  
+
   // Nuff foreplay, let's install!
   $opts = array(
     "--root=" . $params['codepath'],
