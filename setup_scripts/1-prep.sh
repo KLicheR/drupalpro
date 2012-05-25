@@ -15,6 +15,11 @@ This script shouldn't be run more than once."
 echo "quickstart ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/quickstart > /dev/null
 sudo chmod 440 /etc/sudoers.d/quickstart
 
+# Make quickstart a user of group root to edit config files
+# note: seems unsafe for anyone unaware.  @FIXME -- add note to documentation
+sudo adduser quickstart root
+
+
 ## Disk size Accounting
 
 # Starting size:

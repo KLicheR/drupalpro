@@ -31,10 +31,6 @@ ini_set('session.gc_maxlifetime', \$cfg['LoginCookieValidity']);
 # ################################################################################ user management
 # Make quickstart a user of group www-data
 sudo adduser quickstart www-data
-# Make quickstart a user of group root to edit config files
-# note: seems unsafe for anyone unaware.  @FIXME -- add note to documentation
-sudo adduser quickstart root
-
 
 # ################################################################################ Drupal sites
 # Create folder for websites to live in
