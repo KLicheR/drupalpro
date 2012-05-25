@@ -11,6 +11,6 @@ df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-end.txt
 
 
 # Manual config instructions.
-firefox ~/quickstart/setup_scripts/quickstart-8-manualconfig.txt
+firefox ~/quickstart/config/manualconfig.txt
 
 

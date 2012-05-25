@@ -36,31 +36,28 @@ cd ~
 
 case "$1" in
 "")
-  bash -x ~/quickstart/setup_scripts/quickstart-1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 20
   ;;
 "20")
-  bash -x ~/quickstart/setup_scripts/quickstart-2-slim.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  reboot 30
-  ;;
-"30")
-  bash -x ~/quickstart/setup_scripts/quickstart-1a-guest.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/setup_scripts/quickstart-2a-update.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/2-slim.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/2a-update.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 40
   ;;
 "40")
-  bash -x ~/quickstart/setup_scripts/quickstart-3-lamp.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/setup_scripts/quickstart-4-ides.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/3-lamp.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/4-ides.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 50
   ;;
 "50")
-  bash -x ~/quickstart/setup_scripts/quickstart-6-devenv.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/setup_scripts/quickstart-7-config.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/6-devenv.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/7-config.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 70
   ;;
 "70")
-  bash -x ~/quickstart/setup_scripts/quickstart-5-browsers.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  bash -x ~/quickstart/setup_scripts/quickstart-8-manualconfig.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/5-browsers.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  bash -x ~/quickstart/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   ;;
 *)
   echo " *** BAD BAD BAD SOMETHING WENT WRONG!  CALL A DOCTOR! *** "
