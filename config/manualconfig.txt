@@ -19,7 +19,7 @@ Quickstart has been installed.  To complete the image:
       Create project for example.dev
 
   ECLIPSE:
-      Lock Icon to Unity Launcher
+      Lock Icon to Unity Launcher (not yet working in Unity Launcher)
       Set workspace to /home/quickstart/websites - use as default
       Help->Check for updates
       Window->Preferences->General->Editors->Text Editors.
@@ -35,16 +35,15 @@ Quickstart has been installed.  To complete the image:
    check "allow others"
    (reboot to test)
 
-* Setup Toolbar:  -Softeware Center, -System settings, -Text editor, +Chrome, +Xchat, +Netbeans, +Eclipse, +Geany
+* Setup Toolbar:  -Software Center, -System settings, -Text editor, +Chrome, +Xchat, +Netbeans, +Eclipse, +Geany, +GUFW, +GITG
 
 * Setup Guake preferences:  Hide on lose focus, Larger Font, Less Transparency, Default Key, (f4)
 
 * Startup applications: guake
 
 * Prepare for export:
-   bash -x ~/quickstart/export-prep.sh
+   bash -x ~/quickstart/setup_scripts/export-prep.sh
 
 * Shutdown
 
 * Export virtual machine
-
