@@ -20,8 +20,9 @@ cd ~
 # bash -x ~/quickstart/setup_scripts/2-slim.sh
 bash -x ~/quickstart/setup_scripts/3-lamp.sh
 # bash -x ~/quickstart/setup_scripts/4-ides.sh
-# bash -x ~/quickstart/setup_scripts/5-browsers.sh
-# bash -x ~/quickstart/setup_scripts/6-devenv.sh
+# bash -x ~/quickstart/setup_scripts/extras_misc.sh
+# bash -x ~/quickstart/setup_scripts/extras_theming.sh
+# bash -x ~/quickstart/setup_scripts/extras_development.sh
 # bash -x ~/quickstart/setup_scripts/7-config.sh
 # firefox ~/quickstart/config/manualconfig.txt
 
