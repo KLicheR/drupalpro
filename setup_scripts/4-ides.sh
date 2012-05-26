@@ -14,10 +14,6 @@ echo "*** ECLIPSE URL: $ECLIPSE_URL"
 
 cd ~
 
-## Install java - 100mb
-sudo apt-get -yq install default-jre
-
-
 ## Basic editors
 
 # Config gedit-2
@@ -38,13 +34,7 @@ gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_unlimited --type
 # Install graphical version control - weighs about 58mb
 # sudo add-apt-repository ppa:rabbitvcs/ppa && sudo apt-get update # ppa not working 2011-05-25
 #sudo apt-get -yq install rabbitvcs-nautilus
-sudo killall nautilus
-
-# Install graphics editors - weights about 25mb
-sudo add-apt-repository ppa:otto-kesselgulasch/gimp 
-sudo apt-get update
-sudo apt-get -yq install gimp icc-profiles #beware.  ppa currently at gimp-2.8~RC1
-
+#sudo killall nautilus
 
 ## GUI IDE's
 
