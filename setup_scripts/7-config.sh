@@ -3,14 +3,14 @@
 # Remove fancy high-falutin new 3d-glasses scrollbars.  In my day we just had arrow keys!
 #mdrmike sudo apt-get -y remove overlay-scrollbar liboverlay-scrollbar-0.1-0
 
-# Change default theme
-#mdrmike gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
-#mdrmike gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
-#mdrmike gconftool-2 -s /desktop/gnome/interface/icon_theme --type=string ubuntu-mono-light
+# Change default theme (due to Netbeans / java)
+gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
+gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
+gconftool-2 -s /desktop/gnome/interface/icon_theme --type=string ubuntu-mono-light
 
 #setup nautilus
 gconftool-2 --type=Boolean --set /apps/nautilus/preferences/always_use_location_entry true
-
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 # automatic updates.  apply security.  download updates
 echo "
@@ -24,7 +24,7 @@ APT::Periodic::Unattended-Upgrade \"1\";
 # setup icons on top of screensyn
 #mdrmike sudo apt-get -yq install netspeed
 #mdrmike echo "#!/usr/bin/env xdg-open
-#mdrmike 
+#mdrmike
 #mdrmike [Desktop Entry]
 #mdrmike Version=1.0
 #mdrmike Type=Application
@@ -47,6 +47,9 @@ APT::Periodic::Unattended-Upgrade \"1\";
 #mdrmike # get rid of subversion commit keyring.  Store passwords plain on disk
 #mdrmike sudo sed -i 's/# password-stores = gnome-keyring,kwallet/password-stores = /g' ~/.subversion/config
 #mdrmike sudo sed -i 's/# store-plaintext-passwords = no/store-plaintext-passwords = yes/g' ~/.subversion/servers
+
+cd $HOME
+sudo cp eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png
 
 # final size
 df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-end.txt

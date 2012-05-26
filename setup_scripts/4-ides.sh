@@ -1,20 +1,24 @@
 #!/bin/bash
 
 NETBEANS_URL="http://download.netbeans.org/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
+# To install Netbeans beta, remove the comment below
+#NETBEANS_URL="http://download.netbeans.org/netbeans/7.2/beta/bundles/netbeans-7.2beta-ml-php-linux.sh"
+
+# eclipse http://www.eclipse.org/pdt/downloads/
 if [ `uname -p` == "x86_64" ]
-# new eclipe?  http://code.google.com/p/zend-sdk/downloads/list
 then
-#mdrmike old:@fixme(purge) |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
-  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v2011102768-x86_64.tar.gz"
+  # Quickstart1 alternative |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
+  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86_64.tar.gz"
 else
-#mdrmike old:@fixme(purge) |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
-  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v2011102768-x86.tar.gz"
+  # Quickstart1 |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
+  ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86.tar.gz"
 fi
 echo "*** ECLIPSE URL: $ECLIPSE_URL"
 
 cd ~
 
-## Basic editors
+## Lightweight Editors
+sudo apt-get -yq install gedit-plugins
 
 # Config gedit-2
 gconftool-2 -s /apps/gedit-2/preferences/editor/auto_indent/auto_indent --type=bool true
@@ -26,15 +30,26 @@ gconftool-2 -s /apps/gedit-2/preferences/editor/wrap_mode/wrap_mode --type=strin
 gconftool-2 -s /apps/gedit-2/preferences/editor/tabs/insert_spaces --type=bool true
 gconftool-2 -s /apps/gedit-2/preferences/editor/tabs/tabs_size --type=integer 2
 gconftool-2 -s /apps/gedit-2/preferences/editor/save/auto_save --type=bool true
-sudo apt-get -yq install gedit-plugins
 
-# gnome terminal
-gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_unlimited --type=bool true
 
-# Install graphical version control - weighs about 58mb
-# sudo add-apt-repository ppa:rabbitvcs/ppa && sudo apt-get update # ppa not working 2011-05-25
-#sudo apt-get -yq install rabbitvcs-nautilus
-#sudo killall nautilus
+# INSTALL GEANY & SETUP FOR DRUPAL / WEB DEVELOPMENT
+# Geany is a small fast IDE (based on scintilla ... also what notepad++ is also built on)
+# info: http://en.wikipedia.org/wiki/Geany
+sudo apt-get install -yq geany
+mkdir -p ~/.config/geany/tags
+
+# GEANY: Extra color themes
+wget -nv -O geany-themes.tar.bz2 https://github.com/downloads/codebrainz/geany-themes/geany-themes-0.21.tar.bz2
+tar jxf geany-themes.tar.bz2
+mv -f geany-themes-0.21/* ~/.config/geany/
+rm geany-themes.tar.bz2
+rm -r geany-themes-0.21
+
+# GEANY: Install extra tag files
+wget -nv -O ~/.config/geany/tags/geany-tags-drupal http://wiki.geany.org/_media/tags/drupal.php.tags
+wget -nv -O ~/.config/geany/tags/geany-tags-php-5.3.5 http://wiki.geany.org/_media/tags/phpfull-5.3.5.php.tags
+wget -nv -O ~/.config/geany/tags/geany-tags-js http://dl.yent.eu/em.js.tags
+wget -nv -O ~/.config/geany/tags/geany-tags-css http://wiki.geany.org/_media/tags/standard.css.tags
 
 ## GUI IDE's
 
