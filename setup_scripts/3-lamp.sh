@@ -2,13 +2,6 @@
 
 mkdir ~/websites
 
-# ##### Install some basics
-#sudo apt-get -yq install cvs subversion git-core bzr
-sudo apt-get -yq install git bzr mercurial
-# add some useful git tools
-sudo apt-get -yq install gitg meld git-gui gitk
-sudo apt-get -yq install wget curl
-
 ## configure some nice git settings
 git config --global color.ui true
 git config --global core.whitespace trailing-space,tab-in-indent

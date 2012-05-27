@@ -3,17 +3,19 @@
 ## Install java - 100mb
 sudo apt-get -yq install default-jre
 
-# Install some really useful utilities for developing & theming in Ubuntu
+# ##### Install some basics
+sudo apt-get -yq install git
+sudo apt-get -yq install wget curl
+# add some useful git tools
+sudo apt-get -yq install gitg meld git-gui gitk
+
+# Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
 sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip
 
 # Install Cheatsheet Wallpaper
 wget -nv -O $HOME/quickstart/config/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
-gconftool-2 -s /desktop/gnome/background/picture_filename --type=string "$HOME/quickstart/config/wallpaper1920x1200.png"
-
-# Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
-sudo apt-get -yq install chromium-browser
-sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
+gconftool -s /desktop/gnome/background/picture_filename --type=string "$HOME/quickstart/config/wallpaper1920x1200.png"
 
 # Install flash-plugin browser
 sudo apt-get -yq install flashplugin-installer
