@@ -8,8 +8,7 @@
 
 
 # ################################################################################ Shorten prompt and set version
-echo "qs1204" | sudo tee /etc/hostname
-
+# echo "qs1204" | sudo tee /etc/hostname
 
 # ################################################################################ Reboot functions
 function reboot {
@@ -25,7 +24,7 @@ function reboot {
 
 if [ -n "$1" ] ; then  # sleep if rebooted
   # @FIXME: change 'sleep 15' to actually test for active network connection before continuing
-  echo "sleeping 15"; sleep 15
+  echo "Reboot stage: $1  ... sleeping 15"; sleep 15
 fi
 
 sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
