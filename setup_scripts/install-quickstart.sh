@@ -21,13 +21,11 @@ function reboot {
 }
 
 # Undo any previous reboot script
-
 if [ -n "$1" ] ; then  # sleep if rebooted
   # @FIXME: change 'sleep 15' to actually test for active network connection before continuing
   echo "Reboot stage: $1  ... sleeping 15"; sleep 15
+  sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 fi
-
-sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 
 # ################################################################################ Install it!
 # this switch statement handles reboots.

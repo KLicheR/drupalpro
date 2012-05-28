@@ -1,10 +1,7 @@
 #!/bin/bash
 
 zenity --info --text="These install scripts may take several hours, and some automated reboots.
-
-Towards the end, the process requires some manual steps, guided by popups like this.
-
-This script shouldn't be run more than once.
+Towards the end, the process requires some manual steps, guided by popups like this. This script shouldn't be run more than once.
 
 NOTE:  This script should be run by user: quickstart -- and should be setup to allow automatic login upon reboot"
 
