@@ -3,8 +3,8 @@
 # Install graphics editors - weights about 25mb
 # sudo add-apt-repository ppa:otto-kesselgulasch/gimp
 # setup gimp ppa
-echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main /' >> /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list
-echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main /' >> /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list
+sudo echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main /' >> /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list
+sudo echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main /' >> /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38
 sudo apt-get update
 sudo apt-get -yq install inkscape icc-profiles #install inkscape, + icc profiles
