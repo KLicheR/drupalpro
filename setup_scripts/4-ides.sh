@@ -1,5 +1,12 @@
 #!/bin/bash
 
+REFERER="http://www.drupal.org/project/quickstart"
+USERAGENT="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu"
+HEAD1="Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
+HEAD2="Accept-Language: en-us,en;q=0.5"
+HEAD3="Accept-Encoding: gzip,deflate"
+HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
+HEAD5="Keep-Alive: 300"
 NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
 # To install Netbeans beta, remove the comment below
 #NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/beta/bundles/netbeans-7.2beta-ml-php-linux.sh"
@@ -63,8 +70,7 @@ rm eclipse.tar.gz
 #sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install eclipse eclipse-pdt eclipse-plugin-cvs eclipse-subclipse
 
 # Download and install netbeans - 122mb
-wget -O netbeans.sh wget --referer="http://www.drupal.org/project/quickstart" --user-agent="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu" --header="Accept:
-text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" -dv $NETBEANS_URL
+wget -O netbeans.sh --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" -dv $NETBEANS_URL
 chmod +x ./netbeans.sh
 bash ./netbeans.sh --silent
 rm netbeans.sh
