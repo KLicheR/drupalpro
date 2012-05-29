@@ -20,7 +20,7 @@ sudo apt-get -yq purge bluez-alsa gir1.2-gnomebluetooth-1.0 bluez-gstreamer puls
 #  3.2mb - speech synthesis
 sudo apt-get -yq purge espeak speech-dispatcher espeak-data libespeak1
 #  67.5mb - social, IM, mail
-sudo apt-get -yq purge telepathy-indicator folks-common telepathy-logger telepathy-gabble gwibber-service-identica thunderbird telepathy-haze empathy-common gwibber-service-twitter gwibber-service-facebook telepathy-idle empathy telepathy-salut libgwibber2 gwibber-service libfolks-eds25 thunderbird-globalmenu thunderbird-gnome-support evolution-data-server-common evolution-data-server gwibber libedataserverui-3.0-1 libgwibber-gtk2 nautilus-sendto-empathy telepathy-mission-control-5
+sudo apt-get -yq purge telepathy-indicator folks-common telepathy-logger telepathy-gabble gwibber-service-identica thunderbird telepathy-haze empathy-common gwibber-service-twitter gwibber-service-facebook telepathy-idle empathy telepathy-salut libgwibber2 gwibber-service libfolks-eds25 thunderbird-globalmenu thunderbird-gnome-support gwibber libgwibber-gtk2 nautilus-sendto-empathy telepathy-mission-control-5
 #  63mb - Printing
 #mdrmike @FIXME:(purge) |too useful sudo apt-get -yq purge cups cups-bsd cups-client cups-common ghostscript ghostscript-x ghostscript-cups cups-driver-gutenprint python-cups system-config-printer-common system-config-printer-gnome system-config-printer-udev foo2zjs foomatic-db-engine foomatic-filters min12xxw openprinting-ppds pnm2ppa pxljr splix hplip-data hplip hpijs libcupsmime1 libcupsdriver1 libgutenprint2 libcupsppdc1
 # 15mb - Scanner drivers
