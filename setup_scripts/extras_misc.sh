@@ -1,5 +1,14 @@
 #!/bin/bash
 
+FEBE_URL="https://dl.dropbox.com/u/6569361/quickstart/Quickstart1204.fbu"
+REFERER="http://www.drupal.org/project/quickstart"
+USERAGENT="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu"
+HEAD1="Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
+HEAD2="Accept-Language: en-us,en;q=0.5"
+HEAD3="Accept-Encoding: gzip,deflate"
+HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
+HEAD5="Keep-Alive: 300"
+
 ## Install java - 100mb
 sudo apt-get -yq install default-jre
 
@@ -41,9 +50,7 @@ gsettings set org.gnome.desktop.background picture-uri 'file:///$HOME/Pictures/w
 sudo apt-get -yq install flashplugin-installer
 
 cd ~
-wget --referer="http://www.drupal.org/project/quickstart" --user-agent="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu" --header="Accept:
-text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"
---header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" -dv https://dl.dropbox.com/u/6569361/quickstart/Quickstart1204.fbu
+wget -O Quickstart1204.fbu --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" -dv $FEBE_URL
 mv Quickstart1204.fbu profileFx4{default}.fbu
 
 # Use firefox as default browser.  Chrome, I'm looking at you...
