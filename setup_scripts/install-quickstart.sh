@@ -34,11 +34,17 @@ cd ~
 case "$1" in
 "")
   bash -x ~/quickstart/setup_scripts/1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  reboot 10
+  ;;
+"10")
   bash -x ~/quickstart/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 20
   ;;
 "20")
   bash -x ~/quickstart/setup_scripts/2-slim.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  reboot 30
+  ;;
+"30")
   bash -x ~/quickstart/setup_scripts/2a-update.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   reboot 40
   ;;
