@@ -15,6 +15,7 @@ function reboot {
   # update .profile file to continue the next step of the script.
   echo "gnome-terminal -x bash -c \"~/quickstart/setup_scripts/install-quickstart.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
+  echo "\n\n\n*** START REBOOT CYCLE: $1 ***" | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
   sleep 2
   sudo reboot now
   exit
