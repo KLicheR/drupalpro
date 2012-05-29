@@ -11,11 +11,20 @@ sudo apt-get -yq install gitg meld git-gui gitk
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip
+sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk
 
 # Install Cheatsheet Wallpaper
-wget -nv -O $HOME/quickstart/config/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
-gconftool -s /desktop/gnome/background/picture_filename --type=string "$HOME/quickstart/config/wallpaper1920x1200.png"
+wget -nv -O $HOME/Pictures/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
+wget -nv -O $HOME/Pictures/drupal7_1920x1200.jpg http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg
+wget -nv -O $HOME/Pictures/HTML5_Canvas_Cheat_Sheet.png http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png
+wget -nv -O $HOME/Pictures/VI-Help-Sheet-01-large2.jpg http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg
+gconftool -s /desktop/gnome/background/picture_filename --type=string "$HOME/Pictures/wallpaper1920x1200.png"
+gsettings set org.gnome.desktop.background draw-background true
+gsettings set org.gnome.desktop.background picture-opacity 100
+gsettings set org.gnome.desktop.background picture-options 'stretched'
+gsettings set org.gnome.desktop.background picture-uri 'file:///$HOME/Pictures/wallpaper1920x1200.png'
+
+
 
 # Install flash-plugin browser
 sudo apt-get -yq install flashplugin-installer
