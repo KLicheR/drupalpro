@@ -18,6 +18,12 @@ sudo ufw enable
 sudo ufw allow in proto tcp from any to any port 443
 sudo ufw allow in proto tcp from any to any port 80
 
+#Set default values for guake
+gconftool -s /apps/guake/keybindings/global/show_hide --type=string "F4"
+gconftool -s /apps/guake/general/history_size --type=int 8192
+gconftool -s /apps/guake/style/background/transparency --type=int 10
+gconftool -s /apps/guake/general/window_losefocus --type=bool true
+
 # Install Cheatsheet Wallpaper
 wget -nv -O $HOME/Pictures/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
 wget -nv -O $HOME/Pictures/drupal7_1920x1200.jpg http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg
