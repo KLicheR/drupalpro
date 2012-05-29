@@ -23,5 +23,5 @@ gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
 
 # Install virtual kernel.  Better performance.
 sudo apt-get -yq update
-sudo apt-get -yq install linux-virtual linux-headers-virtual
-sudo apt-get -yq remove linux-generic linux-headers-generic linux-generic-pae linux-headers-generic-pae
+sudo apt-get -yq purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
+sudo apt-get -yq install linux-virtual linux-headers-virtual linux-image-virtual
