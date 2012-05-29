@@ -13,6 +13,11 @@ sudo apt-get -yq install gitg meld git-gui gitk
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
 sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit
 
+#Setup Firewall
+sudo ufw enable
+sudo ufw allow in proto tcp from any to any port 443
+sudo ufw allow in proto tcp from any to any port 80
+
 # Install Cheatsheet Wallpaper
 wget -nv -O $HOME/Pictures/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
 wget -nv -O $HOME/Pictures/drupal7_1920x1200.jpg http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg
