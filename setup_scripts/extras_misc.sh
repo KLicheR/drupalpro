@@ -11,7 +11,7 @@ sudo apt-get -yq install gitg meld git-gui gitk
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk
+sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit
 
 # Install Cheatsheet Wallpaper
 wget -nv -O $HOME/Pictures/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
