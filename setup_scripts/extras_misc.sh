@@ -14,6 +14,9 @@ sudo apt-get -yq install git
 sudo apt-get -yq install wget curl
 # add some useful git tools
 sudo apt-get -yq install gitg meld git-gui gitk
+# configure some nice git settings
+git config --global color.ui true
+git config --global core.whitespace trailing-space,tab-in-indent
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)

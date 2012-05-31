@@ -1,15 +1,8 @@
 #!/bin/bash
 
 mkdir ~/websites
-
-## configure some nice git settings
-git config --global color.ui true
-git config --global core.whitespace trailing-space,tab-in-indent
-
-# ##### Install openssh-server
-# This is a security risk, and unneeded for development.  The risk is when using bridged networking with known passwords.
-# sudo apt-get -yq install openssh-server
-
+sudo chown :www-data ~/websites
+sudo chmod -R ug=rwX,o= ~/websites
 
 # ##### Install LAMP packages
 
