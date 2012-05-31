@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ################################################################################ Drupal sites
+# Create folder for websites to live in
 mkdir ~/websites
 sudo chown :www-data ~/websites
 sudo chmod -R ug=rwX,o= ~/websites

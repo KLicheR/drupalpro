@@ -3,8 +3,14 @@
 DRUSH_VERSION="7.x-5.1"
 cd ~
 
-# ################################################################################ Configure phpmyadmin
+# ################################################################################ Replace localhost/index.html
+# Add interesting default document for localhost
+sudo rm /var/www/index.html
+sudo cp ~/quickstart/config/index.php /var/www/index.php
+sudo chmod -R u=rwX,g=rX,o= /var/www
+sudo chown -R quickstart:www-data /var/www
 
+# ################################################################################ Configure phpmyadmin
 # show hex data on detail pages.
 echo "
 # Show 1000 rows instead of 30 by default
@@ -31,10 +37,6 @@ ini_set('session.gc_maxlifetime', \$cfg['LoginCookieValidity']);
 # ################################################################################ user management
 # Make quickstart a user of group www-data
 sudo adduser quickstart www-data
-
-# ################################################################################ Drupal sites
-# Create folder for websites to live in
-mkdir ~/websites
 
 echo "This is where Quickstart websites go.
 
@@ -79,14 +81,6 @@ cd ~
 # Install drush quickstart
 ln -s ~/quickstart/drush ~/.drush/quickstart
 cp ~/quickstart/make_templates/*.make ~/websites
-
-# ################################################################################ Replace localhost/index.html
-# Add interesting default document for localhost
-sudo rm /var/www/index.html
-cp ~/quickstart/config/index.php /var/www/index.php
-sudo chmod -R u=rwX,g=rX,o= /var/www
-sudo chown -R :www-data ../www
-
 
 # ################################################################################ Command line shortcuts (bash aliases)
 
