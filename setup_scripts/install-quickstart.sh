@@ -35,7 +35,13 @@ cd ~
 case "$1" in
 "")
   bash -x ~/quickstart/setup_scripts/1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  reboot 10
+  if [ ! $? ]   # if exit was not an error, then reboot
+  then
+    reboot 10
+  else          # otherwise, abort
+    zenity --info --test="Aborted.  Nothing was changed."
+    exit
+  fi
   ;;
 "10")
   bash -x ~/quickstart/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
