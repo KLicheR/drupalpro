@@ -72,6 +72,6 @@ rm eclipse.tar.gz
 # Download and install netbeans - 122mb
 wget -O netbeans.sh --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" -dv $NETBEANS_URL
 chmod +x ./netbeans.sh
-bash ./netbeans.sh --silent
+bash ./netbeans.sh --silent --nospacecheck
 rm netbeans.sh
 
