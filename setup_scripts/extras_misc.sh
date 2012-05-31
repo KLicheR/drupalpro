@@ -9,9 +9,6 @@ HEAD3="Accept-Encoding: gzip,deflate"
 HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
 HEAD5="Keep-Alive: 300"
 
-## Install java - 100mb
-sudo apt-get -yq install default-jre
-
 # ##### Install some basics
 sudo apt-get -yq install git
 sudo apt-get -yq install wget curl

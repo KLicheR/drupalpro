@@ -20,6 +20,11 @@ else
   # Quickstart1 |ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
   ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86.tar.gz"
 fi
+
+## Install java - 100mb
+sudo apt-get -yq install default-jre
+
+echo "*** NETBEANS URL: $NETBEANS_URL"
 echo "*** ECLIPSE URL: $ECLIPSE_URL"
 
 cd ~
