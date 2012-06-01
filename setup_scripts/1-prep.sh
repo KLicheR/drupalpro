@@ -19,7 +19,7 @@ loosens permissions for the current user, changes system settings, uninstalls
 Are you really, really, ... and I mean *really* sure you want to do this?" \
 )
 
-if [ $? != 0 ] || [ "$INSTALLTYPE" == "abort" ]
+if [ "$?" -ne 0 ] || [ "$INSTALLTYPE" == "abort" ]
 then
   echo "aborting";
   exit 1;

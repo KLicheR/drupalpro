@@ -35,7 +35,7 @@ cd ~
 case "$1" in
 "")
   bash -x ~/quickstart/setup_scripts/1-prep.sh  2>&1 | tee -a ~/quickstart/setup_scripts/logs/quickstart-install.log
-  if [ ! $? ]   # if exit was not an error, then reboot
+  if [ ! "$?" ]   # if exit was not an error, then reboot
   then
     reboot 10
   else          # otherwise, abort
