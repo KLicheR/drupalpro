@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ## Prompt to give user a chance to abort to avoid borking their system
-INSTALLTYPE=$(zenity  --list \
+INSTALLTYPE=$(zenity \
+  --list \
   --radiolist  \
   --timeout=30 \
   --hide-column=2 \
@@ -9,6 +10,7 @@ INSTALLTYPE=$(zenity  --list \
   --column value \
   --column Description \
   --width=400 \
+  --height=300 \
   --title="Danger!" \
   --text="\
 Danger!  Do you really want to continue?  Be aware this script destructively
@@ -19,10 +21,11 @@ loosens permissions for the current user, changes system settings, uninstalls
 Are you really, really, ... and I mean *really* sure you want to do this?" \
 )
 
-if [ "$?" -ne 0 ] || [ "$INSTALLTYPE" == "abort" ]
-then
-  echo "aborting";
-  exit 1;
+UserAbort=$?
+if [ "$INSTALLTYPE" == "abort" ]; then UserAbort=2; fi
+if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(2), or timeout(5) then exit with code
+  echo "Aborted: $UserAbort (key: cancel=1, abort=2, time out=5).  Nothing was changed."
+  exit $UserAbort;
 fi
 
 # ok, lets do it
