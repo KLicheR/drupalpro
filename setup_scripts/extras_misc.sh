@@ -27,6 +27,11 @@ if grep -q 'Autokey' <(echo `gsettings get com.canonical.Unity.Panel systray-whi
   echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
 else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'Autokey\']`"; fi
 
+# Whitelist xchat for Unity panel
+if grep -q 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
+  echo "'xchat' already exists in the Unity panel whitelist. Nothing to do here.";
+else echo "Adding 'xchat' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'xchat\']`"; fi
+
 #Setup Firewall
 sudo ufw enable
 sudo ufw allow in proto tcp from any to any port 443
