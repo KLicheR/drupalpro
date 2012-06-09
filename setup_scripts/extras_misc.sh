@@ -22,6 +22,11 @@ git config --global core.whitespace trailing-space,tab-in-indent
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
 sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit
 
+# Whitelist autokey for Unity panel
+if grep -q 'Autokey' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
+  echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
+else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'Autokey\']`"; fi
+
 #Setup Firewall
 sudo ufw enable
 sudo ufw allow in proto tcp from any to any port 443
