@@ -53,9 +53,13 @@ GEANY_PHP="http://wiki.geany.org/_media/tags/phpfull-5.3.5.php.tags"
 GEANY_JS="http://dl.yent.eu/em.js.tags"
 GEANY_CSS="http://wiki.geany.org/_media/tags/standard.css.tags"
 
-# ################################################################################ IDE download URL's
+# ################################################################################ Cheatsheets for wallpaper
 CHEAT1="https://dl.dropbox.com/u/6569361/ddd/drupal-contribute-by-zaferia.svg"
 CHEAT2="http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png"
 CHEAT3="http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg"
 CHEAT4="http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png"
 CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg"
+
+# ################################################################################ Drush addons
+
+FEATHER="7.x-1.x"

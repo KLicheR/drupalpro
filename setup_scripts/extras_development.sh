@@ -76,14 +76,13 @@ sudo ln -s ~/drush/drush /usr/local/bin/drush
 
 # Install drush make and drush site-install6
 mkdir ~/.drush
-cd
 
 # Setup Drush
 ln -s ~/$DDD/drush/quickstart ~/.drush/quickstart
 ln -s ~/$DDD/make_templates/*.make ~/websites/
 
-# Install feather
-ln -s ~/$DDD/drush/feather ~/.drush/feather
+# Install Feather (Drush addon)
+git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ~/.drush/feather
 
 
 # ################################################################################ Command line shortcuts (bash aliases)
