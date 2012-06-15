@@ -12,7 +12,7 @@ Oracle XE Installation complete.  Review output for any errors.
 Oracle is a legacy database server.  Oracle XE is the 'developers version',
 and may be useful in porting legacy data from Oracle DB into something useful.
 
-This script isn't very well written or tested.  I wrote it in 2009, while 
+This script isn't very well written or tested.  I wrote it in 2009, while
 working on a legacy Windows/IIS/Oracle/PHP app.  Leaving it here, gives that
 time in my life meaning and purpose.
 
@@ -27,7 +27,7 @@ For details on using Oracle with Drupal, see here: http://api.drupal.org/api/dru
 REBOOT YOUR SERVER FOR APACHE TO SEE THE OCI8 DRIVER
 "
 
-if [ `uname -p` == "x86_64" ] 
+if [ `uname -p` == "x86_64" ]
 then
   echo "
 
@@ -44,7 +44,7 @@ sudo apt-get update
 
 #install server
 echo "deb http://oss.oracle.com/debian unstable main non-free" | sudo tee -a /etc/apt/sources.list
-wget http://oss.oracle.com/el4/RPM-GPG-KEY-oracle -O- | sudo apt-key add - 
+wget http://oss.oracle.com/el4/RPM-GPG-KEY-oracle -O- | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install oracle-xe
 sudo /etc/init.d/oracle-xe configure
@@ -65,7 +65,7 @@ export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 " | sudo tee -a /etc/apache2/envvars > /dev/null
 
 #restart apache
-sudo apache2ctl restart
+sudo service apache2 restart
 
 echo "$HELP"
 

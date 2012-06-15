@@ -1,13 +1,10 @@
 #!/bin/bash
+set -e
 
-FEBE_URL="https://dl.dropbox.com/u/6569361/quickstart/Quickstart1204.fbu"
-REFERER="http://www.drupal.org/project/quickstart"
-USERAGENT="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu"
-HEAD1="Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
-HEAD2="Accept-Language: en-us,en;q=0.5"
-HEAD3="Accept-Encoding: gzip,deflate"
-HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
-HEAD5="Keep-Alive: 300"
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # ##### Install some basics
 sudo apt-get -yq install git
@@ -44,24 +41,28 @@ gconftool -s /apps/guake/style/background/transparency --type=int 10
 gconftool -s /apps/guake/general/window_losefocus --type=bool true
 
 # Install Cheatsheet Wallpaper
-wget -nv -O $HOME/Pictures/wallpaper1920x1200.png http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png
-wget -nv -O $HOME/Pictures/drupal7_1920x1200.jpg http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg
-wget -nv -O $HOME/Pictures/HTML5_Canvas_Cheat_Sheet.png http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png
-wget -nv -O $HOME/Pictures/VI-Help-Sheet-01-large2.jpg http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg
-gconftool -s /desktop/gnome/background/picture_filename --type=string "$HOME/Pictures/wallpaper1920x1200.png"
+wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT1}
+wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT2}
+wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT3}
+wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT4}
+wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT5}
+
+# Setup desktop
+gconftool -s /desktop/gnome/background/picture_filename --type=string "$HOME/Pictures/drupal-contribute-by-zaferia.svg"
+gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
 gsettings set org.gnome.desktop.background picture-opacity 100
-gsettings set org.gnome.desktop.background picture-options 'stretched'
-gsettings set org.gnome.desktop.background picture-uri 'file:///$HOME/Pictures/wallpaper1920x1200.png'
-
+gsettings set org.gnome.desktop.background picture-options "zoom"
+gsettings set org.gnome.desktop.background picture-uri "file:///$HOME/Pictures/drupal-contribute-by-zaferia.svg"
+gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
+gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
+# to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
 
 
 # Install flash-plugin browser
 sudo apt-get -yq install flashplugin-installer
 
-cd ~
-wget -O Quickstart1204.fbu --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" -dv $FEBE_URL
-mv Quickstart1204.fbu profileFx4{default}.fbu
+wget -nv -O ~/profileFx4{ddd}.fbu --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" $FEBE_URL
 
 # Use firefox as default browser.  Chrome, I'm looking at you...
 sudo update-alternatives --set gnome-www-browser /usr/bin/firefox

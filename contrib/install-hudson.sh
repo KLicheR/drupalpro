@@ -31,14 +31,14 @@ wget -O /tmp/hudson.deb http://hudson-ci.org/latest/debian/hudson.deb
 sudo dpkg --install /tmp/hudson.deb
 
 # Fix any dependencies
-sudo apt-get -y install -f 
+sudo apt-get -y install -f
 
 # Configure
 sudo /etc/init.d/hudson stop
-sudo sed -i 's/HUDSON_USER=hudson/HUDSON_USER=quickstart/g'           /etc/default/hudson
+sudo sed -i 's/HUDSON_USER=hudson/HUDSON_USER=drupal_desktop/g'           /etc/default/hudson
 sudo sed -i 's/HTTP_PORT=8080/HTTP_PORT=8081/g'                       /etc/default/hudson
-mkdir /home/quickstart/hudson
-sudo sed -i 's/\/var\/lib\/hudson/\/home\/quickstart\/hudson/g'       /etc/default/hudson
+mkdir /home/drupal_desktop/hudson
+sudo sed -i 's/\/var\/lib\/hudson/\/home\/drupal_desktop\/hudson/g'       /etc/default/hudson
 sudo /etc/init.d/hudson start
 
 echo "$HELP"

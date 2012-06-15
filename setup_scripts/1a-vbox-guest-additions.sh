@@ -1,10 +1,16 @@
 #!/bin/bash
+set -e
 
-## install guest additions 
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+
+## install guest additions
 
 # dkms recommended on virtualbox.org for upgrade compatibility
-sudo apt-get -yq install build-essential linux-headers-virtual
-sudo apt-get -yq install virtualbox-ose-guest-x11 virtualbox-guest-dkms virtualbox-guest-source
+sudo apt-get -yq install build-essential
+sudo apt-get -yq install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virtualbox-ose-guest-source
 #if that doesnt work, try manual install per http://www.webupd8.org/2012/02/virtualbox-ubuntu-1204-guest-fixes.html
 
 ## Shared folders
@@ -17,12 +23,11 @@ sudo chmod 770 /mnt/vbox-shared
 cat > /mnt/vbox-shared/readme.txt <<END
 If you are seeing this file, then virtualbox's shared folders are not configured correctly.
 
-1) Power down the Quickstart virtual machine.
+1) Power down the Drupal Desktop virtual machine.
 2) On the host computer, start the Virtualbox management UI.
-3) right-click Quickstart -> settings -> shared folders -> click the folder with the green plus on the right
+3) right-click Drupal Desktop -> settings -> shared folders -> click the folder with the green plus on the right
 4) Set the "Folder Path" to a path on the host computer.  Give full read/write access.
-5) Set the "Folder Name" to "shared".  no caps.  no vbox-
-6) Ok -> Ok -> start Quickstart vm and this file should disappear.  
-7) Test by moving a file in the host computer into the host shared folder.
+5) Set the "Folder Name" to "shared".  (lowercase.  no quotes. and not "vbox-shared")
+6) Ok -> Ok -> start Druapl Desktop VM and this file should disappear,
+and you should have access to files on the host.
 END
-

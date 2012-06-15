@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # Install graphics editors - weights about 25mb
 # sudo add-apt-repository ppa:otto-kesselgulasch/gimp

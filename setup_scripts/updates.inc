@@ -6,8 +6,5 @@ set -e
 source CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
-
-cd $HOME/$DDD
-git pull
-bash "setup_scripts/updates.inc"
-
+#skeleton for future updates.
+echo 'No updates to install.'

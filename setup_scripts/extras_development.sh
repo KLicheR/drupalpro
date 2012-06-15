@@ -1,14 +1,19 @@
 #!/bin/bash
+set -e
 
-DRUSH_VERSION="7.x-5.1"
-cd ~
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+
+cd
 
 # ################################################################################ Replace localhost/index.html
 # Add interesting default document for localhost
 sudo rm /var/www/index.html
-sudo cp ~/quickstart/config/index.php /var/www/index.php
+sudo cp ~/$DDD/config/index.php /var/www/index.php
 sudo chmod -R u=rwX,g=rX,o= /var/www
-sudo chown -R quickstart:www-data /var/www
+sudo chown -R $USER:www-data /var/www
 
 # ################################################################################ Configure phpmyadmin
 # show hex data on detail pages.
@@ -34,13 +39,9 @@ ini_set('session.gc_maxlifetime', \$cfg['LoginCookieValidity']);
 " | sudo tee -a /etc/phpmyadmin/config.inc.php
 
 
-# ################################################################################ user management
-# Make quickstart a user of group www-data
-sudo adduser quickstart www-data
+echo "This is where websites go.
 
-echo "This is where Quickstart websites go.
-
-Quickstart includes some command line scripts to automate site creation.
+Drupal Development Desktop includes some command line scripts to automate site creation.
 
 To create a site (dns, apache, code, database, and install):
 
@@ -75,17 +76,20 @@ sudo ln -s ~/drush/drush /usr/local/bin/drush
 
 # Install drush make and drush site-install6
 mkdir ~/.drush
-cd ~/.drush
-cd ~
+cd
 
-# Install drush quickstart
-ln -s ~/quickstart/drush ~/.drush/quickstart
-cp ~/quickstart/make_templates/*.make ~/websites
+# Setup Drush
+ln -s ~/$DDD/drush/quickstart ~/.drush/quickstart
+ln -s ~/$DDD/make_templates/*.make ~/websites/
+
+# Install feather
+ln -s ~/$DDD/drush/feather ~/.drush/feather
+
 
 # ################################################################################ Command line shortcuts (bash aliases)
 
 # Don't sudo here...
-cat ~/quickstart/config/qs_bash_aliases >> ~/.bash_aliases
+cat ~/$DDD/config/ddd_bash_aliases >> ~/.bash_aliases
 
 
 # ################################################################################ Desktop shortcuts
@@ -129,17 +133,17 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 # ################################################################################ Email catcher
 
 # Configure email collector
-mkdir /home/quickstart/websites/logs/mail
-chmod -R 770 /home/quickstart/websites/logs/mail
-sudo sed -i 's/;sendmail_path =/sendmail_path=\/home\/quickstart\/quickstart\/config\/sendmail.php/g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-chmod +x /home/quickstart/quickstart/config/sendmail.php
+mkdir -p $HOME/websites/logs/mail/blah
+chmod -R 770 $HOME/websites/logs/mail
+sudo sed -i "s/;sendmail_path =/sendmail_path=$HOME\/drupal_desktop\/config\/sendmail.php/g" /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+chmod +x $HOME/drupal_desktop/config/sendmail.php
 
 
 
 # ################################################################################ XDebug Debugger/Profiler
 
 # Configure xdebug - installed 2.1 from apt
-mkdir /home/quickstart/websites/logs/profiler
+mkdir -p $HOME/websites/logs/profiler
 echo "
 xdebug.remote_enable=on
 xdebug.remote_handler=dbgp
@@ -147,7 +151,7 @@ xdebug.remote_host=localhost
 xdebug.remote_port=9000
 xdebug.profiler_enable=0
 xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=/home/quickstart/websites/logs/profiler
+xdebug.profiler_output_dir=$HOME/websites/logs/profiler
 " | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
 
 
@@ -163,14 +167,14 @@ echo "127.0.0.1 webgrind
 
 " | sudo tee -a /etc/hosts > /dev/null
 
-echo "Alias /profiler /home/quickstart/websites/logs/profiler/webgrind
+echo "Alias /profiler $HOME/websites/logs/profiler/webgrind
 
-<Directory /home/quickstart/websites/logs/profiler/webgrind>
+<Directory $HOME/websites/logs/profiler/webgrind>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/webgrind > /dev/null
 
-chmod -R 770 /home/quickstart/websites/logs/profiler
+chmod -R 770 $HOME/websites/logs/profiler
 
 
 # ################################################################################ XHProf profiler (Devel Module)
@@ -183,12 +187,12 @@ sudo apt-get -yq install graphviz
 cd ~
 wget -nv http://pecl.php.net/get/xhprof-0.9.2.tgz
 tar xvf xhprof-0.9.2.tgz
-mv xhprof-0.9.2 /home/quickstart/websites/logs/xhprof
+mv xhprof-0.9.2 $HOME/websites/logs/xhprof
 rm xhprof-0.9.2.tgz
 rm package.xml
 
 # build and install it
-cd /home/quickstart/websites/logs/xhprof/extension/
+cd $HOME/websites/logs/xhprof/extension/
 phpize
 ./configure
 make
@@ -198,18 +202,18 @@ sudo make install
 echo "
 [xhprof]
 extension=xhprof.so
-xhprof.output_dir=\"/home/quickstart/websites/logs/xhprof\"
+xhprof.output_dir=\"$HOME/websites/logs/xhprof\"
 " | sudo tee /etc/php5/conf.d/xhprof.ini > /dev/null
 
 # configure apache
-echo "Alias /xhprof /home/quickstart/websites/logs/xhprof/xhprof_html
+echo "Alias /xhprof $HOME/websites/logs/xhprof/xhprof_html
 
-<Directory /home/quickstart/websites/logs/profiler/xhprof/xhprof_html>
+<Directory $HOME/websites/logs/profiler/xhprof/xhprof_html>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
 
-chmod -R 770 /home/quickstart/websites/logs/xhprof
+chmod -R 770 $HOME/websites/logs/xhprof
 
 
 # ################################################################################ Restart apache

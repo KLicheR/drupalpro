@@ -30,16 +30,16 @@ For details on using PAReview.sh, see the project page: http://drupal.org/projec
 # Install PHP_CodeSniffer
 sudo pear install PHP_CodeSniffer;
 
-cd ~/quickstart/;
+cd ~/drupal_desktop/;
 
 # Install Drupal Code Sniffer
 git clone --branch 7.x-1.x http://git.drupal.org/project/drupalcs.git;
-sudo ln -sv ~/quickstart/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards
+sudo ln -sv ~/drupal_desktop/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards
 echo "alias drupalcs='phpcs --standard=Drupal'" >> ~/.bash_aliases
 
 # Install PAReview.sh
 git clone --branch 7.x-1.x http://git.drupal.org/project/pareviewsh.git
-sudo ln -s ~/quickstart/pareviewsh/pareview.sh /usr/local/bin
+sudo ln -s ~/drupal_desktop/pareviewsh/pareview.sh /usr/local/bin
 
 cd -;
 

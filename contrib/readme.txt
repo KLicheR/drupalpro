@@ -1,7 +1,7 @@
 =========== WTF? ===========
 
 This folder includes installation scripts for some useful tools for Drupal
-development in quickstart.
+development.
 
  * Aegir     - Hosting management platform
  * Hudson    - Continious integration server
@@ -13,8 +13,7 @@ development in quickstart.
 =========== Tips ===========
 
 Look in the top of each file for info on
-Notes and tips on using the tools in quickstart are included at the tops of
-the scripts.
+Notes and tips on using the tools are included at the tops of the scripts.
 
 =========== How to contribute ===========
 

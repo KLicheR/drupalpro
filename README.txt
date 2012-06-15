@@ -1,20 +1,25 @@
-Project Page: http://drupal.org/project/quickstart
+Project Page: http://drupal.org/project/development-desktop
 
-Installation: http://drupal.org/project/quickstart/setup_scripts
+Before installation, customize settings to your liking in the file: CONFIG
+Installation: ~/drupal_desktop/setup_scripts/install.sh
 
-Project Documentation: http://drupal.org/node/788080
+Known Issues: The first few times you run the machine after install, there is a
+              "popup error" related to unity.  It goes away.  There are probably
+              a few other minor issues.  Please file a bug on the project page
+              (above) or let us know in IRC #drupal-desktop and we'll fix!
 
 
 Folders
 =======
 config          = Used during setup by setup_scripts for general preparation
 contrib         = Community contributed utility scripts
-drush           = Quickstart drush add-ons
+drush           = Useful Drush add-ons
 make_templates  = Used during setup by setup_scripts to prepare drush environment
-setup_scripts   = Run in clean ubuntu environment to setup Quickstart.
-                  Care should be used if attempting to run on a physical machine.
-                  Although they will (mostly) work, Quickstart is genereally
-                  less secure and is intended to run behind a firewall on your PC.
+setup_scripts   = Run in clean ubuntu environment to setup Drupal Development
+                  Desktop (DDD).  Care should be used if attempting to run on a
+                  physical machine.  Although the scripts will (likely/mostly)
+                  work, DDD is currently less secure than a normal Ubuntu install
+                  and is intended to run behind a firewall on your PC.
 
-                    Desktop install:  install-quickstart.sh
-                    Server install:   install-quickstart-server.sh
+                    Installation:   ~/drupal_desktop/install.sh
+                    Update:         ~/drupal_desktop/update.sh

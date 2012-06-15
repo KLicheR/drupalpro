@@ -29,7 +29,7 @@ echo "
 # fix for git 417 errors
 ignore_expect_100 on
 
-# Quickstart
+# @FIXME
 acl drushservers dstdomain ftp.drupal.org
 cache allow drushservers
 cache deny all

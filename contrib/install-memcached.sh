@@ -24,6 +24,6 @@ sudo apt-get update
 sudo apt-get install -y memcached php5-memcached
 
 # Restart Apache
-sudo /etc/init.d/apache2 restart
+sudo service apache2 restart
 
 echo "$HELP"

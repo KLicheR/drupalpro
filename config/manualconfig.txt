@@ -1,48 +1,60 @@
-Quickstart has been installed.  To complete the image:
+Drupal Development Desktop has been installed.  To complete the setup, there are a few manual configurations:
 
 * Configure Editors: Netbeans, Eclipse, Geany, Gedit:
 
   NETBEANS:
-      Lock Icon to Unity Launcher
+      Import settings: Tools > Options > Import < ~/Desktop/netbeans-prefs.zip
       Install updates (popup)
-      Tools->Options->General
-                                Web browser->Firefox
-                    ->Editor->General:
+
+      If settings import fails, manually do this:
+      Tools > Options > General
+                                Web browser > Firefox
+                      > Editor > General:
                                 Remove Trailing Whitespace: From modified lines only
-                    ->Editor->Formatting.
+                      > Editor > Formatting.
                                 Spaces per indent: 2
                                 Tab size 2
-                    ->PHP
+                      > PHP
                                Uncheck "Stop at First Line"
       Close
       Open again and Install updates (popup)
       Create project for example.dev
 
   ECLIPSE:
-      Lock Icon to Unity Launcher (not yet working in Unity Launcher)
-      Set workspace to /home/quickstart/websites - use as default
-      Help->Check for updates
-      Window->Preferences->General->Editors->Text Editors.
+      Set workspace to ~/websites - use as default
+      Help > Check for updates
+      Window > Preferences  > General > Editors > Text Editors.
                                 Displayed tab width: 2
                                 Check insert spaces for tabs
-                         ->PHP->Debug
+                            > PHP > Debug
                                 Set the default to Xdebug.
 
-* Log into phpmyadmin, example.dev, and example6.dev
+* Firefox:  Log into http://localhost/phpmyadmin, http://example6.dev, http://example7.dev
 
 * Share the ~/websites folder (not the link on desktop):
-   right-click websites folder -> "Sharing Options" -> Install
-   check "allow others"
-   (reboot to test)
+    right-click websites folder  >  "Sharing Options"  >  Install
+    check "allow others"
+    (reboot to test)
 
-* Setup Toolbar:  -Software Center, -System settings, -Text editor, +Chrome, +Xchat, +Netbeans, +Eclipse, +Geany, +GUFW, +GITG
+* Setup Unity Toolbar:  Software Center (remove)
+                        System settings (remove)
+                        Text editor (remove)
+                        Chrome (add)
+                        Xchat (add)
+                        Netbeans (add)
+                        Eclipse (add)
+                        Geany (add)
+                        Firewall (add)
+                        GITG (add)
 
-* Setup Guake preferences:  Hide on lose focus, Larger Font, Less Transparency, Default Key, (f4)
+    Note: to add  > Open the application
+                  > Right-click the icon on the toolbar
+                  > Select "Lock to Launcher"
 
-* Startup applications: guake
+* Setup: Startup applications > Guake, Autokey
 
 * Prepare for export:
-   bash -x ~/quickstart/setup_scripts/export-prep.sh
+   bash -x ~/drupal_desktop/setup_scripts/export-prep.sh
 
 * Shutdown
 

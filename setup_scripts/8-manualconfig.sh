@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # Create example site.  This done after previous reboot to avoid error.
 cd ~/websites
@@ -24,9 +30,9 @@ zenity --info --text="Firefox profile manager will start.\n1) Delete temp profil
 rm profileFx4{default}.fbu
 
 # final size
-df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-end.txt
+df -h -T > ~/$DDD/setup_scripts/logs/size-end.log
 
 # Manual config instructions.
-firefox ~/quickstart/config/manualconfig.txt
+firefox ~/$DDD/config/manualconfig.txt
 
 

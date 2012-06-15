@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 ## Prompt to give user a chance to abort to avoid borking their system
 INSTALLTYPE=$(zenity \
@@ -15,7 +21,8 @@ INSTALLTYPE=$(zenity \
 Danger!  Do you really want to continue?  Be aware this script destructively
 loosens permissions for the current user, changes system settings, uninstalls
 *many* applications, and installs *many* applications not supported by Cannonical
-(the makers of Ubuntu).
+(the makers of Ubuntu).   This is much safer to do in a test environment (first),
+such as a virtual machine (VM) inside VirtualBox.
 
 Are you really, really, ... and I mean *really* sure you want to do this?" \
 )
@@ -35,8 +42,8 @@ Towards the end, the process requires some manual steps, guided by popups like t
 
 ## The last password you'll ever need.
 # add current user to sudoers file - careful, this line could brick the box.
-echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/quickstart > /dev/null
-sudo chmod 440 /etc/sudoers.d/quickstart
+echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/drupal_desktop > /dev/null
+sudo chmod 440 /etc/sudoers.d/drupal_desktop
 
 # Add current user to root 'group' to make it easier to edit config files
 # note: seems unsafe for anyone unaware.
@@ -44,7 +51,7 @@ sudo adduser $USER root
 
 ## Disk size Accounting
 # Starting size:
-df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-start.txt
+df -h -T > ~/$DDD/setup_scripts/logs/size-start.log
 
 ## Some configuration
 # turn off screen saver
@@ -56,5 +63,5 @@ then
   # Should be less overhead (aka better performance) in Virtual environment.
   sudo apt-get -yq update
   sudo apt-get -yq purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
-  sudo apt-get -yq install linux-virtual linux-headers-virtual linux-image-virtual
+  sudo apt-get -yq install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
 fi

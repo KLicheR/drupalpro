@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # ################################################################################ Drupal sites
 # Create folder for websites to live in
@@ -8,21 +14,22 @@ sudo chmod -R ug=rwX,o= ~/websites
 
 # ##### Install LAMP packages
 
+# @todo @fixme use variables for passwords
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
-echo mysql-server-5.5 mysql-server/root_password        password quickstart | sudo debconf-set-selections
-echo mysql-server-5.5 mysql-server/root_password_again  password quickstart | sudo debconf-set-selections
+echo mysql-server-5.5 mysql-server/root_password        password drupal_desktop | sudo debconf-set-selections
+echo mysql-server-5.5 mysql-server/root_password_again  password drupal_desktop | sudo debconf-set-selections
 #LAMP_PHP="php5 php5-dev php5-common php5-xsl php5-curl php5-gd php5-pgsql php5-cli php5-mcrypt php5-sqlite php5-mysql php-pear php5-imap php5-xdebug php-apc"
 LAMP_PHP="php5 php-apc php5-cli php5-curl php5-gd php5-imap php5-mysql php5-mcrypt php5-sqlite php5-xdebug php5-xsl"
 LAMP_TOOLS="phpmyadmin"
-echo phpmyadmin       phpmyadmin/reconfigure-webserver  text     apache2    | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/reconfigure-webserver  text     ${WWW_SERVER}    | sudo debconf-set-selections
 echo phpmyadmin       phpmyadmin/dbconfig-install       boolean  true       | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/app-password-confirm   password quickstart | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/mysql/admin-pass       password quickstart | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/password-confirm       password quickstart | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/setup-password         password quickstart | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/mysql/app-pass         password quickstart | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/app-password-confirm   password ${USER_PASS} | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/mysql/admin-pass       password ${MYSQL_PASS} | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/password-confirm       password ${USER_PASS} | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/setup-password         password ${USER_PASS} | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/mysql/app-pass         password ${MYSQL_PASS} | sudo debconf-set-selections
 
 # Now install the packages.  debconf shouldn't need to ask so many questions.
 sudo apt-get -yq install $LAMP_APACHE $LAMP_MYSQL $LAMP_PHP $LAMP_TOOLS
@@ -150,14 +157,20 @@ ln -s /etc/mysql/my.cnf              $CONFIGS/mysql.cnf
 sudo chmod g+w /etc/hosts
 ln -s /etc/hosts                     $CONFIGS/hosts
 
-echo "This folder contains links (shortcuts) to LAMP configuration files located around
-quickstart.  To see the links, and where they point to, start a terminal and type:
+echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn
+
+echo "This folder contains links (shortcuts) to LAMP configuration files.
+To see the links, and where the actual file is, open a terminal (F4) and type:
 
 ll
 
 This will list the files and where they link to." > $CONFIGS/README.txt
 
+# ################################################################################ user management
+# Make user of group www-data
+sudo adduser $USER www-data
+
 # ###### Restart web server
 
 sudo service mysql restart
-sudo /etc/init.d/apache2 restart
+sudo service apache2 restart

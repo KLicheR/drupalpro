@@ -1,0 +1,61 @@
+#!/bin/bash
+set -e
+DEBUG=TRUE
+
+# If debugging then turn on debug output
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+
+# Users & Passwords
+USER_PASS=drupal_desktop
+MYSQL_PASS=drupal_desktop
+MYSQL_USER=root
+USER_USER=${USER}
+
+# Folder name of Drupal Development Desktop root
+DDD="drupal_desktop"
+DRUSH_VERSION="7.x-5.3"
+WWW_SERVER="apache2"
+
+# If true, all out bound email will be logged rather than actually sent. Helpful in a dev enviroment.
+#EMAIL_CATCHER=TRUE
+
+# ################################################################################ WGET variables
+REFERER="http://www.drupal.org/project/development_desktop"
+USERAGENT="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu"
+HEAD1="Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
+HEAD2="Accept-Language: en-us,en;q=0.5"
+HEAD3="Accept-Encoding: gzip,deflate"
+HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
+HEAD5="Keep-Alive: 300"
+
+# ################################################################################ Firefox FEBE profile
+FEBE_URL="https://dl.dropbox.com/u/6569361/ddd/profileFx4%7Bddd%7D.fbu"
+
+# ################################################################################ IDE RELATED
+NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
+NETBEANS_PREF="https://dl.dropbox.com/u/6569361/ddd/netbeans-prefs.zip"
+# To install Netbeans beta, remove the comment below
+#NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/beta/bundles/netbeans-7.2beta-ml-php-linux.sh"
+
+# eclipse http://www.eclipse.org/pdt/downloads/
+if [ `uname -p` == "x86_64" ]
+then
+  ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
+  # ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86_64.tar.gz"
+else
+  ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk.tar.gz"
+  # ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86.tar.gz"
+fi
+
+GEANY_THEME="https://github.com/downloads/codebrainz/geany-themes/geany-themes-0.21.tar.bz2"
+GEANY_DRUPAL="http://wiki.geany.org/_media/tags/drupal.php.tags"
+GEANY_PHP="http://wiki.geany.org/_media/tags/phpfull-5.3.5.php.tags"
+GEANY_JS="http://dl.yent.eu/em.js.tags"
+GEANY_CSS="http://wiki.geany.org/_media/tags/standard.css.tags"
+
+# ################################################################################ IDE download URL's
+CHEAT1="https://dl.dropbox.com/u/6569361/ddd/drupal-contribute-by-zaferia.svg"
+CHEAT2="http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png"
+CHEAT3="http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg"
+CHEAT4="http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png"
+CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg"

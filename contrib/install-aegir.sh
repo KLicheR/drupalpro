@@ -22,7 +22,7 @@ For details on using Aegir, see here: http://aegirproject.org/
 
 NOTE: ABOVE IS A PASSWORD RESET URL.  USE IT TO LOGIN INITIALLY.
 
-NOTE 2: If you lost your password reset url, get a new one for user 'admin' and 
+NOTE 2: If you lost your password reset url, get a new one for user 'admin' and
         check the ~/websites/log/mail folder for a password reset email.
 
 You are now logged in as the aegir user.
@@ -31,12 +31,12 @@ You are now logged in as the aegir user.
 drush dl --destination=/var/aegir/.drush provision-6.x
 drush hostmaster-install
 exit
-# reboot 
+# reboot
 ********************** TO FINISH, run these commands: **********************
 "
 
 MYSQL_USER=root
-MYSQL_PASS=quickstart
+MYSQL_PASS=drupal_desktop
 AEGIR_LOCAL_DOMAIN=aegir.dev
 AEGIR_GIT_URL="http://git.aegirproject.org/?p=provision.git;a=blob_plain;f=install.sh.txt;hb=provision-0.4-beta1"
 
@@ -55,12 +55,12 @@ sudo ln -s /var/aegir/config/apache.conf /etc/apache2/conf.d/aegir.conf
 echo "127.0.0.1 $AEGIR_LOCAL_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 
 # 3.3. PHP configuration
-## This is set in quickstart-3-lamp.sh
+## This is set in 3-lamp.sh
 sudo sed -i 's/memory_limit = 64M/memory_limit = 192M/g'            /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 
 # 3.4. Database configuration
 sudo apt-get install mysql-server
-sudo sed -i 's/bind-address		= 127.0.0.1/#bind-address		= 127.0.0.1/g'            /etc/mysql/my.cnf
+sudo sed -i 's/bind-address   = 127.0.0.1/#bind-address   = 127.0.0.1/g'            /etc/mysql/my.cnf
 sudo /etc/init.d/mysql restart
 
 # 3.5. Create the Aegir user

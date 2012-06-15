@@ -1,4 +1,4 @@
 This folder contains make templates.
 
-During quickstart installation, they are copied to the ~/websites folder.
+During Drupal Development Desktop installation, these files are linked to the ~/websites folder.
 

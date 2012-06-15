@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # dev and server
 
@@ -25,7 +31,7 @@ cat /dev/null > ~/.local/share/recently-used.xbel
 
 #clear logs
 sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
-sudo logrotate -f -s /home/quickstart/quickstart/setup_scripts/logs/logrotate-status.log /home/quickstart/config/clear-all-logs.conf
+sudo logrotate -f -s $HOME/drupal_desktop/setup_scripts/logs/logrotate-status.log $HOME/drupal_desktop/config/clear-all-logs.conf
 
 # Zero-fill unused sectors on vm disk
 # Zero-filled sectors compress very nice :-)

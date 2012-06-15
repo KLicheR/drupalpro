@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+
+# ################################################################################ Import Variables
+# Make sure you have edited this file
+source CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # See also http://benhodge.wordpress.com/2008/02/17/cleaning-up-a-ubuntu-gnulinux-system/
 
@@ -54,13 +60,13 @@ sudo apt-get -yq autoremove
 # Clean out downloaded packages
 sudo apt-get -yq clean
 
-# What's installed: look in file whats_installed.txt
-for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/quickstart/setup_scripts/quickstart-slim-package-list.txt; rm -f pkgs.tmp;
-echo "------------  -------------------" >> ~/quickstart/setup_scripts/logs/quickstart-slim-package-list.txt
-echo "size(kb)         packagename" >> ~/quickstart/setup_scripts/logs/quickstart-slim-package-list.txt
+# What's installed: slim-package-list.log
+for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/$DDD/setup_scripts/slim-package-list.log; rm -f pkgs.tmp;
+echo "------------  -------------------" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
+echo "size(kb)         packagename" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
 
 # Ending size
-df -h -T > ~/quickstart/setup_scripts/logs/quickstart-size-slim.txt
+df -h -T > ~/$DDD/setup_scripts/logs/size-slim.log
 
 # 3.0gb -> 2.2gb
 
