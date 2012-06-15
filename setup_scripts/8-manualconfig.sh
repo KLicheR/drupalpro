@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source CONFIG
+source ${HOME}/${DDD}/CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # Create example site.  This done after previous reboot to avoid error.

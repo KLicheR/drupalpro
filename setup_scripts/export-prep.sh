@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source CONFIG
+source ${HOME}/${DDD}/CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # dev and server

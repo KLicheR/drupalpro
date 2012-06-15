@@ -15,6 +15,7 @@ USER_USER=${USER}
 DDD="drupal_desktop"
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
+export DDD
 
 # If true, all out bound email will be logged rather than actually sent. Helpful in a dev enviroment.
 #EMAIL_CATCHER=TRUE

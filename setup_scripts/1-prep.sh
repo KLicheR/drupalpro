@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source CONFIG
+source ${HOME}/${DDD}/CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 ## Prompt to give user a chance to abort to avoid borking their system
