@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-DEBUG=TRUE
+DEBUG=FALSE
+AUTOREBOOT=TRUE
 
 # If debugging then turn on debug output
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
@@ -15,6 +16,11 @@ USER_USER=${USER}
 export DDD="drupal_desktop"
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
+
+# Network test
+PINGHOST1=google.com
+PINGHOST2=wikipedia.org
+PINGRESULTS=2
 
 # If true, all out bound email will be logged rather than actually sent. Helpful in a dev enviroment.
 #EMAIL_CATCHER=TRUE

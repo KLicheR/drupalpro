@@ -24,17 +24,34 @@ function reboot {
   echo "gnome-terminal -x bash -c \"~/$DDD/setup_scripts/install.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
   echo "\n\n\n*** START REBOOT CYCLE: $1 ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
-  sleep 2
+  if [[ ${AUTOREBOOT} == TRUE ]]; then
+    if [[ ${DEBUG} == TRUE ]]; then
+      echo "Allow time to interrupt reboot"
+      sleep 10
+    fi
   sudo reboot now
+  fi
   exit
 }
 
 # Undo any previous reboot script
 if [ -n "$1" ] ; then  # sleep if rebooted
-  # @FIXME: change 'sleep 15' to actually test for active network connection before continuing
-  echo "Reboot stage: $1  ... sleeping 15"; sleep 15
+  echo "Reboot stage: $1"; sleep 15
   sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 fi
+
+# Test for network connection before continuing.
+until [  ${PINGRESULTS} -lt 1 ]; do
+  if ((ping -w5 -c2 ${PINGHOST1} || ping -w5 -c2 ${PINGHOST2}) > /dev/null 2>&1);
+  then
+    echo "Connected to internet";
+    let COUNTER=0
+  else
+    echo "`date +"%Y/%m/%d %H:%M:%S"`: Waiting for internet connection ..."
+    sleep 5
+  fi
+done
+
 
 
 # ################################################################################ Install it!
