@@ -21,7 +21,7 @@ if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 # ################################################################################ Reboot functions
 function reboot {
   # update .profile file to continue the next step of the script.
-  echo "gnome-terminal bash -c \"~/$DDD/setup_scripts/install.sh $1\" &" >> ~/.profile
+  echo "gnome-terminal -x bash -c \"~/$DDD/setup_scripts/install.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
   echo "\n\n\n*** START REBOOT CYCLE: $1 ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
   sleep 2
@@ -33,7 +33,7 @@ function reboot {
 if [ -n "$1" ] ; then  # sleep if rebooted
   # @FIXME: change 'sleep 15' to actually test for active network connection before continuing
   echo "Reboot stage: $1  ... sleeping 15"; sleep 15
-  sed -i 's/gnome-terminal bash -c/# deleteme /g' ~/.profile
+  sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 fi
 
 
