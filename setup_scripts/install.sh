@@ -13,7 +13,7 @@ set -e
 # ################################################################################ Import Variables
 # Make sure you have edited this file
 # CWD based on http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
-CWD=" $( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
