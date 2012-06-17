@@ -23,7 +23,9 @@ function reboot {
   # update .profile file to continue the next step of the script.
   echo "gnome-terminal -x bash -c \"~/$DDD/setup_scripts/install.sh $1\" &" >> ~/.profile
   echo "*** REBOOTING ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
-  echo "\n\n\n*** START REBOOT CYCLE: $1 ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
+  echo "
+
+  *** START REBOOT CYCLE: $1 ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
   if [[ ${AUTOREBOOT} == TRUE ]]; then
     if [[ ${DEBUG} == TRUE ]]; then
       echo "Allow time to interrupt reboot"
@@ -40,12 +42,12 @@ if [ -n "$1" ] ; then  # sleep if rebooted
   sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 fi
 
-# Test for network connection before continuing.
+# ################################################################################ Test for network
 until [  ${PINGRESULTS} -lt 1 ]; do
   if ((ping -w5 -c2 ${PINGHOST1} || ping -w5 -c2 ${PINGHOST2}) > /dev/null 2>&1);
   then
     echo "Connected to internet";
-    let COUNTER=0
+    PINGRESULTS=0
   else
     echo "`date +"%Y/%m/%d %H:%M:%S"`: Waiting for internet connection ..."
     sleep 5
@@ -56,7 +58,7 @@ done
 
 # ################################################################################ Install it!
 # this switch statement handles reboots.
-cd ~
+cd
 
 case "$1" in
 "")

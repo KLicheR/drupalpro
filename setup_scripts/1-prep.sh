@@ -6,7 +6,13 @@ set -e
 source ${HOME}/${DDD}/setup_scripts/CONFIG
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
-## Prompt to give user a chance to abort to avoid borking their system
+
+# ################################################################################ Update Zenity (12.04 from debian has a bug)
+sudo apt-get install zenity
+
+# ################################################################################
+# Prompt to give user a chance to abort to avoid accidentally borking their system
+# ################################################################################
 INSTALLTYPE=$(zenity \
   --list \
   --radiolist  \
