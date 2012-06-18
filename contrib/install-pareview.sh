@@ -1,5 +1,9 @@
 #!/bin/bash
 
+CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${CWD}"/CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+
 # ################################################################################ PAReview.sh
 
 # README:
@@ -27,19 +31,20 @@ pareview.sh sites/all/modules/rules
 For details on using PAReview.sh, see the project page: http://drupal.org/project/pareviewsh
 "
 
+
 # Install PHP_CodeSniffer
 sudo pear install PHP_CodeSniffer;
 
-cd ~/drupal_desktop/;
+cd "${CWD}"
 
 # Install Drupal Code Sniffer
 git clone --branch 7.x-1.x http://git.drupal.org/project/drupalcs.git;
-sudo ln -sv ~/drupal_desktop/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards
+sudo ln -sv ${HOME}/${DDD}/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards
 echo "alias drupalcs='phpcs --standard=Drupal'" >> ~/.bash_aliases
 
 # Install PAReview.sh
 git clone --branch 7.x-1.x http://git.drupal.org/project/pareviewsh.git
-sudo ln -s ~/drupal_desktop/pareviewsh/pareview.sh /usr/local/bin
+sudo ln -s ${HOME}/${DDD}/pareviewsh/pareview.sh /usr/local/bin
 
 cd -;
 

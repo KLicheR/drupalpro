@@ -34,11 +34,9 @@ exit
 # reboot
 ********************** TO FINISH, run these commands: **********************
 "
-
-MYSQL_USER=root
-MYSQL_PASS=drupal_desktop
-AEGIR_LOCAL_DOMAIN=aegir.dev
-AEGIR_GIT_URL="http://git.aegirproject.org/?p=provision.git;a=blob_plain;f=install.sh.txt;hb=provision-0.4-beta1"
+CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${CWD}"/CONFIG
+if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # FROM: http://community.aegirproject.org/node/389
 

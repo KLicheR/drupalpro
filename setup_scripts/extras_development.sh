@@ -132,17 +132,17 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 # ################################################################################ Email catcher
 
 # Configure email collector
-mkdir -p $HOME/websites/logs/mail/blah
-chmod -R 770 $HOME/websites/logs/mail
-sudo sed -i "s/;sendmail_path =/sendmail_path=$HOME\/drupal_desktop\/config\/sendmail.php/g" /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-chmod +x $HOME/drupal_desktop/config/sendmail.php
+mkdir -p ${HOME}/websites/logs/mail/blah
+chmod -R 770 ${HOME}/websites/logs/mail
+sudo sed -i "s/;sendmail_path =/sendmail_path=${HOME}\/${DDD}\/config\/sendmail.php/g" /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+chmod +x ${HOME}/${DDD}/config/sendmail.php
 
 
 
 # ################################################################################ XDebug Debugger/Profiler
 
 # Configure xdebug - installed 2.1 from apt
-mkdir -p $HOME/websites/logs/profiler
+mkdir -p ${HOME}/websites/logs/profiler
 echo "
 xdebug.remote_enable=on
 xdebug.remote_handler=dbgp
@@ -150,7 +150,7 @@ xdebug.remote_host=localhost
 xdebug.remote_port=9000
 xdebug.profiler_enable=0
 xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=$HOME/websites/logs/profiler
+xdebug.profiler_output_dir=${HOME}/websites/logs/profiler
 " | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
 
 
@@ -166,14 +166,14 @@ echo "127.0.0.1 webgrind
 
 " | sudo tee -a /etc/hosts > /dev/null
 
-echo "Alias /profiler $HOME/websites/logs/profiler/webgrind
+echo "Alias /profiler ${HOME}/websites/logs/profiler/webgrind
 
-<Directory $HOME/websites/logs/profiler/webgrind>
+<Directory ${HOME}/websites/logs/profiler/webgrind>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/webgrind > /dev/null
 
-chmod -R 770 $HOME/websites/logs/profiler
+chmod -R 770 ${HOME}/websites/logs/profiler
 
 
 # ################################################################################ XHProf profiler (Devel Module)
@@ -186,12 +186,12 @@ sudo apt-get -yq install graphviz
 cd ~
 wget -nv http://pecl.php.net/get/xhprof-0.9.2.tgz
 tar xvf xhprof-0.9.2.tgz
-mv xhprof-0.9.2 $HOME/websites/logs/xhprof
+mv xhprof-0.9.2 ${HOME}/websites/logs/xhprof
 rm xhprof-0.9.2.tgz
 rm package.xml
 
 # build and install it
-cd $HOME/websites/logs/xhprof/extension/
+cd ${HOME}/websites/logs/xhprof/extension/
 phpize
 ./configure
 make
@@ -201,18 +201,18 @@ sudo make install
 echo "
 [xhprof]
 extension=xhprof.so
-xhprof.output_dir=\"$HOME/websites/logs/xhprof\"
+xhprof.output_dir=\"${HOME}/websites/logs/xhprof\"
 " | sudo tee /etc/php5/conf.d/xhprof.ini > /dev/null
 
 # configure apache
-echo "Alias /xhprof $HOME/websites/logs/xhprof/xhprof_html
+echo "Alias /xhprof ${HOME}/websites/logs/xhprof/xhprof_html
 
-<Directory $HOME/websites/logs/profiler/xhprof/xhprof_html>
+<Directory ${HOME}/websites/logs/profiler/xhprof/xhprof_html>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
 
-chmod -R 770 $HOME/websites/logs/xhprof
+chmod -R 770 ${HOME}/websites/logs/xhprof
 
 
 # ################################################################################ Restart apache

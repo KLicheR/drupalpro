@@ -54,7 +54,7 @@ Drupal Development Desktop has been installed.  To complete the setup, there are
 * Setup: Startup applications > Guake, Autokey
 
 * Prepare for export:
-   bash -x ~/drupal_desktop/setup_scripts/export-prep.sh
+   bash -x ~/drupalpro/setup_scripts/export-prep.sh
 
 * Shutdown
 

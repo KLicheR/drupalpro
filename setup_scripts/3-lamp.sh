@@ -18,8 +18,8 @@ sudo chmod -R ug=rwX,o= ~/websites
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
-echo mysql-server-5.5 mysql-server/root_password        password drupal_desktop | sudo debconf-set-selections
-echo mysql-server-5.5 mysql-server/root_password_again  password drupal_desktop | sudo debconf-set-selections
+echo mysql-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
+echo mysql-server-5.5 mysql-server/root_password_again  password ${MYSQL_PASS} | sudo debconf-set-selections
 #LAMP_PHP="php5 php5-dev php5-common php5-xsl php5-curl php5-gd php5-pgsql php5-cli php5-mcrypt php5-sqlite php5-mysql php-pear php5-imap php5-xdebug php-apc"
 LAMP_PHP="php5 php-apc php5-cli php5-curl php5-gd php5-imap php5-mysql php5-mcrypt php5-sqlite php5-xdebug php5-xsl"
 LAMP_TOOLS="phpmyadmin"

@@ -31,7 +31,7 @@ cat /dev/null > ~/.local/share/recently-used.xbel
 
 #clear logs
 sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
-sudo logrotate -f -s $HOME/drupal_desktop/setup_scripts/logs/logrotate-status.log $HOME/drupal_desktop/config/clear-all-logs.conf
+sudo logrotate -f -s ${HOME}/${DDD}/setup_scripts/logs/logrotate-status.log ${HOME}/${DDD}/config/clear-all-logs.conf
 
 # Zero-fill unused sectors on vm disk
 # Zero-filled sectors compress very nice :-)

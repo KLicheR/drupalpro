@@ -48,8 +48,8 @@ Towards the end, the process requires some manual steps, guided by popups like t
 
 ## The last password you'll ever need.
 # add current user to sudoers file - careful, this line could brick the box.
-echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/drupal_desktop > /dev/null
-sudo chmod 440 /etc/sudoers.d/drupal_desktop
+echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/${DDD} > /dev/null
+sudo chmod 440 /etc/sudoers.d/${DDD}
 
 # Add current user to root 'group' to make it easier to edit config files
 # note: seems unsafe for anyone unaware.
@@ -57,13 +57,13 @@ sudo adduser $USER root
 
 ## Disk size Accounting
 # Starting size:
-df -h -T > ~/$DDD/setup_scripts/logs/size-start.log
+df -h -T > ~/${DDD}/setup_scripts/logs/size-start.log
 
 ## Some configuration
 # turn off screen saver
 gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
 
-if [ "$INSTALLTYPE" == "virtual" ]
+if [ "${INSTALLTYPE}" == "virtual" ]
 then
   # Remove the standard Kernel and install virtual kernel.
   # Should be less overhead (aka better performance) in Virtual environment.

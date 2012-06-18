@@ -48,7 +48,7 @@ wget -nv -O ~/.config/geany/tags/geany-tags-css --referer="$REFERER" --user-agen
 # Download and install eclipse - 167mb
 wget -nv -O eclipse.tar.gz --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${ECLIPSE_URL}
 tar -xvf eclipse.tar.gz
-sudo ln -s $HOME/eclipse/eclipse /usr/bin/eclipse
+sudo ln -s ${HOME}/eclipse/eclipse /usr/bin/eclipse
 rm eclipse.tar.gz
 
 # Download and install netbeans - 122mb

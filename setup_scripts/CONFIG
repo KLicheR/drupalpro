@@ -7,13 +7,16 @@ AUTOREBOOT=TRUE
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # Users & Passwords
-USER_PASS=drupal_desktop
-MYSQL_PASS=drupal_desktop
+USER_PASS=drupalpro
+MYSQL_PASS=drupalpro
 MYSQL_USER=root
 USER_USER=${USER}
 
 # Folder name of Drupal Development Desktop root
-export DDD="drupal_desktop"
+CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd -P "${CWD}"
+cd ..
+export DDD=`pwd`
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
 
@@ -69,3 +72,7 @@ CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-She
 # ################################################################################ Drush addons
 
 FEATHER="7.x-1.x"
+
+# ################################################################################ AEGIR install script
+AEGIR_LOCAL_DOMAIN=aegir.dev
+AEGIR_GIT_URL="http://git.aegirproject.org/?p=provision.git;a=blob_plain;f=install.sh.txt;hb=provision-0.4-beta1"
