@@ -115,29 +115,28 @@ echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadpro
 
 
 # ################################################################################ Log Files
-mkdir ~/websites
-LOGS=~/websites/logs
-mkdir $LOGS
+mkdir -p "~/websites/${LOGS}"
+
 
 # Apache error logs are configured in the VirtualHosts section of each website (default from apache2.conf)
 sudo touch     /var/log/apache2/error.log
 sudo chmod g+w /var/log/apache2/error.log
-ln -s          /var/log/apache2/error.log                $LOGS/apache-error.log
+ln -s          /var/log/apache2/error.log                "${LOGS}/apache-error.log"
 # This file catches any unconfigured log info for virtualhosts (default from apache2.conf)
 sudo touch     /var/log/apache2/other_vhosts_access.log
 sudo chmod g+w /var/log/apache2/other_vhosts_access.log
-ln -s          /var/log/apache2/other_vhosts_access.log  $LOGS/apache-access.log
+ln -s          /var/log/apache2/other_vhosts_access.log  "${LOGS}/apache-access.log"
 # php error logs are configured in php.ini  (changed in install-3-lamp.sh)
 sudo touch     /var/log/php-error.log
 sudo chmod g+w /var/log/php-error.log
-ln -s          /var/log/php-error.log                    $LOGS/php-error.log
+ln -s          /var/log/php-error.log                    "${LOGS}/php-error.log"
 # MySQL error and slow query logs (changed in install-2-lamp.sh)
 sudo touch     /var/log/mysql/error.log
 sudo chmod g+w /var/log/mysql/error.log
-ln -s          /var/log/mysql/error.log                  $LOGS/mysql-error.log
+ln -s          /var/log/mysql/error.log                  "${LOGS}/mysql-error.log"
 sudo touch     /var/log/mysql/mysql-slow.log
 sudo chmod g+w /var/log/mysql/mysql-slow.log
-ln -s          /var/log/mysql/mysql-slow.log             $LOGS/mysql-slow.log
+ln -s          /var/log/mysql/mysql-slow.log             "${LOGS}/mysql-slow.log"
 
 
 

@@ -20,6 +20,9 @@ export DDD=${PWD##*/}
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
 
+# Fullpath to log files (easy location)
+LOGS=~/websites/logs
+
 # Network test
 PINGHOST1=google.com
 PINGHOST2=wikipedia.org
