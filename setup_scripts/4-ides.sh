@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source ${HOME}/${DDD}/setup_scripts/CONFIG
+source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 cd
@@ -33,29 +33,29 @@ sudo apt-get install -yq geany
 mkdir -p ~/.config/geany/tags
 
 # GEANY: Extra color themes
-wget -nv -O geany-themes.tar.bz2 --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${GEANY_THEMES}
+wget -nv -O geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
 tar jxf geany-themes.tar.bz2
 mv -f geany-themes-0.21/* ~/.config/geany/
 rm geany-themes.tar.bz2
 rm -r geany-themes-0.21
 
 # GEANY: Install extra tag files
-wget -nv -O ~/.config/geany/tags/geany-tags-drupal --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${GEANY_DRUPAL}
-wget -nv -O ~/.config/geany/tags/geany-tags-php-5.3.5 --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${GEANY_PHP}
-wget -nv -O ~/.config/geany/tags/geany-tags-js --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${GEANY_JS}
-wget -nv -O ~/.config/geany/tags/geany-tags-css --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${GEANY_CSS}
+wget -nv -O ~/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
+wget -nv -O ~/.config/geany/tags/geany-tags-php-5.3.5 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_PHP}"
+wget -nv -O ~/.config/geany/tags/geany-tags-js --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_JS}"
+wget -nv -O ~/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
 
 # Download and install eclipse - 167mb
-wget -nv -O eclipse.tar.gz --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${ECLIPSE_URL}
+wget -nv -O eclipse.tar.gz --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
 tar -xvf eclipse.tar.gz
-sudo ln -s ${HOME}/eclipse/eclipse /usr/bin/eclipse
+sudo ln -s "${HOME}"/eclipse/eclipse /usr/bin/eclipse
 rm eclipse.tar.gz
 
 # Download and install netbeans - 122mb
-wget -nv -O netbeans.sh --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${NETBEANS_URL}
+wget -nv -O netbeans.sh --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_URL}"
 chmod +x ./netbeans.sh
 bash ./netbeans.sh --silent --nospacecheck
 rm netbeans.sh
 
 # Download Netbeans preferences used for importing
-wget -nv -O ~/Desktop/netbeans-prefs.zip --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${NETBEANS_PREF}
+wget -nv -O ~/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
