@@ -16,7 +16,7 @@ USER_USER=${USER}
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd -P "${CWD}"
 cd ..
-export DDD=`pwd`
+export DDD=${PWD##*/}
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
 
