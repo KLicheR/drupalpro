@@ -8,13 +8,11 @@ if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # ################################################################################ Drupal sites
 # Create folder for websites to live in
-mkdir ~/websites
-sudo chown :www-data ~/websites
-sudo chmod -R ug=rwX,o= ~/websites
+mkdir -p "${WWW_ROOT}"
+sudo chown :www-data "${WWW_ROOT}"
+sudo chmod -R u=rwX,g=rX,o= "${WWW_ROOT}"
 
-# ##### Install LAMP packages
-
-# @todo @fixme use variables for passwords
+# ################################################################################ Install LAMP packages
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
@@ -36,7 +34,7 @@ sudo apt-get -yq install $LAMP_APACHE $LAMP_MYSQL $LAMP_PHP $LAMP_TOOLS
 
 
 # ###### Configure APACHE
-
+echo "ServerName ${WWW_FQDN}" | sudo tee /etc/apache2/conf.d/fqdn
 sudo a2enmod ssl
 sudo a2enmod rewrite
 sudo a2dismod cgi
@@ -115,7 +113,7 @@ echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadpro
 
 
 # ################################################################################ Log Files
-mkdir -p "~/websites/${LOGS}"
+mkdir -p "${WWW_ROOT}/${LOGS}"
 
 
 # Apache error logs are configured in the VirtualHosts section of each website (default from apache2.conf)
@@ -141,29 +139,29 @@ ln -s          /var/log/mysql/mysql-slow.log             "${LOGS}/mysql-slow.log
 
 
 # ################################################################################ Config Files
-CONFIGS=~/websites/config
-mkdir $CONFIGS
+mkdir -p "${CONFIGS}"
 sudo chmod -R g+w /etc/apache2
-ln -s /etc/apache2/apache2.conf      $CONFIGS/apache2.conf
-ln -s /etc/apache2/httpd.conf        $CONFIGS/httpd.conf
-ln -s /etc/apache2/ports.conf        $CONFIGS/ports.conf
-ln -s /etc/apache2/sites-enabled/    $CONFIGS/apache-sites-enabled
+ln -s /etc/apache2/apache2.conf      "${CONFIGS}/apache2.conf"
+ln -s /etc/apache2/httpd.conf        "${CONFIGS}/httpd.conf"
+ln -s /etc/apache2/ports.conf        "${CONFIGS}/ports.conf"
+ln -s /etc/apache2/sites-enabled/    "${CONFIGS}/apache-sites-enabled"
 sudo chmod -R g+w /etc/php5
-ln -s /etc/php5/apache2/php.ini      $CONFIGS/php-apache.ini
-ln -s /etc/php5/cli/php.ini          $CONFIGS/php-cli.ini
+ln -s /etc/php5/apache2/php.ini      "${CONFIGS}/php-apache.ini"
+ln -s /etc/php5/cli/php.ini          "${CONFIGS}/php-cli.ini"
 sudo chmod -R g+w /etc/mysql
-ln -s /etc/mysql/my.cnf              $CONFIGS/mysql.cnf
+ln -s /etc/mysql/my.cnf              "${CONFIGS}/mysql.cnf"
 sudo chmod g+w /etc/hosts
-ln -s /etc/hosts                     $CONFIGS/hosts
+ln -s /etc/hosts                     "${CONFIGS}/hosts"
 
-echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn
+echo "This folder contains links (shortcuts) to LAMP configuration files.  This was
+created to make it easier for new users to find logs. However, all Ubuntu/Debian
+servers (and other flavors of linux) store configuration in the /etc/ folder.
 
-echo "This folder contains links (shortcuts) to LAMP configuration files.
-To see the links, and where the actual file is, open a terminal (F4) and type:
+To see the links, and the path to the config files, open a terminal (F4) & type:
 
 ll
 
-This will list the files and where they link to." > $CONFIGS/README.txt
+This will list the files and where they link to." > "${CONFIGS}/README.txt"
 
 # ################################################################################ user management
 # Make user of group www-data
