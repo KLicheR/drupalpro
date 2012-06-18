@@ -17,7 +17,7 @@ git config --global core.whitespace trailing-space,tab-in-indent
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit
+sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia
 
 # Whitelist autokey for Unity panel
 if grep -q 'Autokey' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
