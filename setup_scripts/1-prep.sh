@@ -42,7 +42,7 @@ if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(2), or timeo
 fi
 
 # ok, lets do it
-zenity --question --text="This script may take hours to run (depending on your hardware and internet bandwidth), plus multiple automated reboots (which requires AUTOMATIC USER LOGIN for an unattended setup).
+zenity --info --text="This script may take hours to run (depending on your hardware and internet bandwidth), plus multiple automated reboots (which requires AUTOMATIC USER LOGIN for an unattended setup).
 
 Towards the end, the process requires some manual steps, guided by popups like this. \nThis script shouldn't be run more than once.";
 
