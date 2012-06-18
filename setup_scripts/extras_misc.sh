@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source ${HOME}/${DDD}/setup_scripts/CONFIG
+source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 # ##### Install some basics
@@ -41,11 +41,11 @@ gconftool -s /apps/guake/style/background/transparency --type=int 10
 gconftool -s /apps/guake/general/window_losefocus --type=bool true
 
 # Install Cheatsheet Wallpaper
-wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT1}
-wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT2}
-wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT3}
-wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT4}
-wget -nv -O ~/Pictures/ --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" ${CHEAT5}
+wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT1}
+wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT2}
+wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT3}
+wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT4}
+wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT5}
 
 # Setup desktop
 gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/drupal-contribute-by-zaferia.svg"
@@ -62,7 +62,7 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # Install flash-plugin browser
 sudo apt-get -yq install flashplugin-installer
 
-wget -nv -O ~/profileFx4{ddd}.fbu --referer="$REFERER" --user-agent="$USERAGENT" --header="$HEAD1" --header="$HEAD2" --header="$HEAD3" --header="$HEAD4" --header="$HEAD5" $FEBE_URL
+wget -nv -O ~/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" $FEBE_URL
 
 # Use firefox as default browser.  Chrome, I'm looking at you...
 sudo update-alternatives --set gnome-www-browser /usr/bin/firefox
