@@ -38,7 +38,7 @@ function reboot {
 
 # Undo any previous reboot script
 if [ -n "$1" ] ; then  # sleep if rebooted
-  echo "Reboot stage: $1"; sleep 15
+  echo "Reboot stage: $1"
   sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ~/.profile
 fi
 
