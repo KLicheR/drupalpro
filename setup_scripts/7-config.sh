@@ -10,6 +10,10 @@ if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
 gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
 gconftool-2 -s /desktop/gnome/interface/icon_theme --type=string ubuntu-mono-light
+gsettings set org.gnome.desktop.wm.preferences theme 'Radiance'
+gsettings set org.gnome.desktop.interface gtk-theme 'Radiance'
+gsettings set org.gnome.desktop.interface icon-theme 'ubuntu-mono-light'
+gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars true # change to false for oldstyle thick scrollbars
 
 #setup nautilus
 gconftool-2 --type=Boolean --set /apps/nautilus/preferences/always_use_location_entry true

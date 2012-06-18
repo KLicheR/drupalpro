@@ -20,12 +20,12 @@ git config --global core.whitespace trailing-space,tab-in-indent
 sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia
 
 # Whitelist autokey for Unity panel
-if grep -q 'Autokey' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
+if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
   echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
-else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'Autokey\']`"; fi
+else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'autokey-gtk\']`"; fi
 
 # Whitelist xchat for Unity panel
-if grep -q 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
+if grep -iq 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
   echo "'xchat' already exists in the Unity panel whitelist. Nothing to do here.";
 else echo "Adding 'xchat' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'xchat\']`"; fi
 
@@ -52,7 +52,7 @@ gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/P
 gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
 gsettings set org.gnome.desktop.background picture-opacity 100
-gsettings set org.gnome.desktop.background picture-options "zoom"
+gsettings set org.gnome.desktop.background picture-options "fill"
 gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${CHEAT1##*/}"
 gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
 gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
