@@ -41,19 +41,19 @@ gconftool -s /apps/guake/style/background/transparency --type=int 10
 gconftool -s /apps/guake/general/window_losefocus --type=bool true
 
 # Install Cheatsheet Wallpaper
-wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT1}
-wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT2}
-wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT3}
-wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT4}
-wget -nv -O ~/Pictures/ --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" ${CHEAT5}
+wget -nv -O "${HOME}/Pictures/${CHEAT1##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT1}"
+wget -nv -O "${HOME}/Pictures/${CHEAT2##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT2}"
+wget -nv -O "${HOME}/Pictures/${CHEAT3##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT3}"
+wget -nv -O "${HOME}/Pictures/${CHEAT4##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT4}"
+wget -nv -O "${HOME}/Pictures/${CHEAT5##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT5}"
 
 # Setup desktop
-gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/drupal-contribute-by-zaferia.svg"
+gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${CHEAT1##*/}"
 gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
 gsettings set org.gnome.desktop.background picture-opacity 100
 gsettings set org.gnome.desktop.background picture-options "zoom"
-gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/drupal-contribute-by-zaferia.svg"
+gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${CHEAT1##*/}"
 gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
 gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
@@ -62,7 +62,7 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # Install flash-plugin browser
 sudo apt-get -yq install flashplugin-installer
 
-wget -nv -O ~/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" $FEBE_URL
+wget -nv -O ~/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
 
 # Use firefox as default browser.  Chrome, I'm looking at you...
 sudo update-alternatives --set gnome-www-browser /usr/bin/firefox
