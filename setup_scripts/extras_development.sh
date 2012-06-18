@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source ${HOME}/${DDD}/setup_scripts/CONFIG
+source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
 cd
@@ -79,7 +79,7 @@ mkdir ~/.drush
 
 # Setup Drush
 ln -s ~/$DDD/drush/quickstart ~/.drush/quickstart
-ln -s ~/$DDD/make_templates/*.make ~/websites/
+ln -s ~/$DDD/make_templates/*.make "${WWW_ROOT}"
 
 # Install Feather (Drush addon)
 git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ~/.drush/feather
@@ -124,7 +124,7 @@ X-Ubuntu-Gettext-Domain=gnome-terminal
 END
 chmod 750 ~/Desktop/gnome-terminal.desktop
 
-ln -s ~/websites ~/Desktop/websites
+ln -s "${WWW_ROOT}" ~/Desktop/websites
 ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 
 
@@ -132,17 +132,15 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 # ################################################################################ Email catcher
 
 # Configure email collector
-mkdir -p ${HOME}/websites/logs/mail/blah
-chmod -R 770 ${HOME}/websites/logs/mail
-sudo sed -i "s/;sendmail_path =/sendmail_path=${HOME}\/${DDD}\/config\/sendmail.php/g" /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+mkdir -p "${LOGS}/mail"
+chmod -R ug=rwX,o= "${LOGS}/mail"
+sudo sed -i 's|'";sendmail_path ="'|'"sendmail_path = ${CONFIGS}/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 chmod +x ${HOME}/${DDD}/config/sendmail.php
 
 
 
 # ################################################################################ XDebug Debugger/Profiler
-
 # Configure xdebug - installed 2.1 from apt
-mkdir -p ${HOME}/websites/logs/profiler
 echo "
 xdebug.remote_enable=on
 xdebug.remote_handler=dbgp
@@ -150,30 +148,27 @@ xdebug.remote_host=localhost
 xdebug.remote_port=9000
 xdebug.profiler_enable=0
 xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=${HOME}/websites/logs/profiler
+xdebug.profiler_output_dir=${LOGS}/profiler
 " | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
 
 
 # ################################################################################ Install a web-based profile viewer
-cd ~/websites/logs/profiler
-
-wget -nv -O webgrind.zip http://webgrind.googlecode.com/files/webgrind-release-1.0.zip
-unzip webgrind.zip
-rm webgrind.zip
+mkdir -p "${LOGS}/profiler"
+cd "${LOGS}/profiler"
+git clone https://github.com/jokkedk/webgrind.git webgrind
+chmod -R ug=rwX,o= "${LOGS}/profiler"
 
 # Setup Web server
 echo "127.0.0.1 webgrind
 
 " | sudo tee -a /etc/hosts > /dev/null
 
-echo "Alias /profiler ${HOME}/websites/logs/profiler/webgrind
+echo "Alias /profiler ${LOGS}/profiler/webgrind
 
-<Directory ${HOME}/websites/logs/profiler/webgrind>
+<Directory ${LOGS}/profiler/webgrind>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/webgrind > /dev/null
-
-chmod -R 770 ${HOME}/websites/logs/profiler
 
 
 # ################################################################################ XHProf profiler (Devel Module)
@@ -183,15 +178,15 @@ chmod -R 770 ${HOME}/websites/logs/profiler
 sudo apt-get -yq install graphviz
 
 # get it
-cd ~
-wget -nv http://pecl.php.net/get/xhprof-0.9.2.tgz
+cd
+wget -nv --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
 tar xvf xhprof-0.9.2.tgz
-mv xhprof-0.9.2 ${HOME}/websites/logs/xhprof
+mv xhprof-0.9.2 "${LOGS}/xhprof"
 rm xhprof-0.9.2.tgz
 rm package.xml
 
 # build and install it
-cd ${HOME}/websites/logs/xhprof/extension/
+cd ${LOGS}/xhprof/extension/
 phpize
 ./configure
 make
@@ -201,20 +196,20 @@ sudo make install
 echo "
 [xhprof]
 extension=xhprof.so
-xhprof.output_dir=\"${HOME}/websites/logs/xhprof\"
+xhprof.output_dir=\"${LOGS}/xhprof\"
 " | sudo tee /etc/php5/conf.d/xhprof.ini > /dev/null
 
 # configure apache
-echo "Alias /xhprof ${HOME}/websites/logs/xhprof/xhprof_html
+echo "Alias /xhprof ${LOGS}/xhprof/xhprof_html
 
-<Directory ${HOME}/websites/logs/profiler/xhprof/xhprof_html>
+<Directory ${LOGS}/profiler/xhprof/xhprof_html>
   Allow from All
 </Directory>
 " | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
 
-chmod -R 770 ${HOME}/websites/logs/xhprof
+chmod -R ug=rwX,o= "${LOGS}/xhprof"
 
 
 # ################################################################################ Restart apache
-sudo apache2ctl restart
+sudo service apache2 restart
 

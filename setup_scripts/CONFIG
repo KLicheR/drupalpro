@@ -6,11 +6,22 @@ AUTOREBOOT=TRUE
 # If debugging then turn on debug output
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
-# Users & Passwords
+
+
+# USERS & PASSWORDS
 USER_PASS=drupalpro
 MYSQL_PASS=drupalpro
 MYSQL_USER=root
 USER_USER=${USER}
+
+# SERVER SETTINGS
+WWW_FQDN="localhost"   # used by apache setup
+
+# PATHS to log files (easy location)
+WWW_ROOT="$HOME/websites"
+LOGS="${WWW_ROOT}/logs"
+CONFIGS="${WWW_ROOT}/config"
+
 
 # Folder name of Drupal Development Desktop root
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -20,8 +31,6 @@ export DDD=${PWD##*/}
 DRUSH_VERSION="7.x-5.3"
 WWW_SERVER="apache2"
 
-# Fullpath to log files (easy location)
-LOGS=~/websites/logs
 
 # Network test
 PINGHOST1=google.com
@@ -39,6 +48,10 @@ HEAD2="Accept-Language: en-us,en;q=0.5"
 HEAD3="Accept-Encoding: gzip,deflate"
 HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
 HEAD5="Keep-Alive: 300"
+
+# ################################################################################ XHPROF
+XHPROF_URL="http://pecl.php.net/get/xhprof-0.9.2.tgz"
+
 
 # ################################################################################ Firefox FEBE profile
 FEBE_URL="https://dl.dropbox.com/u/6569361/ddd/profileFx4%7Bddd%7D.fbu"
@@ -73,7 +86,6 @@ CHEAT4="http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png"
 CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg"
 
 # ################################################################################ Drush addons
-
 FEATHER="7.x-1.x"
 
 # ################################################################################ AEGIR install script
