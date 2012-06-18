@@ -16,6 +16,10 @@ USER_USER=${USER}
 
 # SERVER SETTINGS
 WWW_FQDN="localhost"   # used by apache setup
+WWW_SERVER="apache2"   # webserver to install (used by phpmyadmin)
+
+# VBOX HOST SHARED FOLDER NAME (C_DRIVE or D_DRIVE are good alternatives)
+HOSTSHARE="shared"
 
 # PATHS to log files (easy location)
 WWW_ROOT="$HOME/websites"
@@ -23,14 +27,14 @@ LOGS="${WWW_ROOT}/logs"
 CONFIGS="${WWW_ROOT}/config"
 
 
-# Folder name of Drupal Development Desktop root
+# Automatically find folder name of Install scripts and set project (DDD) root folder
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd -P "${CWD}"
 cd ..
 export DDD=${PWD##*/}
-DRUSH_VERSION="7.x-5.3"
-WWW_SERVER="apache2"
 
+
+DRUSH_VERSION="7.x-5.3"
 
 # Network test
 PINGHOST1=google.com

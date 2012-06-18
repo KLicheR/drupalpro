@@ -68,11 +68,12 @@ case "$1" in
     zenity --info --text="Aborted.  Nothing was changed."
     exit
   else
-      reboot 10
+      bash ~/$DDD/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+      reboot 20
   fi
   ;;
 "10")
-  bash ~/$DDD/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+
   reboot 20
   ;;
 "20")
