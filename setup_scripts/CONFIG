@@ -42,8 +42,11 @@ PINGHOST1=google.com
 PINGHOST2=wikipedia.org
 PINGRESULTS=2
 
-# If true, all out bound email will be logged rather than actually sent. Helpful in a dev enviroment.
-EMAIL_CATCHER=true
+# ################################################################################ SETUP OPTIONAL SERVICES
+INSTALL_EMAIL_CATCHER=true  # Redirects PHP email requests to a file. Quite nice for most dev environments
+INSTALL_XDEBUG=true         # used for debuging PHP
+  INSTALL_WEBGRIND=true     # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
+INSTALL_XHPROF=true         # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
 
 # ################################################################################ WGET variables
 REFERER="http://www.drupal.org/project/development_desktop"

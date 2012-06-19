@@ -130,7 +130,7 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 
 
 # ################################################################################ Email catcher
-if [[ "${EMAIL_CATCHER}" == true ]]; then
+if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then
   # Configure email collector
   mkdir -p "${LOGS}/mail"
   chmod -R ug=rwX,o= "${LOGS}/mail"
@@ -141,74 +141,78 @@ fi
 
 # ################################################################################ XDebug Debugger/Profiler
 # Configure xdebug - installed 2.1 from apt
-echo "
-xdebug.remote_enable=on
-xdebug.remote_handler=dbgp
-xdebug.remote_host=localhost
-xdebug.remote_port=9000
-xdebug.profiler_enable=0
-xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=${LOGS}/profiler
-" | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
+if [[ "${INSTALL_XDEBUG}" == true ]]; then
+  echo "
+  xdebug.remote_enable=on
+  xdebug.remote_handler=dbgp
+  xdebug.remote_host=localhost
+  xdebug.remote_port=9000
+  xdebug.profiler_enable=0
+  xdebug.profiler_enable_trigger=1
+  xdebug.profiler_output_dir=${LOGS}/profiler
+  " | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
 
 
-# ################################################################################ Install a web-based profile viewer
-mkdir -p "${LOGS}/profiler"
-cd "${LOGS}/profiler"
-git clone https://github.com/jokkedk/webgrind.git webgrind
-chmod -R ug=rwX,o= "${LOGS}/profiler"
+  # ################################################################################ Install a web-based profile viewer
+  if [[ "${INSTALL_WEBGRIND}" == true ]]; then
+    mkdir -p "${LOGS}/profiler"
+    cd "${LOGS}/profiler"
+    git clone https://github.com/jokkedk/webgrind.git webgrind
+    chmod -R ug=rwX,o= "${LOGS}/profiler"
 
-# Setup Web server
-echo "127.0.0.1 webgrind
+    # Setup Web server
+    echo "127.0.0.1 webgrind
 
-" | sudo tee -a /etc/hosts > /dev/null
+    " | sudo tee -a /etc/hosts > /dev/null
 
-echo "Alias /profiler ${LOGS}/profiler/webgrind
+    echo "Alias /profiler ${LOGS}/profiler/webgrind
 
-<Directory ${LOGS}/profiler/webgrind>
-  Allow from All
-</Directory>
-" | sudo tee /etc/apache2/conf.d/webgrind > /dev/null
-
+    <Directory ${LOGS}/profiler/webgrind>
+      Allow from All
+    </Directory>
+    " | sudo tee /etc/apache2/conf.d/webgrind > /dev/null
+  fi  # WEBGRIND
+fi    # XDEBUG
 
 # ################################################################################ XHProf profiler (Devel Module)
 # Adapted from: http://techportal.ibuildings.com/2009/12/01/profiling-with-xhprof/
+if [[ "${INSTALL_XHPROF}" == true ]]; then
 
-# supporting packages
-sudo apt-get -yq install graphviz
+  # supporting packages
+  sudo apt-get -yq install graphviz
 
-# get it
-cd
-wget "$verbose" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
-tar xvf xhprof-0.9.2.tgz
-mv xhprof-0.9.2 "${LOGS}/xhprof"
-rm xhprof-0.9.2.tgz
-rm package.xml
+  # get it
+  cd
+  wget "$verbose" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
+  tar xvf xhprof-0.9.2.tgz
+  mv xhprof-0.9.2 "${LOGS}/xhprof"
+  rm xhprof-0.9.2.tgz
+  rm package.xml
 
-# build and install it
-cd ${LOGS}/xhprof/extension/
-phpize
-./configure
-make
-sudo make install
+  # build and install it
+  cd ${LOGS}/xhprof/extension/
+  phpize
+  ./configure
+  make
+  sudo make install
 
-# configure php
-echo "
-[xhprof]
-extension=xhprof.so
-xhprof.output_dir=\"${LOGS}/xhprof\"
-" | sudo tee /etc/php5/conf.d/xhprof.ini > /dev/null
+  # configure php
+  echo "
+  [xhprof]
+  extension=xhprof.so
+  xhprof.output_dir=\"${LOGS}/xhprof\"
+  " | sudo tee /etc/php5/conf.d/xhprof.ini > /dev/null
 
-# configure apache
-echo "Alias /xhprof ${LOGS}/xhprof/xhprof_html
+  # configure apache
+  echo "Alias /xhprof ${LOGS}/xhprof/xhprof_html
 
-<Directory ${LOGS}/profiler/xhprof/xhprof_html>
-  Allow from All
-</Directory>
-" | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
+  <Directory ${LOGS}/profiler/xhprof/xhprof_html>
+    Allow from All
+  </Directory>
+  " | sudo tee /etc/apache2/conf.d/xhprof > /dev/null
 
-chmod -R ug=rwX,o= "${LOGS}/xhprof"
-
+  chmod -R ug=rwX,o= "${LOGS}/xhprof"
+fi
 
 # ################################################################################ Restart apache
 sudo service apache2 restart
