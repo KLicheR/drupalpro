@@ -45,12 +45,13 @@ wget "$verbose" -O "${HOME}/Pictures/${CHEAT4##*/}" --referer="${REFERER}" --use
 wget "$verbose" -O "${HOME}/Pictures/${CHEAT5##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT5}"
 
 # Setup desktop
-gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${CHEAT1##*/}"
+background_pic="${CHEAT1##*/}"
+gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${background_pic}"
 gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
 gsettings set org.gnome.desktop.background picture-opacity 100
-gsettings set org.gnome.desktop.background picture-options "fill"
-gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${CHEAT1##*/}"
+gsettings set org.gnome.desktop.background picture-options "Fill"
+gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${background_pic}"
 gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
 gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
@@ -60,10 +61,3 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 sudo apt-get -yq install flashplugin-installer
 
 wget "$verbose" -O ~/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
-
-# Use firefox as default browser.  Chrome, I'm looking at you...
-sudo update-alternatives --set gnome-www-browser /usr/bin/firefox
-sudo update-alternatives --set x-www-browser /usr/bin/firefox
-
-# gnome terminal
-gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_lines --type=int 8192

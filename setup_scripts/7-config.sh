@@ -10,6 +10,13 @@ if [[ ${DEBUG} == true ]]; then set -x; fi
 # turn off screen saver
 gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
 
+# Use firefox as default browser.  Chrome, I'm looking at you...
+sudo update-alternatives --set gnome-www-browser /usr/bin/firefox
+sudo update-alternatives --set x-www-browser /usr/bin/firefox
+
+# gnome terminal
+gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_lines --type=int 8192
+
 # Change default theme (due to Netbeans / java)
 gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
 gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
