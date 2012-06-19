@@ -13,10 +13,10 @@ drush qc --domain=example6.dev --makefile=d6.make
 
 
 firefox -CreateProfile temp &
-sleep 10
-firefox -CreateProfile Default &
 sleep 5
-zenity --info --text="Firefox started in order to create profiles.\n\nPlease CLOSE FIREFOX. "
+firefox -CreateProfile Default &
+#sleep 5
+#zenity --info --text="Firefox started in order to create profiles.\n\nPlease CLOSE FIREFOX. "
 firefox -P temp http://softwarebychuck.com/xpis/FEBE7.0.3.3.xpi &
 sleep 5
 zenity --info --text="Firefox is starting in order to install FEBE.

@@ -70,26 +70,24 @@ case "$1" in
   else
       bash ~/$DDD/setup_scripts/2-slim.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
       bash ~/$DDD/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-      reboot 30
+      reboot 20
   fi
   ;;
 "10")
-
+  bash ~/$DDD/setup_scripts/2a-update.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   reboot 20
   ;;
 "20")
-
+  bash ~/$DDD/setup_scripts/3-lamp.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+  bash ~/$DDD/setup_scripts/4-ides.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   reboot 30
   ;;
 "30")
-  bash ~/$DDD/setup_scripts/2a-update.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+  bash ~/$DDD/setup_scripts/extras_misc.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+  bash ~/$DDD/setup_scripts/extras_development.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   reboot 40
   ;;
 "40")
-  bash ~/$DDD/setup_scripts/3-lamp.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-  bash ~/$DDD/setup_scripts/4-ides.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-  bash ~/$DDD/setup_scripts/extras_misc.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-  bash ~/$DDD/setup_scripts/extras_development.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/extras_theming.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/7-config.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   reboot 70
