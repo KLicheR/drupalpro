@@ -43,7 +43,7 @@ PINGHOST2=wikipedia.org
 PINGRESULTS=2
 
 # If true, all out bound email will be logged rather than actually sent. Helpful in a dev enviroment.
-#EMAIL_CATCHER=true
+EMAIL_CATCHER=true
 
 # ################################################################################ WGET variables
 REFERER="http://www.drupal.org/project/development_desktop"

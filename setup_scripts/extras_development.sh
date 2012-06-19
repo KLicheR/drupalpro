@@ -130,13 +130,13 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 
 
 # ################################################################################ Email catcher
-
-# Configure email collector
-mkdir -p "${LOGS}/mail"
-chmod -R ug=rwX,o= "${LOGS}/mail"
-sudo sed -i 's|'";sendmail_path ="'|'"sendmail_path = ${CONFIGS}/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-chmod +x ${HOME}/${DDD}/config/sendmail.php
-
+if [[ ${EMAIL_CATCHER} == true ]]; then
+  # Configure email collector
+  mkdir -p "${LOGS}/mail"
+  chmod -R ug=rwX,o= "${LOGS}/mail"
+  sudo sed -i 's|'";sendmail_path ="'|'"sendmail_path = ${CONFIGS}/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+  chmod +x ${HOME}/${DDD}/config/sendmail.php
+fi
 
 
 # ################################################################################ XDebug Debugger/Profiler
