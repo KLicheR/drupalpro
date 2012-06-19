@@ -130,7 +130,7 @@ ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
 
 
 # ################################################################################ Email catcher
-if [[ ${EMAIL_CATCHER} == true ]]; then
+if [[ "${EMAIL_CATCHER}" == true ]]; then
   # Configure email collector
   mkdir -p "${LOGS}/mail"
   chmod -R ug=rwX,o= "${LOGS}/mail"
@@ -179,7 +179,7 @@ sudo apt-get -yq install graphviz
 
 # get it
 cd
-wget -nv --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
+wget "$verbose" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
 tar xvf xhprof-0.9.2.tgz
 mv xhprof-0.9.2 "${LOGS}/xhprof"
 rm xhprof-0.9.2.tgz
