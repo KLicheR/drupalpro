@@ -113,7 +113,7 @@ echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadpro
 
 
 # ################################################################################ Log Files
-mkdir -p "${WWW_ROOT}/${LOGS}"
+mkdir -p "${LOGS}"
 
 
 # Apache error logs are configured in the VirtualHosts section of each website (default from apache2.conf)
