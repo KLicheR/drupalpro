@@ -45,7 +45,7 @@ fi
 # SAVE INSTALLATION TYPE
 echo "
 # ################## START_USER_CONFIG
-INSTALLTYPE=${INSTALLTYPE}" >> CONFIG
+INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD}/setup_scripts/CONFIG"
 
 zenity --info --text="This script may take hours to run (depending on your hardware and internet bandwidth), plus multiple automated reboots (which requires AUTOMATIC USER LOGIN for an unattended setup).
 
