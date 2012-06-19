@@ -15,8 +15,6 @@ sudo apt-get -yq autoremove
 sudo apt-get -yq purge libreoffice-gnome  libreoffice-draw  libreoffice-help-en-us  libreoffice-style-tango  libreoffice-impress  libreoffice-math  libreoffice-gtk  libreoffice-common  uno-libs3  python-uno  libreoffice-style-human  ure  libreoffice-base-core  libreoffice-calc  libreoffice-emailmerge  libreoffice-core  libreoffice-writer
 #  18mb - Games
 sudo apt-get -yq purge aisleriot gnome-sudoku mahjongg gnomine
-#  12mb - Accessability
-#mdrmike @FIXME:(purge) |seems wrong to remove sudo apt-get -yq purge gnome-orca gnome-mag brltty brltty-x11 onboard
 #   422k - Screen savers
 sudo apt-get -yq purge gnome-screensaver
 # 61mb - User guide
@@ -37,36 +35,26 @@ sudo apt-get -yq purge shotwell
 #mdrmike @FIXME:(purge) |too entwined with unity sudo apt-get -yq purge compiz compiz-core compiz-gnome compiz-plugins compizconfig-backend-gconf libcompizconfig0 libdecoration0
 #   6mb - Example videos and stuff
 sudo apt-get -yq purge example-content
-#   - Video drivers
-#mdrmike @FIXME:(purge) |too entwined with unity sudo apt-get -yq purge nvidia-common libgl1-mesa-dri
-  #removes ubuntu-desktop :(
-#    - Video Drivers
-#mdrmike @FIXME:(purge) |too entwined with unity sudo apt-get -yq purge xserver-xorg-video-all xserver-xorg-video-apm xserver-xorg-video-ark xserver-xorg-video-ati xserver-xorg-video-chips xserver-xorg-video-cirrus xserver-xorg-video-geode xserver-xorg-video-i128 xserver-xorg-video-i740 xserver-xorg-video-intel xserver-xorg-video-mach64 xserver-xorg-video-mga xserver-xorg-video-neomagic xserver-xorg-video-nv xserver-xorg-video-openchrome xserver-xorg-video-r128 xserver-xorg-video-radeon xserver-xorg-video-rendition xserver-xorg-video-s3 xserver-xorg-video-s3virge xserver-xorg-video-savage xserver-xorg-video-siliconmotion xserver-xorg-video-sis xserver-xorg-video-sisusb xserver-xorg-video-tdfx xserver-xorg-video-trident xserver-xorg-video-tseng xserver-xorg-video-vmware xserver-xorg-video-voodoo
 #   1.7mb - Bittorrent client
 sudo apt-get -yq purge transmission-common transmission-gtk
-#   2mb - Laptop stuff
-#mdrmike @FIXME:(purge) |not worth losing gnome-desktop sudo apt-get -yq purge gnome-power-manager wireless-tools
 #   11mb - ubuntuone, rhythymbox, remotedesktop
-sudo apt-get -yq purge gir1.2-rb-3.0 gir1.2-ubuntuoneui-3.0 rhythmbox-data ubuntuone-client ubuntuone-couch unity-lens-video ubuntuone-installer unity-scope-video-remote rhythmbox unity-scope-musicstores rhythmbox-plugin-magnatune ubuntuone-control-panel librhythmbox-core5 unity-lens-music rhythmbox-ubuntuone libsyncdaemon-1.0-1 vino remmina-common rhythmbox-mozilla libubuntuoneui-3.0-1 remmina-plugin-rdp rhythmbox-plugin-zeitgeist remmina-plugin-vnc ubuntuone-client-gnome rhythmbox-plugin-cdrecorder rhythmbox-plugins remmina
+sudo apt-get -yq purge gir1.2-rb-3.0 gir1.2-ubuntuoneui-3.0 rhythmbox-data ubuntuone-couch unity-lens-video ubuntuone-installer unity-scope-video-remote rhythmbox unity-scope-musicstores rhythmbox-plugin-magnatune ubuntuone-control-panel librhythmbox-core5 unity-lens-music rhythmbox-ubuntuone libsyncdaemon-1.0-1 vino remmina-common rhythmbox-mozilla libubuntuoneui-3.0-1 remmina-plugin-rdp rhythmbox-plugin-zeitgeist remmina-plugin-vnc ubuntuone-client-gnome rhythmbox-plugin-cdrecorder rhythmbox-plugins remmina
 #   5mb - Etc
-sudo apt-get -yq purge usb-creator-gtk checkbox-gtk ubuntuone-client-gnome jockey-gtk computer-janitor-gtk
-#   2mb - Etc Etc
-#mdrmike @FIXME:(purge) |sudo apt-get -yq purge xserver-xorg-input-all xserver-xorg-input-synaptics xserver-xorg-input-wacom #touchpad .5mb
-#mdrmike @FIXME:(purge) |sudo apt-get -yq purge nvidia-96-modaliases nvidia-173-modaliases # graphics card detection .1mb
-#mdrmike @FIXME:(purge) |sudo apt-get -yq purge eog #graphic viewer 1.6mb
+sudo apt-get -yq purge usb-creator-gtk checkbox-gtk ubuntuone-client-gnome jockey-gtk #computer-janitor-gtk
 
 # 0mb
-sudo apt-get -yq autoremove
-# Clean out downloaded packages
-sudo apt-get -yq clean
+sudo apt-get -yq autoremove # autoremove is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed.
+sudo apt-get -yq clean # clean clears out the local repository of retrieved package files. It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/.
 
 # What's installed: slim-package-list.log
-for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/$DDD/setup_scripts/slim-package-list.log; rm -f pkgs.tmp;
-echo "------------  -------------------" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
-echo "size(kb)         packagename" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
+if [ "${EXTRAINFO}" = TRUE ]; then  # Slows setup.  Only need to do this in order to list installed packages and their size.
+  for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/$DDD/setup_scripts/slim-package-list.log; rm -f pkgs.tmp;
+  echo "------------  -------------------" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
+  echo "size(kb)         packagename" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
+fi
 
 # Ending size
-df -h -T > ~/$DDD/setup_scripts/logs/size-slim.log
+df -h -T > "${HOME}/${DDD}/setup_scripts/logs/size-slim.log"
 
 # 3.0gb -> 2.2gb
 

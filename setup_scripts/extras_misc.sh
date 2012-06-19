@@ -6,9 +6,6 @@ set -e
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
-# ##### Install some basics
-sudo apt-get -yq install git
-sudo apt-get -yq install wget curl
 # add some useful git tools
 sudo apt-get -yq install gitg meld git-gui gitk
 # configure some nice git settings
