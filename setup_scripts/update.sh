@@ -4,7 +4,7 @@ set -e
 # ################################################################################ Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
-if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x; fi
 
 
 cd ${HOME}/$DDD

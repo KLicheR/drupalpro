@@ -2,7 +2,7 @@
 
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
-if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x; fi
 
 # ################################################################################ PAReview.sh
 

@@ -4,7 +4,7 @@ set -e
 # ################################################################################ Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
-if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x; fi
 
 
 # ################################################################################ Update Zenity (12.04 from debian has a bug)
@@ -17,7 +17,7 @@ INSTALLTYPE=$(zenity \
   --list \
   --radiolist  \
   --hide-column=2 \
-  --column "" TRUE abort "Abort Installation" FALSE virtual "Install Virtual Kernel" FALSE standard "Install Standard Kernel (physical hardware)" \
+  --column "" true abort "Abort Installation" false virtual "Install Virtual Kernel" false standard "Install Standard Kernel (physical hardware)" \
   --column value \
   --column Description \
   --width=400 \

@@ -15,7 +15,7 @@ set -e
 # CWD based on http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
-if [[ ${DEBUG} == TRUE ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x; fi
 
 
 # ################################################################################ Reboot functions
@@ -26,8 +26,8 @@ function reboot {
   echo "
 
   *** START REBOOT CYCLE: $1 ***" | tee -a ~/$DDD/setup_scripts/logs/install.log
-  if [[ ${AUTOREBOOT} == TRUE ]]; then
-    if [[ ${DEBUG} == TRUE ]]; then
+  if [[ ${AUTOREBOOT} == true ]]; then
+    if [[ ${DEBUG} == true ]]; then
       echo "Allow time to interrupt reboot"
       sleep 10
     fi
