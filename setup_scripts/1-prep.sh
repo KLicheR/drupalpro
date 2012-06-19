@@ -42,14 +42,19 @@ if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(2), or timeo
 fi
 
 # ok, lets do it
+# SAVE INSTALLATION TYPE
+echo "
+# ################## START_USER_CONFIG
+INSTALLTYPE=${INSTALLTYPE}" >> CONFIG
+
 zenity --info --text="This script may take hours to run (depending on your hardware and internet bandwidth), plus multiple automated reboots (which requires AUTOMATIC USER LOGIN for an unattended setup).
 
 Towards the end, the process requires some manual steps, guided by popups like this. \nThis script shouldn't be run more than once.";
 
 ## The last password you'll ever need.
 # add current user to sudoers file - careful, this line could brick the box.
-echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/${DDD} > /dev/null
-sudo chmod 440 /etc/sudoers.d/${DDD}
+echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
+sudo chmod 440 "/etc/sudoers.d/${DDD}"
 
 # Add current user to root 'group' to make it easier to edit config files
 # note: seems unsafe for anyone unaware.
@@ -57,17 +62,4 @@ sudo adduser $USER root
 
 ## Disk size Accounting
 # Starting size:
-df -h -T > ~/${DDD}/setup_scripts/logs/size-start.log
-
-## Some configuration
-# turn off screen saver
-gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
-
-if [ "${INSTALLTYPE}" == "virtual" ]
-then
-  # Remove the standard Kernel and install virtual kernel.
-  # Should be less overhead (aka better performance) in Virtual environment.
-  sudo apt-get -yq update
-  sudo apt-get -yq purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
-  sudo apt-get -yq install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
-fi
+df -h -T > "~/${DDD}/setup_scripts/logs/size-start.log"

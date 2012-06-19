@@ -6,6 +6,10 @@ set -e
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
+## Some configuration
+# turn off screen saver
+gconftool-2 -s /apps/gnome-screensaver/idle_activation_enabled --type=bool false
+
 # Change default theme (due to Netbeans / java)
 gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
 gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance

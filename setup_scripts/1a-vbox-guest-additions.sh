@@ -6,6 +6,16 @@ set -e
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == TRUE ]]; then set -x; fi
 
+# ################################################################################ SETUP KERNEL
+if [ "${INSTALLTYPE}" == "virtual" ]
+then
+  # Remove the standard Kernel and install virtual kernel.
+  # Should be less overhead (aka better performance) in Virtual environment.
+  sudo apt-get -yq update
+  sudo apt-get -yq purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
+  sudo apt-get -yq install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
+fi
+
 ## install guest additions
 
 # dkms recommended on virtualbox.org for upgrade compatibility
