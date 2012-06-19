@@ -68,8 +68,9 @@ case "$1" in
     zenity --info --text="Aborted.  Nothing was changed."
     exit
   else
+      bash ~/$DDD/setup_scripts/2-slim.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
       bash ~/$DDD/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-      reboot 20
+      reboot 30
   fi
   ;;
 "10")
@@ -77,7 +78,7 @@ case "$1" in
   reboot 20
   ;;
 "20")
-  bash ~/$DDD/setup_scripts/2-slim.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+
   reboot 30
   ;;
 "30")
@@ -87,16 +88,16 @@ case "$1" in
 "40")
   bash ~/$DDD/setup_scripts/3-lamp.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/4-ides.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-  reboot 50
-  ;;
-"50")
   bash ~/$DDD/setup_scripts/extras_misc.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/extras_development.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/extras_theming.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+  bash ~/$DDD/setup_scripts/7-config.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
+  reboot 70
+  ;;
+"50")
   reboot 70
   ;;
 "70")
-  bash ~/$DDD/setup_scripts/7-config.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   ;;
 *)
