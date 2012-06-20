@@ -43,6 +43,10 @@ PINGHOST2=wikipedia.org
 PINGRESULTS=2
 
 # ################################################################################ SETUP OPTIONAL SERVICES
+INSTALL_NETBEANS=false
+INSTALL_ECLIPSE=false
+INSTALL_GEANY=true
+INSTALL_JRE=false           # Override defaults and make sure JRE is installed?
 INSTALL_EMAIL_CATCHER=true  # Redirects PHP email requests to a file. Quite nice for most dev environments
 INSTALL_XDEBUG=true         # used for debuging PHP
   INSTALL_WEBGRIND=true     # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
