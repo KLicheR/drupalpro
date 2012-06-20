@@ -27,10 +27,11 @@ sudo apt-get -yq install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virt
 
 # Setup shared folders between virtualbox host and virtualbox guest
 # Note difference between shared and vbox-host.  That's important.  Requires reboot
-sudo sed -i s|"# By default this script does nothing."|"mount -t vboxsf -o uid=1000,gid=1000 ${HOSTSHARE} /mnt/vbox-host"g  /etc/rc.local
-sudo mkdir /mnt/vbox-host
-sudo chmod ug=rwX,o= /mnt/vbox-host
-cat > /mnt/vbox-host/readme.txt <<END
+sudo sed -i s|"# By default this script does nothing."|"mount -t vboxsf -o uid=1000,gid=1000 ${HOSTSHARE} /mnt/vbox-host"|g  /etc/rc.local
+sudo mkdir "/mnt/${HOSTSHARE}"
+sudo chmod ug=rwX,o= "/mnt/${HOSTSHARE}"
+ln -s "/mnt/${HOSTSHARE}" ~/Desktop/shared
+cat > "/mnt/${HOSTSHARE}/readme.txt" <<END
 If you are seeing this file, then virtualbox's shared folders are not configured correctly.
 
 1) Power down the Drupal Desktop virtual machine.
