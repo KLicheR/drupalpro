@@ -60,6 +60,11 @@ HEAD2="Accept-Language: en-us,en;q=0.5"
 HEAD3="Accept-Encoding: gzip,deflate"
 HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
 HEAD5="Keep-Alive: 300"
+# If debugging then turn on WGET debug output
+if [[ ${DEBUG} == true ]];
+  then WGET_VERBOSE="-v"
+  else WGET_VERBOSE="-nv"
+fi
 
 # ################################################################################ XHPROF
 XHPROF_URL="http://pecl.php.net/get/xhprof-0.9.2.tgz"

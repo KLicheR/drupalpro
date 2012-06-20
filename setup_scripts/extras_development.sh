@@ -132,7 +132,7 @@ if [[ "${INSTALL_XHPROF}" == true ]]; then
 
   # get it
   cd
-  wget "$verbose" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
+  wget "${WGET_VERBOSE}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
   tar xvf xhprof-0.9.2.tgz
   mv xhprof-0.9.2 "${LOGS}/xhprof"
   rm xhprof-0.9.2.tgz
