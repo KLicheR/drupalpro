@@ -39,8 +39,48 @@ APT::Periodic::AutocleanInterval \"5\";
 APT::Periodic::Unattended-Upgrade \"1\";
 " | sudo tee /etc/apt/apt.conf.d/10periodic > /dev/null
 
-cd
-sudo cp eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png
+
+# ################################################################################ Replace localhost/index.html
+# Add interesting default document for localhost
+sudo rm /var/www/index.html
+sudo cp ~/$DDD/config/index.php /var/www/index.php
+sudo chmod -R u=rwX,g=rX,o= /var/www
+sudo chown -R $USER:www-data /var/www
+
+# ################################################################################ Command line shortcuts (bash aliases)
+
+# Don't sudo here...
+cat ~/$DDD/config/ddd_bash_aliases >> ~/.bash_aliases
+
+
+# ################################################################################ Desktop shortcuts
+
+cat > ~/Desktop/README.desktop <<END
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Link
+URL=http://localhost
+Name=README
+Icon=/usr/share/pixmaps/firefox.png
+END
+
+cat > ~/Desktop/gnome-terminal.desktop <<END
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Eclipse
+Comment=Eclipse Integrated Development Environment
+Icon=/usr/share/pixmaps/eclipse.xpm
+Exec=${HOME}/eclipse/eclipse
+Terminal=false
+Categories=Development;IDE;Java;
+END
+chmod 750 ~/Desktop/gnome-terminal.desktop
+
+ln -s "${WWW_ROOT}" ~/Desktop/websites
+
+
+
 
 # final size
 df -h -T > ~/$DDD/setup_scripts/logs/size-end.log

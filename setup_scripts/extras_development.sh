@@ -8,13 +8,6 @@ if [[ ${DEBUG} == true ]]; then set -x; fi
 
 cd
 
-# ################################################################################ Replace localhost/index.html
-# Add interesting default document for localhost
-sudo rm /var/www/index.html
-sudo cp ~/$DDD/config/index.php /var/www/index.php
-sudo chmod -R u=rwX,g=rX,o= /var/www
-sudo chown -R $USER:www-data /var/www
-
 # ################################################################################ Configure phpmyadmin
 # show hex data on detail pages.
 echo "
@@ -83,50 +76,6 @@ ln -s ~/$DDD/make_templates/*.make "${WWW_ROOT}"
 
 # Install Feather (Drush addon)
 git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ~/.drush/feather
-
-
-# ################################################################################ Command line shortcuts (bash aliases)
-
-# Don't sudo here...
-cat ~/$DDD/config/ddd_bash_aliases >> ~/.bash_aliases
-
-
-# ################################################################################ Desktop shortcuts
-# @FIXME -- none of this works well in Unity
-
-cat > ~/Desktop/README.desktop <<END
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Link
-URL=http://localhost
-Name=README
-Icon=/usr/share/pixmaps/firefox.png
-END
-
-cat > ~/Desktop/gnome-terminal.desktop <<END
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Name=Terminal
-Comment=Use the command line
-TryExec=gnome-terminal
-Exec=gnome-terminal
-Icon=utilities-terminal
-Type=Application
-X-GNOME-DocPath=gnome-terminal/index.html
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=gnome-terminal
-X-GNOME-Bugzilla-Component=BugBuddyBugs
-X-GNOME-Bugzilla-Version=2.29.6
-Categories=GNOME;GTK;Utility;TerminalEmulator;
-StartupNotify=true
-OnlyShowIn=GNOME;
-X-Ubuntu-Gettext-Domain=gnome-terminal
-END
-chmod 750 ~/Desktop/gnome-terminal.desktop
-
-ln -s "${WWW_ROOT}" ~/Desktop/websites
-ln -s /mnt/vbox-shared ~/Desktop/vbox-shared
-
 
 
 # ################################################################################ Email catcher
