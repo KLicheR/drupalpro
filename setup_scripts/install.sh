@@ -69,7 +69,7 @@ case "$1" in
     exit
   else
       bash ~/$DDD/setup_scripts/2-slim.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-      reboot 20
+      reboot 10
   fi
   ;;
 "10")
@@ -93,9 +93,9 @@ case "$1" in
 "50")
   bash ~/$DDD/setup_scripts/extras_theming.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   bash ~/$DDD/setup_scripts/7-config.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
-  reboot 70
+  reboot 60
   ;;
-"70")
+"60")
   bash ~/$DDD/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ~/$DDD/setup_scripts/logs/install.log
   ;;
 *)
