@@ -4,7 +4,7 @@ set -e
 # ################################################################################ Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
-if [[ ${DEBUG} == true ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # add some useful git tools
 sudo apt-get "${APTGET_VERBOSE}" install gitg meld git-gui gitk

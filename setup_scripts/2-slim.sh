@@ -4,7 +4,7 @@ set -e
 # ################################################################################ Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
-if [[ ${DEBUG} == true ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # See also http://benhodge.wordpress.com/2008/02/17/cleaning-up-a-ubuntu-gnulinux-system/
 

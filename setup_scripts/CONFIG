@@ -5,7 +5,7 @@ AUTOREBOOT=true
 EXTRAINFO=false
 
 # If debugging then turn on debug output
-if [[ ${DEBUG} == true ]]; then set -x; fi
+if [[ ${DEBUG} == true ]] && [[ ${EXTRAINFO} == true ]]; then set -x -v; fi
 
 
 

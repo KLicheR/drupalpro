@@ -15,7 +15,7 @@ set -e
 # CWD based on http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
-if [[ ${DEBUG} == true ]]; then set -x; fi
+if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 
 # ################################################################################ Reboot functions
