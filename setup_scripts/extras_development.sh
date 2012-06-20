@@ -128,7 +128,7 @@ fi    # XDEBUG
 if [[ "${INSTALL_XHPROF}" == true ]]; then
 
   # supporting packages
-  sudo apt-get -yq install graphviz
+  sudo apt-get "${APTGET_VERBOSE}" install graphviz
 
   # get it
   cd

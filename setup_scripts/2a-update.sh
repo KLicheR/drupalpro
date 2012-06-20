@@ -8,6 +8,6 @@ if [[ ${DEBUG} == true ]]; then set -x; fi
 
 ## Upgrade
 
-sudo apt-get -yq update
-sudo apt-get -yq upgrade
+sudo apt-get "${APTGET_VERBOSE}" update
+sudo apt-get "${APTGET_VERBOSE}" upgrade
 

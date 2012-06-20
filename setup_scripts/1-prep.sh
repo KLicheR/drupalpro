@@ -57,7 +57,7 @@ echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /
 sudo chmod 440 "/etc/sudoers.d/${DDD}"
 
 # ################################################################################ Install/Update some basics
-sudo apt-get -yq install git wget curl
+sudo apt-get "${APTGET_VERBOSE}" install git wget curl
 
 # Add current user to root 'group' to make it easier to edit config files
 # note: seems unsafe for anyone unaware.
