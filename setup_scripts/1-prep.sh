@@ -34,9 +34,9 @@ Are you really, really, ... and I mean *really* sure you want to do this?" \
 )
 
 UserAbort=$?
-if [ "$INSTALLTYPE" == "abort" ]; then UserAbort=2; fi
-if [ "$UserAbort" -eq 5 ]; then UserAbort=0; fi # reset to 0 because zenity has a bug & timeout disabled
-if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(2), or timeout(5) then exit with code
+if [ "$INSTALLTYPE" == "abort" ]; then UserAbort=3; fi
+if [ "$UserAbort" -eq 5 ]; then UserAbort=0; fi # @FIXME: reset to 0 because zenity has a bug & timeout disabled
+if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(3), or timeout(5) then exit with code
   echo "Aborted: $UserAbort (key: cancel=1, abort=2, time out=5).  Nothing was changed."
   exit $UserAbort;
 fi
