@@ -31,8 +31,6 @@ function check_errs() {
     echo "
     NO ERROR # - exit code: ${1} from command: ${2}
     " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-    # as a bonus, make our script exit with the right error code.
-    exit ${1}
   fi
 }
 
