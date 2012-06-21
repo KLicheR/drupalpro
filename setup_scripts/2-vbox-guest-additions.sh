@@ -11,16 +11,16 @@ if [ "${INSTALLTYPE}" == "virtual" ]
 then
   # Remove the standard Kernel and install virtual kernel.
   # Should be less overhead (aka better performance) in Virtual environment.
-  sudo apt-get "${APTGET_VERBOSE}" update
-  sudo apt-get "${APTGET_VERBOSE}" purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
-  sudo apt-get "${APTGET_VERBOSE}" install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
+  sudo apt-get ${APTGET_VERBOSE} update
+  sudo apt-get ${APTGET_VERBOSE} purge linux-generic linux-headers-generic linux-image-generic linux-generic-pae  linux-image-generic-pae linux-headers-generic-pae linux-headers-3.2.0-23 linux-headers-3.2.0-23-generic-pae linux-image-3.2.0-23-generic-pae
+  sudo apt-get ${APTGET_VERBOSE} install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
 fi
 
 ## install guest additions
 
 # dkms recommended on virtualbox.org for upgrade compatibility
-sudo apt-get "${APTGET_VERBOSE}" install build-essential
-sudo apt-get "${APTGET_VERBOSE}" install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virtualbox-ose-guest-source
+sudo apt-get ${APTGET_VERBOSE} install build-essential
+sudo apt-get ${APTGET_VERBOSE} install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virtualbox-ose-guest-source
 #if that doesnt work, try manual install per http://www.webupd8.org/2012/02/virtualbox-ubuntu-1204-guest-fixes.html
 
 ## Shared folders

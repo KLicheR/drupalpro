@@ -10,13 +10,13 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 # REQUIREMENT for Netbeans / Eclipse / Apatana
 if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_APTANA}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
   ## Install java - 100mb
-  sudo apt-get "${APTGET_VERBOSE}" install default-jre
+  sudo apt-get ${APTGET_VERBOSE} install default-jre
 fi
 
 #======================================| Lightweight Editors
 #======================================| GEDIT
 if [[ "${INSTALL_GEDIT}" == true ]]; then
-  sudo apt-get "${APTGET_VERBOSE}" install gedit-plugins
+  sudo apt-get ${APTGET_VERBOSE} install gedit-plugins
 
   # Config gedit-2
   gconftool-2 -s /apps/gedit-2/preferences/editor/auto_indent/auto_indent --type=bool true

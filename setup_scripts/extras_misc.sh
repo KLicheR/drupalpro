@@ -7,7 +7,7 @@ source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # add some useful git tools
-sudo apt-get "${APTGET_VERBOSE}" install gitg meld git-gui gitk
+sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk
 # configure some nice git settings
 git config --global color.ui true
 git config --global core.whitespace trailing-space,tab-in-indent
@@ -58,6 +58,6 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 
 #======================================| FIREFOX
 # Install flash-plugin browser
-sudo apt-get "${APTGET_VERBOSE}" install flashplugin-installer
+sudo apt-get ${APTGET_VERBOSE} install flashplugin-installer
 # Download FEBE backup file
 wget ${WGET_VERBOSE} -O ${HOME}/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
