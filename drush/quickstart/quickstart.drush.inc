@@ -32,7 +32,7 @@ function quickstart_drush_command() {
           'options' => array(
                   'domain'       => 'Required (all).  Domain name of new site.  Use this to reference site with other commands.  Becomes dns, dbname, dbuser, dbpass, site-name, and kitchen-sink',
                   'dbuser'       => 'Optional (db).  Root mysql user.  Defaults to "root"',
-                  'dbpassword'   => 'Optional (db).  Root mysql password.  Defaults to "quickstart"',
+                  'dbpassword'   => 'Optional (db).  Root mysql password.  Defaults to "drupalpro"',
                   'codepath'     => 'Optional (apache,code,install).  Path to drupal code.  Defaults to "~/websites/[domain]"',
                   'makefile'     => 'Optional (code).  Path to drupal make file.  Defaults to D7 "~/websites/default.make"',
                   'profile'      => 'Optional (install).  Name of profile to install.  Defaults to "default" in D6, "standard" in D7',
@@ -84,7 +84,7 @@ function quickstart_drush_command() {
 
   $items['quickstart-fixperms'] = array(
           'description' => "Fix permissions for a quickstart development website:
-  \$ sudo chown -R quickstart:www-data <codepath>
+  \$ sudo chown -R $USER:www-data <codepath>
   \$ sudo chmod -R a=,u=rwX,g=rX <codepath>
   \$ sudo find <codepath>/sites -type d -name files -exec chmod -R a=,ug=rwX '{}' \;
   \$ sudo find <codepath>/sites -type d -name files_private -exec chmod -R a=,ug=rwX '{}' \;",
@@ -150,12 +150,12 @@ function _quickstart_params($required) {
     $ret['fail'] = true;
     drush_log("  '--domain' must include a . for drupal installer to work.", 'error');
   }
-  
+
   // defaults
   $defaults['domain_'] = $domain_ = str_replace('.','_',$options['domain']);
   // database
   $defaults['dbuser'] = 'root';
-  $defaults['dbpassword'] = 'quickstart';
+  $defaults['dbpassword'] = 'drupalpro';
   // apache, code, install
   $defaults['codepath'] = quickstart_fixpath("~/websites/" . $options['domain']);
   // code, install (check version)
@@ -204,8 +204,8 @@ function drush_quickstart_fixperms() {
   quickstart_shell_exec("sudo chown -R quickstart:www-data $codepath");
   quickstart_shell_exec("sudo chmod -R a=,u=rwX,g=rX $codepath");
   // find directories named "files" and run chmod on them.
-  quickstart_shell_exec("sudo find $codepath/sites -type d -name files -exec chmod -R a=,ug=rwX '{}' \;");  
-  quickstart_shell_exec("sudo find $codepath/sites -type d -name files_private -exec chmod -R a=,ug=rwX '{}' \;");  
+  quickstart_shell_exec("sudo find $codepath/sites -type d -name files -exec chmod -R a=,ug=rwX '{}' \;");
+  quickstart_shell_exec("sudo find $codepath/sites -type d -name files_private -exec chmod -R a=,ug=rwX '{}' \;");
 }
 
 /**
