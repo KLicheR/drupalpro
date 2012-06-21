@@ -40,22 +40,22 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
 
   # GEANY: Extra color themes
   cd
-  wget "${WGET_VERBOSE}" -O ${HOME}/geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
+  wget ${WGET_VERBOSE} -O ${HOME}/geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
   tar jxf geany-themes.tar.bz2 && rm geany-themes.tar.bz2
   mv -f geany-themes-0.21/* ${HOME}/.config/geany/
   rm -r geany-themes-0.21
 
   # GEANY: Install extra tag files
-  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
-  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-php-5.3.5 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_PHP}"
-  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-js --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_JS}"
-  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
+  wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
+  wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-php-5.3.5 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_PHP}"
+  wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-js --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_JS}"
+  wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
 fi
 
 #======================================| ECLIPSE
 if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   cd
-  wget "${WGET_VERBOSE}" -O "${HOME}/eclipse.tar.gz" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
+  wget ${WGET_VERBOSE} -O "${HOME}/eclipse.tar.gz" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
   tar -xvf eclipse.tar.gz && rm eclipse.tar.gz
   sudo cp ${HOME}/eclipse/icon.xpm /usr/share/pixmaps/eclipse.xpm
   sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png
@@ -79,7 +79,7 @@ fi
 #======================================| APTANA
 if [[ "${INSTALL_APTANA}" == true ]]; then
   cd
-  wget "${WGET_VERBOSE}" -O aptana.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${APTANA_URL}"
+  wget ${WGET_VERBOSE} -O aptana.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${APTANA_URL}"
   unzip -q aptana.zip
   sudo ln -s "${HOME}/Aptana_Studio_3/AptanaStudio3" "${HOME}/Desktop/AptanaStudio3"
   rm eclipse.tar.gz
@@ -104,11 +104,11 @@ fi
 #======================================| NETBEANS
 if [[ "${INSTALL_NETBEANS}" == true ]]; then
   cd
-  wget "${WGET_VERBOSE}" -O netbeans.sh --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_URL}"
+  wget ${WGET_VERBOSE} -O netbeans.sh --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_URL}"
   chmod +x ./netbeans.sh
   bash ./netbeans.sh --silent --nospacecheck
   rm netbeans.sh
 
   # Download Netbeans preferences used for importing
-  wget "${WGET_VERBOSE}" -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
+  wget ${WGET_VERBOSE} -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
 fi
