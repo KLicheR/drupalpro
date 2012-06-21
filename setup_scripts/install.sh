@@ -17,6 +17,18 @@ CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
+# ################################################################################ Error Checking
+function check_errs() {
+  # Parameter 1 is the return code
+  # Parameter 2 is text to display on failure.
+  if [ "${1}" -ne "0" ]; then
+    echo "
+    ERROR # ${1} : ${2}
+    " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+    # as a bonus, make our script exit with the right error code.
+    exit ${1}
+  fi
+}
 
 # ################################################################################ Reboot functions
 function reboot {
@@ -71,9 +83,8 @@ cd
 case "$1" in
 "")
   ${HOME}/${DDD}/setup_scripts/1-prep.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
+  check_errs "$?" "$_"
   EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   if [[ "$EXIT_CODE" -eq 1 ]] || [[ "$EXIT_CODE" -eq 3 ]] || [[ "$EXIT_CODE" -eq 5 ]]
   then  # if exit code not 0 then abort, otherwise continue and reboot
     zenity --info --text='Aborted.  Nothing was changed. '
@@ -81,68 +92,46 @@ case "$1" in
     exit
   else
       ${HOME}/${DDD}/setup_scripts/2-slim.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-      LAST_CMD=$_
-      EXIT_CODE=$?
-      ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+      check_errs "$?" "$_"
       reboot 10
   fi
   ;;
 "10")
   ${HOME}/${DDD}/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   reboot 20
   ;;
 "20")
   ${HOME}/${DDD}/setup_scripts/2a-update.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   reboot 30
   ;;
 "30")
   ${HOME}/${DDD}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   ${HOME}/${DDD}/setup_scripts/4-ides.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   reboot 40
   ;;
 "40")
   ${HOME}/${DDD}/setup_scripts/extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   ${HOME}/${DDD}/setup_scripts/extras_development.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   reboot 50
   ;;
 "50")
   ${HOME}/${DDD}/setup_scripts/extras_theming.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   ${HOME}/${DDD}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   reboot 60
   ;;
 "60")
   ${HOME}/${DDD}/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  LAST_CMD=$_
-  EXIT_CODE=$?
-  ((if [[ "$EXIT_CODE" -eq 1 ]]; then echo "ERROR: Last command: $LAST_CMD"; echo "Error Code: $EXIT_CODE"; fi) 2>&1 ) | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  check_errs "$?" "$_"
   ;;
 *)
   echo " *** BAD BAD BAD SOMETHING WENT WRONG!  CALL A DOCTOR! *** "
   ;;
 esac
-
-
