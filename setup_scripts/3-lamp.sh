@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# ################################################################################ Drupal sites
+#======================================| Drupal sites
 # Create folder for websites to live in
 mkdir -p "${WWW_ROOT}"
 sudo chown :www-data "${WWW_ROOT}"
 sudo chmod -R u=rwX,g=rX,o= "${WWW_ROOT}"
 
-# ################################################################################ Install LAMP packages
+#======================================| Install LAMP packages
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
@@ -81,13 +81,13 @@ echo "<IfModule mod_ssl.c>
 sudo a2ensite default-ssl
 
 
-# ################################################################################ Configure MYSQL
+#======================================| Configure MYSQL
 
 sudo sed -i 's/#log_slow_queries/log_slow_queries/g'          /etc/mysql/my.cnf
 sudo sed -i 's/#long_query_time/long_query_time/g'            /etc/mysql/my.cnf
 
 
-# ################################################################################ Configure PHP
+#======================================| Configure PHP
 # FIXME haven't checked for unnecessary code since 9.10
 # sudo sed -i 's/find_this/replace_with_this/g' infile1 infile2 etc
 sudo sed -i 's/magic_quotes_gpc = On/magic_quotes_gpc = Off/g'                       /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
@@ -112,7 +112,7 @@ echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadpro
 
 
 
-# ################################################################################ Log Files
+#======================================| Log Files
 mkdir -p "${LOGS}"
 
 
@@ -138,7 +138,7 @@ ln -s          /var/log/mysql/mysql-slow.log             "${LOGS}/mysql-slow.log
 
 
 
-# ################################################################################ Config Files
+#======================================| Config Files
 mkdir -p "${CONFIGS}"
 sudo chmod -R g+w /etc/apache2
 ln -s /etc/apache2/apache2.conf      "${CONFIGS}/apache2.conf"
@@ -163,7 +163,7 @@ ll
 
 This will list the files and where they link to." > "${CONFIGS}/README.txt"
 
-# ################################################################################ user management
+#======================================| user management
 # Make user of group www-data
 sudo adduser $USER www-data
 

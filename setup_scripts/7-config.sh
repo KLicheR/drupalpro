@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
@@ -40,20 +40,20 @@ APT::Periodic::Unattended-Upgrade \"1\";
 " | sudo tee /etc/apt/apt.conf.d/10periodic > /dev/null
 
 
-# ################################################################################ Replace localhost/index.html
+#======================================| Replace localhost/index.html
 # Add interesting default document for localhost
 sudo rm /var/www/index.html
 sudo cp ${HOME}/${DDD}/config/index.php /var/www/index.php
 sudo chmod -R u=rwX,g=rX,o= /var/www
 sudo chown -R $USER:www-data /var/www
 
-# ################################################################################ Command line shortcuts (bash aliases)
+#======================================| Command line shortcuts (bash aliases)
 
 # Don't sudo here...
 cat ${HOME}/${DDD}/config/ddd_bash_aliases >> ${HOME}/.bash_aliases
 
 
-# ################################################################################ Desktop shortcuts
+#======================================| Desktop shortcuts
 
 cat > ${HOME}/Desktop/README.desktop <<END
 #!/usr/bin/env xdg-open

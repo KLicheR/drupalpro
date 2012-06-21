@@ -1,14 +1,14 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 cd
 
-# ################################################################################ Configure phpmyadmin
+#======================================| Configure phpmyadmin
 # show hex data on detail pages.
 echo "
 # Show 1000 rows instead of 30 by default
@@ -56,7 +56,7 @@ For more information:
   Or goto http://drupal.org/node/819398" > ${HOME}/websites/README.txt
 
 
-# ################################################################################ Drush
+#======================================| Drush
 # Install drush
 
 git clone http://git.drupal.org/project/drush.git
@@ -78,7 +78,7 @@ ln -s ${HOME}/${DDD}/make_templates/*.make "${WWW_ROOT}"
 git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ${HOME}/.drush/feather
 
 
-# ################################################################################ Email catcher
+#======================================| Email catcher
 if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then
   # Configure email collector
   mkdir -p "${LOGS}/mail"
@@ -88,7 +88,7 @@ if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then
 fi
 
 
-# ################################################################################ XDebug Debugger/Profiler
+#======================================| XDebug Debugger/Profiler
 # Configure xdebug - installed 2.1 from apt
 if [[ "${INSTALL_XDEBUG}" == true ]]; then
   echo "
@@ -102,7 +102,7 @@ if [[ "${INSTALL_XDEBUG}" == true ]]; then
   " | sudo tee -a /etc/php5/conf.d/xdebug.ini > /dev/null
 
 
-  # ################################################################################ Install a web-based profile viewer
+  #======================================| Install a web-based profile viewer
   if [[ "${INSTALL_WEBGRIND}" == true ]]; then
     mkdir -p "${LOGS}/profiler"
     cd "${LOGS}/profiler"
@@ -123,7 +123,7 @@ if [[ "${INSTALL_XDEBUG}" == true ]]; then
   fi  # WEBGRIND
 fi    # XDEBUG
 
-# ################################################################################ XHProf profiler (Devel Module)
+#======================================| XHProf profiler (Devel Module)
 # Adapted from: http://techportal.ibuildings.com/2009/12/01/profiling-with-xhprof/
 if [[ "${INSTALL_XHPROF}" == true ]]; then
 
@@ -163,6 +163,6 @@ if [[ "${INSTALL_XHPROF}" == true ]]; then
   chmod -R ug=rwX,o= "${LOGS}/xhprof"
 fi
 
-# ################################################################################ Restart apache
+#======================================| Restart apache
 sudo /etc/init.d/apache2 restart #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 

@@ -1,18 +1,29 @@
 #!/bin/bash
 set -e
+#======================================|
+#
+# THIS SCRIPT SETS UP ENVIRONMENT
+#
+# * Figure out environment
+# * Update Zenity (due to bug in initial release of 12.04)
+# * User:  What Type of Install? (Abort / Virtual Kernel / Standard Kernel)
+# * Setup: $USER in sudoers and root group
+# * Add: wget, git, and curl -- which are used by installation scripts
+#
+#======================================|
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 
-# ################################################################################ Update Zenity (12.04 from debian has a bug)
+c Update Zenity (12.04 has a bug)
 sudo apt-get install zenity
 
-# ################################################################################
-# Prompt to give user a chance to abort to avoid accidentally borking their system
-# ################################################################################
+################################################################################
+# Prompt for installation type or to abort (to avoid borking system)
+################################################################################
 INSTALLTYPE=$(zenity \
   --list \
   --radiolist  \
@@ -41,8 +52,8 @@ if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(3), or timeo
   exit $UserAbort;
 fi
 
-# ok, lets do it
-# SAVE INSTALLATION TYPE
+#======================================| ok, lets do it
+#======================================| SAVE INSTALLATION TYPE
 echo "
 # ################## START_USER_CONFIG
 INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD}/setup_scripts/CONFIG"
@@ -56,7 +67,7 @@ Towards the end, the process requires some manual steps, guided by popups like t
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
 sudo chmod 440 "/etc/sudoers.d/${DDD}"
 
-# ################################################################################ Install/Update some basics
+#======================================| Install/Update some basics
 sudo apt-get "${APTGET_VERBOSE}" install git wget curl
 
 # Add current user to root 'group' to make it easier to edit config files

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ################################################################################ Squid caching of ftp.drupal.org
+#======================================| Squid caching of ftp.drupal.org
 # README:
 #
 # This script will install Squid for caching of ftp.drupal.org

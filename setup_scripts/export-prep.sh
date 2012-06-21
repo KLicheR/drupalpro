@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/CONFIG
 if [[ ${DEBUG} == true ]]; then set -x -v; fi

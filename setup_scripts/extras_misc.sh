@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
@@ -57,7 +57,7 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
 
 
-# ################################################################################ FIREFOX
+#======================================| FIREFOX
 # Install flash-plugin browser
 sudo apt-get "${APTGET_VERBOSE}" install flashplugin-installer
 # Download FEBE backup file

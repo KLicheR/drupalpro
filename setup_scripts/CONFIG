@@ -4,62 +4,50 @@ DEBUG=false
 EXTRA_DEBUG_INFO=false
 AUTOREBOOT=true
 
-# If debugging then turn on debug output
+#======================================| If debugging, then turn on debug output
 if [[ ${DEBUG} == true ]] && [[ ${EXTRA_DEBUG_INFO} == true ]]; then set -x -v; fi
 
-
-
-# USERS & PASSWORDS
+#======================================| USERS & PASSWORDS
 USER_PASS=drupalpro
 MYSQL_PASS=drupalpro
 MYSQL_USER=root
 USER_USER=${USER}
 
-# SERVER SETTINGS
+#======================================| SERVER SETTINGS
 WWW_FQDN="localhost"   # used by apache setup
 WWW_SERVER="apache2"   # webserver to install (used by phpmyadmin)
 
-# VBOX HOST SHARED FOLDER NAME (C_DRIVE or D_DRIVE are good alternatives)
+# VBOX HOST SHARED FOLDER NAME
+# (C_DRIVE or D_DRIVE are good alternatives)
 HOSTSHARE="shared"
 
-# PATHS to log files (easy location)
+#======================================| PATHS TO (easy) LOG FILES
 WWW_ROOT="${HOME}/websites"
 LOGS="${WWW_ROOT}/logs"
 CONFIGS="${WWW_ROOT}/config"
 
-
-# Automatically find folder name of Install scripts and set project (DDD) root folder
-CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd -P "${CWD}"
-cd ..
-export DDD=${PWD##*/}
-
-
+#======================================| DRUSH version to install
 DRUSH_VERSION="7.x-5.3"
 
-# Network test
+# Drush addons
+FEATHER="7.x-1.x"
+
+#======================================| Used for network testing
 PINGHOST1=google.com
 PINGHOST2=wikipedia.org
 PINGRESULTS=2
 
-# ################################################################################ SETUP OPTIONAL SERVICES
+#======================================| SETUP OPTIONAL SERVICES
 INSTALL_NETBEANS=true
 INSTALL_ECLIPSE=true
 INSTALL_GEANY=true
-INSTALL_JRE=false           # Override defaults and make sure JRE is installed?
-INSTALL_EMAIL_CATCHER=true  # Redirects PHP email requests to a file. Quite nice for most dev environments
-INSTALL_XDEBUG=true         # used for debuging PHP
-  INSTALL_WEBGRIND=true     # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
+INSTALL_JRE=false            # Override defaults and make sure JRE is installed?
+INSTALL_EMAIL_CATCHER=true   # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
+INSTALL_XDEBUG=true          # Used for PHP debuging
+  INSTALL_WEBGRIND=true      # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
 INSTALL_XHPROF=false         # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
 
-
-# If debugging then turn on APTGET debug output
-if [[ ${EXTRA_DEBUG_INFO} == true ]];
-  then APTGET_VERBOSE="-yq"
-  else APTGET_VERBOSE="-yqq"
-fi
-
-# ################################################################################ WGET variables
+#======================================| WGET variables
 REFERER="http://www.drupal.org/project/development_desktop"
 USERAGENT="Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu"
 HEAD1="Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
@@ -74,20 +62,20 @@ if [[ ${DEBUG} == true ]];
   else WGET_VERBOSE="-nv"
 fi
 
-# ################################################################################ XHPROF
+# XHPROF
 XHPROF_URL="http://pecl.php.net/get/xhprof-0.9.2.tgz"
 
-
-# ################################################################################ Firefox FEBE profile
+# Firefox FEBE profile
 FEBE_URL="https://dl.dropbox.com/u/6569361/ddd/profileFx4%7Bddd%7D.fbu"
 
-# ################################################################################ IDE RELATED
+#====================| IDE RELATED
+# NETBEANS
 NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
 NETBEANS_PREF="https://dl.dropbox.com/u/6569361/ddd/netbeans-prefs.zip"
 # To install Netbeans beta, remove the comment below
 #NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/beta/bundles/netbeans-7.2beta-ml-php-linux.sh"
 
-# eclipse http://www.eclipse.org/pdt/downloads/
+# ECLIPSE http://www.eclipse.org/pdt/downloads/
 if [ `uname -p` == "x86_64" ]
 then
   ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
@@ -97,22 +85,40 @@ else
   # ECLIPSE_URL="http://zend-sdk.googlecode.com/files/eclipse-php-3.0.2.v20120511142-x86.tar.gz"
 fi
 
+# APTANA
+if [ `uname -p` == "x86_64" ]
+then
+  APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_64_3.1.3.zip"
+else
+  APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_3.1.3.zip"
+fi
+
+# GEANY add-ons
 GEANY_THEME="https://github.com/downloads/codebrainz/geany-themes/geany-themes-0.21.tar.bz2"
 GEANY_DRUPAL="http://wiki.geany.org/_media/tags/drupal.php.tags"
 GEANY_PHP="http://wiki.geany.org/_media/tags/phpfull-5.3.5.php.tags"
 GEANY_JS="http://dl.yent.eu/em.js.tags"
 GEANY_CSS="http://wiki.geany.org/_media/tags/standard.css.tags"
 
-# ################################################################################ Cheatsheets for wallpaper
+#====================| Cheatsheets for wallpaper
 CHEAT1="https://dl.dropbox.com/u/6569361/ddd/drupal-contribute-by-zaferia.svg"
 CHEAT2="http://media.smashingmagazine.com/wp-content/uploads/uploader/images/drupal-cheat-sheet-wallpaper/wallpaper1920x1200.png"
 CHEAT3="http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg"
 CHEAT4="http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png"
 CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg"
 
-# ################################################################################ Drush addons
-FEATHER="7.x-1.x"
+#======================================| AUTOMATIC VARIABLES
+# Find folder name of install scripts
+# and set project (DDD) root folder
+CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd -P "${CWD}"
+cd ..
+export DDD=${PWD##*/}
 
-# ################################################################################ AEGIR install script
-AEGIR_LOCAL_DOMAIN=aegir.dev
-AEGIR_GIT_URL="http://git.aegirproject.org/?p=provision.git;a=blob_plain;f=install.sh.txt;hb=provision-0.4-beta1"
+# If debugging, figure out appropriate APTGET debug output
+if [[ ${EXTRA_DEBUG_INFO} == true ]];
+  then APTGET_VERBOSE="-yq"
+  else APTGET_VERBOSE="-yqq"
+fi
+
+#======================================| RUNTIME VARIABLES AFTER THIS POINT

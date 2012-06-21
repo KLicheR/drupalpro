@@ -10,14 +10,14 @@ set -e
 #
 
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 # CWD based on http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# ################################################################################ Error Checking
+#======================================| Error Checking
 function check_errs() {
   # Parameter 1 is the return code
   # Parameter 2 is text to display on failure.
@@ -30,7 +30,7 @@ function check_errs() {
   fi
 }
 
-# ################################################################################ Reboot functions
+#======================================| Reboot functions
 function reboot {
   # update .profile file to continue the next step of the script.
   echo "gnome-terminal -x bash -c \"${HOME}/${DDD}/setup_scripts/install.sh $1\" &" >> ${HOME}/.profile
@@ -54,7 +54,7 @@ if [ -n "$1" ] ; then  # sleep if rebooted
   sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ${HOME}/.profile
 fi
 
-# ################################################################################ Test for network
+#======================================| Test for network
 # if rebooting, short delay for environment to setup
 # @FIXME: better to test, but this is poormans solution for now
 if [ ! -z $1 ]; then sleep 5; fi
@@ -76,10 +76,9 @@ done
 
 
 
-# ################################################################################ Install it!
-# this switch statement handles reboots.
+#======================================| Install it!
+# This case statment handles reboots
 cd
-
 case "$1" in
 "")
   ${HOME}/${DDD}/setup_scripts/1-prep.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log

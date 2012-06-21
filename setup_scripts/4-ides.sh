@@ -1,20 +1,20 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# ################################################################################ JRE
+#======================================| JRE
 # REQUIREMENT for Netbeans or Eclipse
 if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_ECLIPSE}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
   ## Install java - 100mb
   sudo apt-get "${APTGET_VERBOSE}" install default-jre
 fi
 
-# ################################################################################ Lightweight Editors
-# ################################################################################ GEDIT
+#======================================| Lightweight Editors
+#======================================| GEDIT
 if [[ "${INSTALL_GEDIT}" == true ]]; then
   sudo apt-get "${APTGET_VERBOSE}" install gedit-plugins
 
@@ -30,7 +30,7 @@ if [[ "${INSTALL_GEDIT}" == true ]]; then
   gconftool-2 -s /apps/gedit-2/preferences/editor/save/auto_save --type=bool true
 fi
 
-# ################################################################################ GEANY
+#======================================| GEANY
 # INSTALL GEANY & SETUP FOR DRUPAL / WEB DEVELOPMENT
 # Geany is a small fast IDE (based on scintilla ... also what notepad++ is also built on)
 # info: http://en.wikipedia.org/wiki/Geany
@@ -52,7 +52,7 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
 fi
 
-# ################################################################################ ECLIPSE
+#======================================| ECLIPSE
 if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   wget "${WGET_VERBOSE}" -O eclipse.tar.gz --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
   cd
@@ -65,7 +65,7 @@ if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png
 fi
 
-# ################################################################################ NETBEANS
+#======================================| NETBEANS
 if [[ "${INSTALL_NETBEANS}" == true ]]; then
   cd
   wget "${WGET_VERBOSE}" -O netbeans.sh --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_URL}"

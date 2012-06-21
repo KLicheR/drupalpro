@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-# ################################################################################ Import Variables
+#======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# ################################################################################ SETUP KERNEL
+#======================================| SETUP KERNEL
 if [ "${INSTALLTYPE}" == "virtual" ]
 then
   # Remove the standard Kernel and install virtual kernel.
