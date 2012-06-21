@@ -50,7 +50,7 @@ gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/P
 gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
 gsettings set org.gnome.desktop.background picture-opacity 100
-gsettings set org.gnome.desktop.background picture-options "Fill"
+gsettings set org.gnome.desktop.background picture-options 'stretched'
 gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${background_pic}"
 gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
 gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
