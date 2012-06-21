@@ -27,6 +27,12 @@ function check_errs() {
     " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
     # as a bonus, make our script exit with the right error code.
     exit ${1}
+  else
+    echo "
+    NO ERROR # - exit code: ${1} from command: ${2}
+    " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+    # as a bonus, make our script exit with the right error code.
+    exit ${1}
   fi
 }
 
@@ -87,7 +93,6 @@ case "$1" in
   if [[ "$EXIT_CODE" -eq 1 ]] || [[ "$EXIT_CODE" -eq 3 ]] || [[ "$EXIT_CODE" -eq 5 ]]
   then  # if exit code not 0 then abort, otherwise continue and reboot
     zenity --info --text='Aborted.  Nothing was changed. '
-
     exit
   else
       ${HOME}/${DDD}/setup_scripts/2-slim.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
