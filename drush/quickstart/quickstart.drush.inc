@@ -201,7 +201,7 @@ function drush_quickstart_fixperms() {
 
   $codepath = $params['codepath'];
 
-  quickstart_shell_exec("sudo chown -R quickstart:www-data $codepath");
+  quickstart_shell_exec("sudo chown -R $USER:www-data $codepath");
   quickstart_shell_exec("sudo chmod -R a=,u=rwX,g=rX $codepath");
   // find directories named "files" and run chmod on them.
   quickstart_shell_exec("sudo find $codepath/sites -type d -name files -exec chmod -R a=,ug=rwX '{}' \;");
