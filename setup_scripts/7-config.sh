@@ -64,19 +64,6 @@ Name=README
 Icon=/usr/share/pixmaps/firefox.png
 END
 
-cat > ${HOME}/Desktop/gnome-terminal.desktop <<END
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Eclipse
-Comment=Eclipse Integrated Development Environment
-Icon=/usr/share/pixmaps/eclipse.xpm
-Exec=${HOME}/eclipse/eclipse
-Terminal=false
-Categories=Development;IDE;Java;
-END
-chmod 750 ${HOME}/Desktop/gnome-terminal.desktop
-
 ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 

@@ -40,6 +40,7 @@ PINGRESULTS=2
 #======================================| SETUP OPTIONAL SERVICES
 INSTALL_NETBEANS=true
 INSTALL_ECLIPSE=true
+INSTALL_APTANA=true
 INSTALL_GEANY=true
 INSTALL_JRE=false            # Override defaults and make sure JRE is installed?
 INSTALL_EMAIL_CATCHER=true   # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
@@ -106,6 +107,7 @@ CHEAT2="http://media.smashingmagazine.com/wp-content/uploads/uploader/images/dru
 CHEAT3="http://www.quicklycode.com/wp-content/files/drupal7_1920x1200.jpg"
 CHEAT4="http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.png"
 CHEAT5="http://media.smashingmagazine.com/wp-content/uploads/2010/05/VI-Help-Sheet-01-large2.jpg"
+DEFAULT_BG="${CHEAT1##*/}"
 
 #======================================| AUTOMATIC VARIABLES
 # Find folder name of install scripts
