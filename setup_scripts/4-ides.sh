@@ -55,6 +55,7 @@ fi
 # ################################################################################ ECLIPSE
 if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   wget "${WGET_VERBOSE}" -O eclipse.tar.gz --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
+  cd
   tar -xvf eclipse.tar.gz
   sudo ln -s "${HOME}"/eclipse/eclipse /usr/bin/eclipse
   rm eclipse.tar.gz
@@ -66,6 +67,7 @@ fi
 
 # ################################################################################ NETBEANS
 if [[ "${INSTALL_NETBEANS}" == true ]]; then
+  cd
   wget "${WGET_VERBOSE}" -O netbeans.sh --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_URL}"
   chmod +x ./netbeans.sh
   bash ./netbeans.sh --silent --nospacecheck
