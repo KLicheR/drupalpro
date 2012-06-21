@@ -67,7 +67,7 @@ function quickstart_create_dns($domain, $params) {
   // otherwise shortened partial domains will throw an exception.
   $domainplus = " " . $domain . " ";
   if(!strpos($file, $domainplus)) {
-    quickstart_shell_exec("echo '127.0.0.1 $domain #quickstart' | sudo tee -a /etc/hosts");
+    quickstart_shell_exec("echo '127.0.0.1 $domain #drupalpro' | sudo tee -a /etc/hosts");
   }else{
     $msg = $domain . " already exists...doing nothing";
     throw new Exception($msg);
@@ -81,7 +81,7 @@ function quickstart_create_dns($domain, $params) {
  * @param <type> $params
  */
 function quickstart_destroy_dns($domain, $params) {
-  quickstart_shell_exec("sudo sed -i \"/ $domain .*#quickstart/d\" /etc/hosts");
+  quickstart_shell_exec("sudo sed -i \"/ $domain .*#drupalpro/d\" /etc/hosts");
 }
 
 
