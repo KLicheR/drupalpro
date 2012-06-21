@@ -5,7 +5,7 @@
     </style>
 </head>
     <body>
-        <h1>Drupal Development Desktop</h1>
+        <h1>DrupalPro Development Desktop</h1>
         <table width="600" border="1" align="center" cellpadding="2" cellspacing="0">
           <tr>
             <td bgcolor="#FFFFee"><strong>Dev Tools on this Virtual Machine:</strong></td>
@@ -13,17 +13,16 @@
           </tr>
           <tr>
             <td bgcolor="#FFFFee"><a href='http://localhost/phpmyadmin'>phpmyadmin</a></td>
-            <td bgcolor="#FFFFee">Old Quickstart Tutorials: <a href="http://www.youtube.com/user/drupalquickstart">Youtube videos<img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/youtube_24x24.png" alt="Subscribe to me on YouTube"/></a>
-
+            <td bgcolor="#FFFFee">Questions: <a href="http://groups.drupal.org/drubuntu">Drubuntu Group</a> or #drupal-desktop in IRC (use Xchat)</td>
             </td>
           </tr>
           <tr>
             <td bgcolor="#FFFFee"><a href='http://localhost/profiler'>Webgrind profiler</a></td>
-            <td bgcolor="#FFFFee">Questions: <a href="http://groups.drupal.org/drubuntu">Drubuntu Group</a> or #drupal-desktop in IRC (use Xchat)</td>
+            <td bgcolor="#FFFFee">Old Quickstart Tutorials: <a href="http://www.youtube.com/user/drupalquickstart">Youtube videos<img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/youtube_24x24.png" alt="Subscribe to me on YouTube"/></a>
           </tr>
           <tr>
             <td bgcolor="#FFFFee"><a href="http://localhost/xhprof/">XHProf Viewer</a></td>
-            <td bgcolor="#FFFFee">Patches and bug reports: <a href="https://drupal.org/sandbox/mdrmike/1635724">Issue Queue</a></td>
+            <td bgcolor="#FFFFee">Patches and bug reports: <a href="https://drupal.org/project/issues/1635724?categories=All">Issue Queue</a></td>
           </tr>
           <tr>
             <td bgcolor="#FFFFee">&nbsp;</td>
@@ -38,7 +37,7 @@
             <td bgcolor="#FFFFee"><a href="https://drupal.org/sandbox/mdrmike/1635724">Drupal Development Desktop</a></td>
           </tr>
           <tr>
-            <td bgcolor="#FFFFee"><p><a href="example6.dev">example6.dev</a> - Drupal 6</p></td>
+            <td bgcolor="#FFFFee"><p><a href="http://example6.dev">example6.dev</a> - Drupal 6</p></td>
             <td bgcolor="#FFFFee"><a href="http://drupal.org/node/788080">Old Quickstart Documentation - mostly still useful</a></td>
           </tr>
           <tr>
