@@ -97,12 +97,12 @@ case "$1" in
   fi
   ;;
 "10")
-  ${HOME}/${DDD}/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  ${HOME}/${DDD}/setup_scripts/2a-update.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   reboot 20
   ;;
 "20")
-  ${HOME}/${DDD}/setup_scripts/2a-update.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  ${HOME}/${DDD}/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   reboot 30
   ;;
