@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ################################################################################ Hudson
+#======================================| Hudson
 
 # README:
 #
@@ -37,6 +37,9 @@ exit
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CWD}"/CONFIG
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
+
+AEGIR_LOCAL_DOMAIN=aegir.dev
+AEGIR_GIT_URL="http://git.aegirproject.org/?p=provision.git;a=blob_plain;f=install.sh.txt;hb=provision-0.4-beta1"
 
 # FROM: http://community.aegirproject.org/node/389
 
