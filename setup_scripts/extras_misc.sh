@@ -57,7 +57,8 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
 
 
+# ################################################################################ FIREFOX
 # Install flash-plugin browser
 sudo apt-get "${APTGET_VERBOSE}" install flashplugin-installer
-
+# Download FEBE backup file
 wget "${WGET_VERBOSE}" -O ${HOME}/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
