@@ -7,8 +7,8 @@ source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| JRE
-# REQUIREMENT for Netbeans or Eclipse
-if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_ECLIPSE}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
+# REQUIREMENT for Netbeans / Eclipse / Apatana
+if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_APTANA}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
   ## Install java - 100mb
   sudo apt-get "${APTGET_VERBOSE}" install default-jre
 fi
@@ -39,10 +39,10 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   mkdir -p ${HOME}/.config/geany/tags
 
   # GEANY: Extra color themes
-  wget "${WGET_VERBOSE}" -O geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
-  tar jxf geany-themes.tar.bz2
+  cd
+  wget "${WGET_VERBOSE}" -O ${HOME}/geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
+  tar jxf geany-themes.tar.bz2 && rm geany-themes.tar.bz2
   mv -f geany-themes-0.21/* ${HOME}/.config/geany/
-  rm geany-themes.tar.bz2
   rm -r geany-themes-0.21
 
   # GEANY: Install extra tag files
