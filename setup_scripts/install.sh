@@ -53,14 +53,14 @@ function reboot() {
 
 # Undo any previous reboot script
 if [ -n "$1" ] ; then  # sleep if rebooted
-  echo "Reboot stage: $1"
+  echo "Starting Stage: $1"
   sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ${HOME}/.profile
 fi
 
 #======================================| Test for network
 # if rebooting, short delay for environment to setup
 # @FIXME: better to test, but this is poormans solution for now
-if [ ! -z $1 ]; then sleep 5; fi
+if [ ! -z $1 ]; then sleep 15; fi
 
 # Test for connection
 echo -n "`date +"%Y/%m/%d %H:%M:%S"`: testing for internet connection."
