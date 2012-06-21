@@ -18,7 +18,7 @@ source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 
-c Update Zenity (12.04 has a bug)
+#======================================| Update Zenity (12.04 has a bug)
 sudo apt-get install zenity
 
 ################################################################################
