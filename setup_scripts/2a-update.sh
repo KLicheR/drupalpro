@@ -7,7 +7,6 @@ source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 ## Upgrade
-
-sudo apt-get "${APTGET_VERBOSE}" update
-sudo apt-get "${APTGET_VERBOSE}" upgrade
+sudo apt-get -yq update
+sudo apt-get -yq upgrade
 
