@@ -71,8 +71,9 @@ cd
 case "$1" in
 "")
   ${HOME}/${DDD}/setup_scripts/1-prep.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  UserAbort="$?"
-  if [ "$UserAbort" -ne 0 ]; then  # if exit code not 0 then abort, otherwise continue and reboot
+  UserAbort=$?
+  if [[ "$UserAbort" -eq 1 ]] || [[ "$UserAbort" -eq 3 ]] || [[ "$UserAbort" -eq 5 ]]
+  then  # if exit code not 0 then abort, otherwise continue and reboot
     zenity --info --text="Aborted.  Nothing was changed."
     exit
   else
