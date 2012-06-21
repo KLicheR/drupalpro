@@ -43,14 +43,22 @@ if [ -n "$1" ] ; then  # sleep if rebooted
 fi
 
 # ################################################################################ Test for network
+# if rebooting, short delay for environment to setup
+# @FIXME: better to test, but this is poormans solution for now
+if [ ! -z $1 ]; then sleep 5; fi
+
+# Test for connection
+echo -n "`date +"%Y/%m/%d %H:%M:%S"`: testing for internet connection."
 until [  ${PINGRESULTS} -lt 1 ]; do
   if ((ping -w5 -c2 ${PINGHOST1} || ping -w5 -c2 ${PINGHOST2}) > /dev/null 2>&1);
   then
-    echo "Connected to internet";
+    echo "
+
+We are soooo connected!"
     PINGRESULTS=0
   else
-    echo "`date +"%Y/%m/%d %H:%M:%S"`: Waiting for internet connection ..."
-    sleep 5
+    echo -n "."
+    sleep 4
   fi
 done
 
