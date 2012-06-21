@@ -22,20 +22,19 @@ function check_errs() {
   # Parameter 1 is the return code
   # Parameter 2 is text to display on failure.
   if [ "${1}" -ne "0" ]; then
-    echo "
-    ERROR # ${1} : ${2}
+    echo "ERROR # ${1} : ${2}
     " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-    # as a bonus, make our script exit with the right error code.
-    exit ${1}
+    # as a bonus, return with the right error code.
+    return ${1}
   else
-    echo "
-    NO ERROR # - exit code: ${1} from command: ${2}
+    echo "STAGE $STAGE ${2} SUCCESSFUL.  Exit code: ${1}
     " | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+    return 0
   fi
 }
 
 #======================================| Reboot functions
-function reboot {
+function reboot() {
   # update .profile file to continue the next step of the script.
   echo "gnome-terminal -x bash -c \"${HOME}/${DDD}/setup_scripts/install.sh $1\" &" >> ${HOME}/.profile
   echo "*** REBOOTING ***" | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
@@ -83,9 +82,10 @@ done
 #======================================| Install it!
 # This case statment handles reboots
 cd
-case "$1" in
+STAGE="$1"
+case "$STAGE" in
 "")
-  ${HOME}/${DDD}/setup_scripts/1-prep.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  ${HOME}/${DDD}/setup_scripts/0-prep.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   EXIT_CODE=$?
   if [[ "$EXIT_CODE" -eq 1 ]] || [[ "$EXIT_CODE" -eq 3 ]] || [[ "$EXIT_CODE" -eq 5 ]]
@@ -93,40 +93,40 @@ case "$1" in
     zenity --info --text='Aborted.  Nothing was changed. '
     exit
   else
-      ${HOME}/${DDD}/setup_scripts/2-slim.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+      ${HOME}/${DDD}/setup_scripts/0-slim.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
       check_errs "$?" "$_"
       reboot 10
   fi
   ;;
 "10")
-  ${HOME}/${DDD}/setup_scripts/2a-update.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  ${HOME}/${DDD}/setup_scripts/1-update.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   reboot 20
   ;;
 "20")
-  ${HOME}/${DDD}/setup_scripts/1a-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
+  ${HOME}/${DDD}/setup_scripts/2-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   reboot 30
   ;;
 "30")
   ${HOME}/${DDD}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ 3-lamp.sh"
   ${HOME}/${DDD}/setup_scripts/4-ides.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ 4-ides.sh"
   reboot 40
   ;;
 "40")
   ${HOME}/${DDD}/setup_scripts/extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ extras_misc.sh"
   ${HOME}/${DDD}/setup_scripts/extras_development.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ extras_development.sh"
   reboot 50
   ;;
 "50")
   ${HOME}/${DDD}/setup_scripts/extras_theming.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ extras_theming.sh"
   ${HOME}/${DDD}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_ 7-config.sh"
   reboot 60
   ;;
 "60")
