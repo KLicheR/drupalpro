@@ -120,7 +120,7 @@ define('APACHE_TEMPLATE', "
 /**
  * Configure apache virtualhost file using the template.
  * Files put in /etc/apache2/sites-available/$domain, then a2ensite'd
- * Runs: apache2ctl restart
+ * Runs: apache2 restart
  *
  * @param <type> $domain
  * @param <type> $params 'codepath'
@@ -129,7 +129,7 @@ function quickstart_create_apache($domain, $params) {
   // get codepath and make sure it exists.
   $codepath = $params['codepath'];
 
-  if (!file_exists($codepath)) mkdir($codepath, 0777, true);
+  if (!file_exists($codepath)) mkdir($codepath, 0770, true);
 
   // get template
   $str_config = APACHE_TEMPLATE;
@@ -145,12 +145,13 @@ function quickstart_create_apache($domain, $params) {
   quickstart_shell_exec("sudo a2ensite $domain");
 
   // restart apache
-  quickstart_shell_exec("sudo apache2ctl restart");
+  // use sysvinit scripts instead of upstart for more compatibility(debian, etc)
+  quickstart_shell_exec("sudo /etc/init.d/apache2 restart");
 }
 
 /**
  * Destroy the apache virtual hosts config. a2dissite, then rm file.
- * Runs: apache2ctl restart
+ * Runs: apache2 restart
  *
  * @param <type> $domain
  * @param <type> $params
@@ -159,7 +160,8 @@ function quickstart_destroy_apache($domain, $params) {
   quickstart_shell_exec("sudo a2dissite $domain", false);
   $filename = "/etc/apache2/sites-available/$domain";
   if (file_exists($filename)) unlink($filename);  // unlink = delete file
-  quickstart_shell_exec("sudo apache2ctl restart");
+  // use sysvinit scripts instead of upstart for more compatibility(debian, etc)
+  quickstart_shell_exec("sudo /etc/init.d/apache2 restart");
 }
 
 /**

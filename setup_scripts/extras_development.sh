@@ -164,5 +164,5 @@ if [[ "${INSTALL_XHPROF}" == true ]]; then
 fi
 
 # ################################################################################ Restart apache
-sudo service apache2 restart
+sudo /etc/init.d/apache2 restart #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 

@@ -59,6 +59,7 @@ sudo sed -i 's/memory_limit = 64M/memory_limit = 192M/g'            /etc/php5/ap
 # 3.4. Database configuration
 sudo apt-get install mysql-server
 sudo sed -i 's/bind-address   = 127.0.0.1/#bind-address   = 127.0.0.1/g'            /etc/mysql/my.cnf
+#use sysvinit scripts instead of upstart for more compatibility (debian, etc)
 sudo /etc/init.d/mysql restart
 
 # 3.5. Create the Aegir user

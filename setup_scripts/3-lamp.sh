@@ -169,5 +169,5 @@ sudo adduser $USER www-data
 
 # ###### Restart web server
 
-sudo service mysql restart
-sudo service apache2 restart
+sudo /etc/init.d/mysql restart      #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
+sudo /etc/init.d/apache2 restart    #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)

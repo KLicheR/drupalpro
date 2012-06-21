@@ -24,6 +24,6 @@ sudo apt-get update
 sudo apt-get install -y memcached php5-memcached
 
 # Restart Apache
-sudo service apache2 restart
+sudo /etc/init.d/apache2 restart #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 
 echo "$HELP"

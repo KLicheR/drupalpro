@@ -65,7 +65,7 @@ export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 " | sudo tee -a /etc/apache2/envvars > /dev/null
 
 #restart apache
-sudo service apache2 restart
+sudo /etc/init.d/apache2 restart #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 
 echo "$HELP"
 
