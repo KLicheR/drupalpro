@@ -1,7 +1,10 @@
-Project Page: http://drupal.org/project/development-desktop
+Project Page: http://drupal.org/project/drupalpro
 
 Before installation, customize settings to your liking in the file: CONFIG
 Installation: ~/drupalpro/setup_scripts/install.sh
+
+Support:      IRC:  #drupalpro
+              Issue Queue:
 
 Known Issues: The first few times you run the machine after install, there is a
               "popup error" related to unity.  It goes away.  There are probably
