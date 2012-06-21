@@ -83,5 +83,7 @@ ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 
 # final size
-df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+if [[ ${EXTRA_DEBUG_INFO} == true ]];
+  df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+fi
 

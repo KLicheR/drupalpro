@@ -32,7 +32,9 @@ zenity --info --text="Firefox profile manager will start.\n1) Delete temp profil
 #rm profileFx4{ddd}.fbu
 
 # final size
-df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+if [ "${EXTRA_DEBUG_INFO}" = true ]; then
+  df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+fi
 
 # Manual config instructions.
 firefox ${HOME}/${DDD}/config/manualconfig.txt

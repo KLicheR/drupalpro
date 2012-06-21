@@ -65,4 +65,6 @@ sudo adduser $USER root
 
 ## Disk size Accounting
 # Starting size:
-df -h -T > "${HOME}/${DDD}/setup_scripts/logs/size-start.log"
+if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
+  df -h -T > "${HOME}/${DDD}/setup_scripts/logs/size-start.log"
+fi
