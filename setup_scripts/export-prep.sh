@@ -3,7 +3,7 @@ set -e
 
 # ################################################################################ Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD}/setup_scripts/CONFIG"
+source "$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/CONFIG
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # dev and server
