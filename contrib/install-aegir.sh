@@ -23,7 +23,7 @@ For details on using Aegir, see here: http://aegirproject.org/
 NOTE: ABOVE IS A PASSWORD RESET URL.  USE IT TO LOGIN INITIALLY.
 
 NOTE 2: If you lost your password reset url, get a new one for user 'admin' and
-        check the ~/websites/log/mail folder for a password reset email.
+        check the ${HOME}/websites/log/mail folder for a password reset email.
 
 You are now logged in as the aegir user.
 

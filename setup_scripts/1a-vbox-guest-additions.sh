@@ -30,7 +30,7 @@ sudo apt-get "${APTGET_VERBOSE}" install virtualbox-ose-guest-x11 virtualbox-ose
 sudo sed -i s|'# By default this script does nothing.'|'mount -t vboxsf -o uid=1000,gid=1000 '"${HOSTSHARE} /mnt/${HOSTSHARE}"|g  /etc/rc.local
 sudo mkdir "/mnt/${HOSTSHARE}"
 sudo chmod ug=rwX,o= "/mnt/${HOSTSHARE}"
-ln -s "/mnt/${HOSTSHARE}" ~/Desktop/shared
+ln -s "/mnt/${HOSTSHARE}" ${HOME}/Desktop/shared
 cat > "/mnt/${HOSTSHARE}/readme.txt" <<END
 If you are seeing this file, then virtualbox's shared folders are not configured correctly.
 

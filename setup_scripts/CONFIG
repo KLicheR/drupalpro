@@ -23,7 +23,7 @@ WWW_SERVER="apache2"   # webserver to install (used by phpmyadmin)
 HOSTSHARE="shared"
 
 # PATHS to log files (easy location)
-WWW_ROOT="$HOME/websites"
+WWW_ROOT="${HOME}/websites"
 LOGS="${WWW_ROOT}/logs"
 CONFIGS="${WWW_ROOT}/config"
 

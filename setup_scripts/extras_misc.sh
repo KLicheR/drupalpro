@@ -60,4 +60,4 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # Install flash-plugin browser
 sudo apt-get "${APTGET_VERBOSE}" install flashplugin-installer
 
-wget "${WGET_VERBOSE}" -O ~/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
+wget "${WGET_VERBOSE}" -O ${HOME}/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"

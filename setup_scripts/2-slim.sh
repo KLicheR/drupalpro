@@ -48,9 +48,9 @@ sudo apt-get "${APTGET_VERBOSE}" clean # clean clears out the local repository o
 
 # What's installed: slim-package-list.log
 if [ "${EXTRAINFO}" = true ]; then  # Slows setup.  Only need to do this in order to list installed packages and their size.
-  for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ~/$DDD/setup_scripts/slim-package-list.log; rm -f pkgs.tmp;
-  echo "------------  -------------------" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
-  echo "size(kb)         packagename" >> ~/$DDD/setup_scripts/logs/slim-package-list.log
+  for pkg in `dpkg --list | awk '/ii/ {print $2}'`; do echo -e "`dpkg --status $pkg | grep Installed-Size | awk '{print $2}'` \t\t $pkg" >> pkgs.tmp; done; sort -rg pkgs.tmp > ${HOME}/${DDD}/setup_scripts/slim-package-list.log; rm -f pkgs.tmp;
+  echo "------------  -------------------" >> ${HOME}/${DDD}/setup_scripts/logs/slim-package-list.log
+  echo "size(kb)         packagename" >> ${HOME}/${DDD}/setup_scripts/logs/slim-package-list.log
 fi
 
 # Ending size

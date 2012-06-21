@@ -143,4 +143,4 @@ fi)'
 # ref: http://www.debian-administration.org/articles/543
 export HISTTIMEFORMAT="%s "
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
-               "$(history 1)" >> ~/.bash_eternal_history'
+               "$(history 1)" >> ${HOME}/.bash_eternal_history'

@@ -19,15 +19,15 @@ sudo rm /var/lib/apt/lists/*   # 44mb
 sudo rm /var/lib/apt/lists/partial/*
 
 # empty trash
-sudo rm -rf ~/.local/share/Trash/files/*
-sudo rm -rf ~/.local/share/Trash/info/*
+sudo rm -rf ${HOME}/.local/share/Trash/files/*
+sudo rm -rf ${HOME}/.local/share/Trash/info/*
 
 #clear bash history
-cat /dev/null > ~/.bash_history
-cat /dev/null > ~/.bash_eternal_history
+cat /dev/null > ${HOME}/.bash_history
+cat /dev/null > ${HOME}/.bash_eternal_history
 
 #clear gnome history
-cat /dev/null > ~/.local/share/recently-used.xbel
+cat /dev/null > ${HOME}/.local/share/recently-used.xbel
 
 #clear logs
 sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;

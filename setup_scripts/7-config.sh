@@ -43,19 +43,19 @@ APT::Periodic::Unattended-Upgrade \"1\";
 # ################################################################################ Replace localhost/index.html
 # Add interesting default document for localhost
 sudo rm /var/www/index.html
-sudo cp ~/$DDD/config/index.php /var/www/index.php
+sudo cp ${HOME}/${DDD}/config/index.php /var/www/index.php
 sudo chmod -R u=rwX,g=rX,o= /var/www
 sudo chown -R $USER:www-data /var/www
 
 # ################################################################################ Command line shortcuts (bash aliases)
 
 # Don't sudo here...
-cat ~/$DDD/config/ddd_bash_aliases >> ~/.bash_aliases
+cat ${HOME}/${DDD}/config/ddd_bash_aliases >> ${HOME}/.bash_aliases
 
 
 # ################################################################################ Desktop shortcuts
 
-cat > ~/Desktop/README.desktop <<END
+cat > ${HOME}/Desktop/README.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Link
@@ -64,7 +64,7 @@ Name=README
 Icon=/usr/share/pixmaps/firefox.png
 END
 
-cat > ~/Desktop/gnome-terminal.desktop <<END
+cat > ${HOME}/Desktop/gnome-terminal.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
@@ -75,13 +75,13 @@ Exec=${HOME}/eclipse/eclipse
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ~/Desktop/gnome-terminal.desktop
+chmod 750 ${HOME}/Desktop/gnome-terminal.desktop
 
-ln -s "${WWW_ROOT}" ~/Desktop/websites
+ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 
 
 
 # final size
-df -h -T > ~/$DDD/setup_scripts/logs/size-end.log
+df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
 

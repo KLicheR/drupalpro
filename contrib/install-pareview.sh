@@ -40,7 +40,7 @@ cd "${CWD}"
 # Install Drupal Code Sniffer
 git clone --branch 7.x-1.x http://git.drupal.org/project/drupalcs.git;
 sudo ln -sv ${HOME}/${DDD}/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards
-echo "alias drupalcs='phpcs --standard=Drupal'" >> ~/.bash_aliases
+echo "alias drupalcs='phpcs --standard=Drupal'" >> ${HOME}/.bash_aliases
 
 # Install PAReview.sh
 git clone --branch 7.x-1.x http://git.drupal.org/project/pareviewsh.git

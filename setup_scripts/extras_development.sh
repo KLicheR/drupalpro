@@ -53,29 +53,29 @@ To delete a site:
 For more information:
   $ drush help quickstart-create
   $ drush help quickstart-destroy
-  Or goto http://drupal.org/node/819398" > ~/websites/README.txt
+  Or goto http://drupal.org/node/819398" > ${HOME}/websites/README.txt
 
 
 # ################################################################################ Drush
 # Install drush
 
 git clone http://git.drupal.org/project/drush.git
-cd ~/drush
+cd ${HOME}/drush
 git checkout $DRUSH_VERSION
 
 #mdrmike @FIXME (don't need once pear install works):
-chmod u+x ~/drush/drush
-sudo ln -s ~/drush/drush /usr/local/bin/drush
+chmod u+x ${HOME}/drush/drush
+sudo ln -s ${HOME}/drush/drush /usr/local/bin/drush
 
 # Install drush make and drush site-install6
-mkdir ~/.drush
+mkdir ${HOME}/.drush
 
 # Setup Drush
-ln -s ~/$DDD/drush/quickstart ~/.drush/quickstart
-ln -s ~/$DDD/make_templates/*.make "${WWW_ROOT}"
+ln -s ${HOME}/${DDD}/drush/quickstart ${HOME}/.drush/quickstart
+ln -s ${HOME}/${DDD}/make_templates/*.make "${WWW_ROOT}"
 
 # Install Feather (Drush addon)
-git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ~/.drush/feather
+git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ${HOME}/.drush/feather
 
 
 # ################################################################################ Email catcher

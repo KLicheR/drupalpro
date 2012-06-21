@@ -36,20 +36,20 @@ fi
 # info: http://en.wikipedia.org/wiki/Geany
 if [[ "${INSTALL_GEANY}" == true ]]; then
   sudo apt-get install -yq geany
-  mkdir -p ~/.config/geany/tags
+  mkdir -p ${HOME}/.config/geany/tags
 
   # GEANY: Extra color themes
   wget "${WGET_VERBOSE}" -O geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
   tar jxf geany-themes.tar.bz2
-  mv -f geany-themes-0.21/* ~/.config/geany/
+  mv -f geany-themes-0.21/* ${HOME}/.config/geany/
   rm geany-themes.tar.bz2
   rm -r geany-themes-0.21
 
   # GEANY: Install extra tag files
-  wget "${WGET_VERBOSE}" -O ~/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
-  wget "${WGET_VERBOSE}" -O ~/.config/geany/tags/geany-tags-php-5.3.5 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_PHP}"
-  wget "${WGET_VERBOSE}" -O ~/.config/geany/tags/geany-tags-js --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_JS}"
-  wget "${WGET_VERBOSE}" -O ~/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
+  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
+  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-php-5.3.5 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_PHP}"
+  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-js --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_JS}"
+  wget "${WGET_VERBOSE}" -O ${HOME}/.config/geany/tags/geany-tags-css --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_CSS}"
 fi
 
 # ################################################################################ ECLIPSE
@@ -72,5 +72,5 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   rm netbeans.sh
 
   # Download Netbeans preferences used for importing
-  wget "${WGET_VERBOSE}" -O ~/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
+  wget "${WGET_VERBOSE}" -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
 fi
