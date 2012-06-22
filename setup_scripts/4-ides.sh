@@ -57,10 +57,10 @@ if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   cd
   wget ${WGET_VERBOSE} -O "${HOME}/eclipse.tar.gz" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${ECLIPSE_URL}"
   tar -xvf eclipse.tar.gz && rm eclipse.tar.gz
-  sudo cp ${HOME}/eclipse/icon.xpm /usr/share/pixmaps/eclipse.xpm
-  sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png
-  sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png
-  sudo ln -s "${HOME}/eclipse/eclipse" /usr/bin/eclipse
+  if [ -e ${HOME}/eclipse/icon.xpm /usr/share/pixmaps/eclipse.xpm ]; then sudo cp ${HOME}/eclipse/icon.xpm /usr/share/pixmaps/eclipse.xpm; fi
+  if [ -e ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png ]; then sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
+  if [ -e ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png ]; then sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
+#  if [ -e ${HOME}/eclipse/eclipse ]; then sudo ln -s "${HOME}/eclipse/eclipse" /usr/bin/eclipse; fi
   cat > ${HOME}/Desktop/Eclipse.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
@@ -84,21 +84,19 @@ if [[ "${INSTALL_APTANA}" == true ]]; then
   sudo ln -s "${HOME}/Aptana_Studio_3/AptanaStudio3" "${HOME}/Desktop/AptanaStudio3"
   rm eclipse.tar.gz
 
-  sudo cp ${HOME}/Aptana_Studio_3/icon.xpm /usr/share/pixmaps/aptana.xpm
-  sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png
-  sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png
-cat > ${HOME}/Desktop/Eclipse.desktop <<END
+  if [ -e ${HOME}/Aptana_Studio_3/icon.xpm ]; then sudo cp ${HOME}/Aptana_Studio_3/icon.xpm /usr/share/pixmaps/aptana.xpm; fi
+cat > ${HOME}/Desktop/AptanaStudio3.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
-Name=Eclipse
-Comment=Eclipse Integrated Development Environment
+Name=Aptana Studio 3
+Comment=Aptana Integrated Development Environment
 Icon=/usr/share/pixmaps/aptana.xpm
 Exec=${HOME}/Aptana_Studio_3/AptanaStudio3
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ${HOME}/Desktop/Eclipse.desktop
+chmod 750 ${HOME}/Desktop/AptanaStudio3.desktop
 fi
 
 #======================================| NETBEANS
@@ -108,6 +106,18 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   chmod +x ./netbeans.sh
   bash ./netbeans.sh --silent --nospacecheck
   rm netbeans.sh
+cat > ${HOME}/Desktop/Netbeans.desktop <<END
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Netbeans
+Comment=Netbeans Integrated Development Environment
+Icon=${HOME}/netbeans-7.1.2/nb/netbeans.png
+Exec=${HOME}/netbeans-7.1.2/bin/netbeans
+Terminal=false
+Categories=Development;IDE;Java;
+END
+chmod 750 ${HOME}/Desktop/Netbeans.desktop
 
   # Download Netbeans preferences used for importing
   wget ${WGET_VERBOSE} -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
