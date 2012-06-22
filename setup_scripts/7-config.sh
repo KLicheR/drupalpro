@@ -64,6 +64,15 @@ Name=README
 Icon=/usr/share/pixmaps/firefox.png
 END
 
+cat > ${HOME}/Desktop/README.desktop <<END
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Link
+URL=http://http://drupal.org/project/issues/1635724?categories=All
+Name=Drupalpro Issues
+Icon=${HOME}/websites/example7.dev/misc/powered-black-135x42.png
+END
+
 ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 
