@@ -81,17 +81,15 @@ if [[ "${INSTALL_APTANA}" == true ]]; then
   cd
   wget ${WGET_VERBOSE} -O aptana.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${APTANA_URL}"
   unzip -q aptana.zip
-  sudo ln -s "${HOME}/Aptana_Studio_3/AptanaStudio3" "${HOME}/Desktop/AptanaStudio3"
-  rm eclipse.tar.gz
+  rm aptana.zip
 
-  if [ -e ${HOME}/Aptana_Studio_3/icon.xpm ]; then sudo cp ${HOME}/Aptana_Studio_3/icon.xpm /usr/share/pixmaps/aptana.xpm; fi
 cat > ${HOME}/Desktop/AptanaStudio3.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
 Name=Aptana Studio 3
 Comment=Aptana Integrated Development Environment
-Icon=/usr/share/pixmaps/aptana.xpm
+Icon=${HOME}/Aptana_Studio_3/icon.xpm
 Exec=${HOME}/Aptana_Studio_3/AptanaStudio3
 Terminal=false
 Categories=Development;IDE;Java;
