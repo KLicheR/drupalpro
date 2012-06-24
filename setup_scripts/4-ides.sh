@@ -72,7 +72,7 @@ Exec=${HOME}/eclipse/eclipse
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ${HOME}/Desktop/Eclipse.desktop
+chmod 750 ${HOME}/.local/share/applications/Eclipse.desktop
 
 fi
 
@@ -83,7 +83,7 @@ if [[ "${INSTALL_APTANA}" == true ]]; then
   unzip -q aptana.zip
   rm aptana.zip
 
-cat > ${HOME}/Desktop/AptanaStudio3.desktop <<END
+cat > ${HOME}/.local/share/applications/AptanaStudio3.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
@@ -94,7 +94,7 @@ Exec=${HOME}/Aptana_Studio_3/AptanaStudio3
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ${HOME}/Desktop/AptanaStudio3.desktop
+chmod 750 ${HOME}/.local/share/applications/AptanaStudio3.desktop
 fi
 
 #======================================| NETBEANS
@@ -104,18 +104,6 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   chmod +x ./netbeans.sh
   bash ./netbeans.sh --silent --nospacecheck
   rm netbeans.sh
-cat > ${HOME}/Desktop/Netbeans.desktop <<END
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Netbeans
-Comment=Netbeans Integrated Development Environment
-Icon=${HOME}/netbeans-7.1.2/nb/netbeans.png
-Exec=${HOME}/netbeans-7.1.2/bin/netbeans
-Terminal=false
-Categories=Development;IDE;Java;
-END
-chmod 750 ${HOME}/Desktop/Netbeans.desktop
 
   # Download Netbeans preferences used for importing
   wget ${WGET_VERBOSE} -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
