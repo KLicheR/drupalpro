@@ -76,7 +76,14 @@ END
 ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 
-
+#======================================| Add Nautilus Emblems
+gvfs-set-attribute -t stringv "${HOME}/drush" metadata::emblems development
+gvfs-set-attribute -t stringv ${HOME}/Desktop/${HOSTSHARE} metadata::emblems shared
+gvfs-set-attribute -t stringv ${HOME}/${DDD} metadata::emblems development
+gvfs-set-attribute -t stringv "${WWW_ROOT}" metadata::emblems web
+gvfs-set-attribute -t stringv ${HOME}/Desktop/websites metadata::emblems web
+gvfs-set-attribute -t stringv "${WWW_ROOT}/config" metadata::emblems system
+gvfs-set-attribute -t stringv "${WWW_ROOT}/logs" metadata::emblems documents
 
 # final size
 if [[ ${EXTRA_DEBUG_INFO} == true ]];
