@@ -72,7 +72,11 @@ mkdir ${HOME}/.drush
 
 # Setup Drush
 ln -s ${HOME}/${DDD}/drush/quickstart ${HOME}/.drush/quickstart
-ln -s ${HOME}/${DDD}/make_templates/*.make "${WWW_ROOT}"
+ln -s ${HOME}/${DDD}/make_templates/*.make "${HOME}/.drush"
+if [ -e ${HOME}/drush/examples/example.drushrc.php ];
+  then cp ${HOME}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
+  echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"
+fi
 
 # Install Feather (Drush addon)
 git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ${HOME}/.drush/feather

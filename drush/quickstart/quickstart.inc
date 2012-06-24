@@ -227,7 +227,8 @@ function quickstart_create_code($domain, $params) {
     drush_log("Moved existing directory $codepath to $codepath.old", "ok");
   }
   if (!file_exists($makefile)) {
-    // try to find makefile in ~/websites folder
+    // try to find makefile in ~/.drush folder
+    $makefile = "~/.drush/"."$makefile";
     $makefile = quickstart_fixpath("$makefile");
     if (!file_exists($makefile)) throw new Exception("Makefile ". $makefile ." not found.");
   }
