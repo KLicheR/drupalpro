@@ -25,7 +25,7 @@ function quickstart_drush_command() {
   $items = array();
 
   $items['quickstart-create'] = array(
-          'description' => "Create a quickstart development website (" . implode(', ', _quickstart_arg_list()) . ").",
+          'description' => "Create a development website (" . implode(', ', _quickstart_arg_list()) . ").",
           'arguments' => array(
                   'what' => 'Optional. One or more items to create: [' . implode('|', _quickstart_arg_list()) . '|all] Defaults to "all"',
           ),
@@ -34,7 +34,7 @@ function quickstart_drush_command() {
                   'dbuser'       => 'Optional (db).  Root mysql user.  Defaults to "root"',
                   'dbpassword'   => 'Optional (db).  Root mysql password.  Defaults to "drupalpro"',
                   'codepath'     => 'Optional (apache,code,install).  Path to drupal code.  Defaults to "~/websites/[domain]"',
-                  'makefile'     => 'Optional (code).  Path to drupal make file.  Defaults to D7 "~/websites/default.make"',
+                  'makefile'     => 'Optional (code).  Path to drupal make file.  Defaults to D7 "~/.drush/default.make"',
                   'profile'      => 'Optional (install).  Name of profile to install.  Defaults to "default" in D6, "standard" in D7',
                   'db-url'       => 'Optional (install).  DB url.  Defaults to "mysql://[domain]]:[domain]@localhost/[domain]" (replace . with _ in [domain])',
                   'db-prefix'    => 'Optional (install).  DB table prefix.  Defaults to ""',
@@ -49,19 +49,19 @@ function quickstart_drush_command() {
           ),
           'examples' => array(
                   'Create D7 site in one command: setup dns, apache, create db, download d6, run installer, open in firefox' => 'drush quickstart-create --domain=example1.dev',
-                  'Quick D6 site' => 'drush qc --domain=example2.dev --makefile=d6.make',
-                  'Just DNS (/etc/hosts)' => 'drush quickstart-create dns --domain=example.dev',
-                  'Just apache (/etc/apache2/sites-enabled/)' => 'drush quickstart-create apache --domain=example.dev --codepath=/path/to/drupal',
-                  'Just database (mysql)' => 'drush quickstart-create database --domain=example.dev',
-                  'Just code (drush make)' => 'drush quickstart-create code --domain=example.dev',
-                  'Just install (or quick reinstall)' => 'drush quickstart-create install --domain=example.dev',
+                  'Create D6 site' => 'drush qc --domain=example2.dev --makefile=d6.make',
+                  'Only setup DNS entry (/etc/hosts)' => 'drush quickstart-create dns --domain=example.dev',
+                  'Only setup apache vhost (/etc/apache2/sites-enabled/)' => 'drush quickstart-create apache --domain=example.dev --codepath=/path/to/drupal',
+                  'Only setup database (mysql)' => 'drush quickstart-create database --domain=example.dev',
+                  'Only download code (files)' => 'drush quickstart-create code --domain=example.dev',
+                  'Only run install profile (or quick reinstall)' => 'drush quickstart-create install --domain=example.dev',
           ),
           'aliases' => array('qc'),
           'bootstrap' => DRUSH_BOOTSTRAP_DRUSH, // No bootstrap at all.
   );
 
   $items['quickstart-destroy'] = array(
-          'description' => "Destroy a quickstart development website (" . implode(', ', _quickstart_arg_list()) . ").",
+          'description' => "Destroy a development website (" . implode(', ', _quickstart_arg_list()) . ").",
           'arguments' => array(
                   'what' => 'Optional. One or more items to destroy: [' . implode('|', _quickstart_arg_list()) . '|all] Defaults to "all"',
           ),
@@ -72,19 +72,19 @@ function quickstart_drush_command() {
           'examples' => array(
                   'Simplest format' => 'drush qd --domain=example.dev',
                   'Complete format' => 'drush quickstart-destroy all --domain=example.dev --codepath=/path/to/drupal',
-                  'Remove DNS (/etc/hosts)' => 'drush quickstart-destroy dns --domain=example.dev',
-                  'Remove Apache (/etc/apache2/sites-enabled/)' => 'drush quickstart-destroy apache --domain=example.dev',
-                  'Drop Database (mysql db and user)' => 'drush quickstart-destroy database --domain=example.dev',
-                  'Delete code and files (~/webistes/<domain>)' => 'drush quickstart-destroy code --domain=example.dev --codepath=/path/to/drupal',
-                  'Reset for reinstall (~/webistes/<domain>)' => 'drush quickstart-destroy install --domain=example.dev --codepath=/path/to/drupal',
+                  'Only Remove DNS (/etc/hosts)' => 'drush quickstart-destroy dns --domain=example.dev',
+                  'Only Remove Apache (/etc/apache2/sites-enabled/)' => 'drush quickstart-destroy apache --domain=example.dev',
+                  'Only Drop Database (mysql db and user)' => 'drush quickstart-destroy database --domain=example.dev',
+                  'Only Delete code and files (~/webistes/<domain>)' => 'drush quickstart-destroy code --domain=example.dev --codepath=/path/to/drupal',
+                  'Only Reset for reinstall (~/webistes/<domain>)' => 'drush quickstart-destroy install --domain=example.dev --codepath=/path/to/drupal',
           ),
           'aliases' => array('qd'),
           'bootstrap' => DRUSH_BOOTSTRAP_DRUSH, // No bootstrap at all.
   );
 
   $items['quickstart-fixperms'] = array(
-          'description' => "Fix permissions for a quickstart development website:
-  \$ sudo chown -R $USER:www-data <codepath>
+          'description' => "Fix permissions for a development website:
+  \$ sudo chown -R :www-data <codepath>
   \$ sudo chmod -R a=,u=rwX,g=rX <codepath>
   \$ sudo find <codepath>/sites -type d -name files -exec chmod -R a=,ug=rwX '{}' \;
   \$ sudo find <codepath>/sites -type d -name files_private -exec chmod -R a=,ug=rwX '{}' \;",
@@ -159,7 +159,7 @@ function _quickstart_params($required) {
   // apache, code, install
   $defaults['codepath'] = quickstart_fixpath("~/websites/" . $options['domain']);
   // code, install (check version)
-  $defaults['makefile'] = quickstart_fixpath("~/websites/default.make");
+  $defaults['makefile'] = quickstart_fixpath("~/.drush/");
   // install
   $defaults['profile'] = 'standard';
   $defaults['db-url'] = "mysql://$domain_:$domain_@localhost/$domain_";
