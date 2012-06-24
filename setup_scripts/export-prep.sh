@@ -15,23 +15,31 @@ sudo apt-get autoremove
 sudo apt-get clean
 
 # Clean up apt cache
-sudo rm /var/lib/apt/lists/*   # 44mb
-sudo rm /var/lib/apt/lists/partial/*
+sudo find /var/lib/apt/lists -type f -maxdepth 1 -exec rm {} \;
+sudo find /var/lib/apt/lists/partial -type f -maxdepth 1 -exec rm {} \;
 
 # empty trash
 sudo rm -rf ${HOME}/.local/share/Trash/files/*
 sudo rm -rf ${HOME}/.local/share/Trash/info/*
 
 #clear bash history
+killall guake
+killall gnome-terminal
+killall x-terminal-emulator
 cat /dev/null > ${HOME}/.bash_history
 cat /dev/null > ${HOME}/.bash_eternal_history
 
 #clear gnome history
 cat /dev/null > ${HOME}/.local/share/recently-used.xbel
 
+#clean cache
+find ${HOME} -name "cache" -print0 | xargs -0 -I {} find {} -type f | xargs /bin/rm
+#find ${HOME}/.cache -type f -exec rm '{}' \;
+
+
 #clear logs
-sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
 sudo logrotate -f -s ${HOME}/${DDD}/setup_scripts/logs/logrotate-status.log ${HOME}/${DDD}/config/clear-all-logs.conf
+sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
 
 # Zero-fill unused sectors on vm disk
 # Zero-filled sectors compress very nice :-)
