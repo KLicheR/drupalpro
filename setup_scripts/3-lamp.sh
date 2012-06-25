@@ -88,13 +88,11 @@ sudo sed -i 's/#long_query_time/long_query_time/g'            /etc/mysql/my.cnf
 
 
 #======================================| Configure PHP
-# FIXME haven't checked for unnecessary code since 9.10
 # sudo sed -i 's/find_this/replace_with_this/g' infile1 infile2 etc
 sudo sed -i 's/magic_quotes_gpc = On/magic_quotes_gpc = Off/g'                       /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 sudo sed -i 's/short_open_tag = On/short_open_tag = Off/g'                           /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 sudo sed -i 's/max_execution_time = 30/max_execution_time = 300/g'                   /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-sudo sed -i 's/memory_limit = 16M/memory_limit = 64M/g'                              /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-sudo sed -i 's/memory_limit = 32M/memory_limit = 64M/g'                              /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g'                            /etc/php5/apache2/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g'                 /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 sudo sed -i 's/post_max_size = 8M/post_max_size = 50M/g'                             /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 sudo sed -i 's/;error_log = filename/error_log = \/var\/log\/php-error.log/g'        /etc/php5/apache2/php.ini /etc/php5/cli/php.ini # php 5.2
@@ -109,7 +107,6 @@ sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/imap.ini
 # Install upload progress (warning in D7)
 sudo pecl -q install uploadprogress
 echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadprogress.ini > /dev/null
-
 
 
 #======================================| Log Files
