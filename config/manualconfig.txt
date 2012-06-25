@@ -40,12 +40,16 @@ Drupal Development Desktop has been installed.  To complete the setup, there are
                         System settings (remove)
                         Text editor (remove)
                         Chrome (add)
-                        Xchat (add)
+                        Ubuntu Help (add)
+                        Xchat (add: setup chat.freenode.org shift-arrowup/ port7000 / ssl)
                         Netbeans (add)
                         Eclipse (add)
+                        Aptana (add)
                         Geany (add)
+                        Gedit (add)
                         Firewall (add)
                         GITG (add)
+                        Meld (add)
 
     Note: to add  > Open the application
                   > Right-click the icon on the toolbar
@@ -54,8 +58,11 @@ Drupal Development Desktop has been installed.  To complete the setup, there are
 * Setup: Startup applications > Guake, Autokey
 
 * Prepare for export:
-   bash -x ~/drupalpro/setup_scripts/export-prep.sh
+   sudo bleachbit (everything except warnings)
+   bash -x ~/drupalpro/setup_scripts/export-prep.sh (ensure /zerofile is removed)
 
 * Shutdown
+
+* Compact VM hard drives
 
 * Export virtual machine
