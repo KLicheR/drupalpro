@@ -65,7 +65,7 @@ Towards the end, the process requires some manual steps, guided by popups like t
 ## The last password you'll ever need.
 # add current user to sudoers file - careful, this line could brick the box.
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
-sudo chmod 440 "/etc/sudoers.d/${DDD}"
+sudo chmod 0440 "/etc/sudoers.d/${DDD}"
 
 #======================================| Install/Update some basics
 sudo apt-get ${APTGET_VERBOSE} install git wget curl
