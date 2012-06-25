@@ -19,6 +19,7 @@ sudo find /var/lib/apt/lists -type f -maxdepth 1 -exec rm {} \;
 sudo find /var/lib/apt/lists/partial -type f -maxdepth 1 -exec rm {} \;
 
 # empty trash
+if [ -f "${HOME}"/profile*.fbu ]; then rm "${HOME}"/profile*.fbu; fi
 sudo rm -rf ${HOME}/.local/share/Trash/files/*
 sudo rm -rf ${HOME}/.local/share/Trash/info/*
 
