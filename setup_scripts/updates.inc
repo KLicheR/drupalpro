@@ -6,5 +6,12 @@ set -e
 source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-#skeleton for future updates.
-echo 'No updates to install.'
+sudo chmod 0440 "/etc/sudoers.d/${DDD}"
+SETPERM=$?
+if [[ "$SETPERM" -gt 0 ]];
+then # Update log with results.  Write to log folder since files in there are ignored.
+  echo "ERROR: Failed to update 7.x-3.x-beta1-update10" | tee -a ${HOME}/${DDD}/setup_scripts/logs/update.log
+else
+  echo "Successfully completed updated 7.x-3.x-beta1-update10" | tee -a ${HOME}/${DDD}/logs/update.log
+fi
+
