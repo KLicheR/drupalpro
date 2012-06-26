@@ -38,9 +38,9 @@ sudo apt-get ${APTGET_VERBOSE} purge example-content
 #   1.7mb - Bittorrent client
 sudo apt-get ${APTGET_VERBOSE} purge transmission-common transmission-gtk
 #   11mb - ubuntuone, rhythymbox, remotedesktop
-sudo apt-get ${APTGET_VERBOSE} purge gir1.2-rb-3.0 gir1.2-ubuntuoneui-3.0 rhythmbox-data ubuntuone-couch unity-lens-video ubuntuone-installer unity-scope-video-remote rhythmbox unity-scope-musicstores rhythmbox-plugin-magnatune ubuntuone-control-panel librhythmbox-core5 unity-lens-music rhythmbox-ubuntuone libsyncdaemon-1.0-1 vino remmina-common rhythmbox-mozilla libubuntuoneui-3.0-1 remmina-plugin-rdp rhythmbox-plugin-zeitgeist remmina-plugin-vnc ubuntuone-client-gnome rhythmbox-plugin-cdrecorder rhythmbox-plugins remmina
+sudo apt-get ${APTGET_VERBOSE} purge gir1.2-rb-3.0 gir1.2-ubuntuoneui-3.0 rhythmbox-data ubuntuone-client-gnome ubuntuone-couch ubuntuone-control-panel ubuntuone-installer rhythmbox-ubuntuone libubuntuoneui-3.0-1 rhythmbox librhythmbox-core5 rhythmbox-plugin-magnatune unity-lens-video unity-scope-video-remote unity-scope-musicstores unity-lens-music libsyncdaemon-1.0-1 vino remmina-common rhythmbox-mozilla remmina-plugin-rdp rhythmbox-plugin-zeitgeist remmina-plugin-vnc ubuntuone-client-gnome rhythmbox-plugin-cdrecorder rhythmbox-plugins remmina
 #   5mb - Etc
-sudo apt-get ${APTGET_VERBOSE} purge usb-creator-gtk checkbox-gtk ubuntuone-client-gnome jockey-gtk #computer-janitor-gtk
+sudo apt-get ${APTGET_VERBOSE} purge usb-creator-gtk checkbox-gtk jockey-gtk #computer-janitor-gtk
 
 # 0mb
 sudo apt-get ${APTGET_VERBOSE} autoremove # autoremove is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed.
