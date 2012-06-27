@@ -159,7 +159,7 @@ function _quickstart_params($required) {
   // apache, code, install
   $defaults['codepath'] = quickstart_fixpath("~/websites/" . $options['domain']);
   // code, install (check version)
-  $defaults['makefile'] = quickstart_fixpath("~/.drush/");
+  $defaults['makefile'] = quickstart_fixpath("default.make");
   // install
   $defaults['profile'] = 'standard';
   $defaults['db-url'] = "mysql://$domain_:$domain_@localhost/$domain_";
