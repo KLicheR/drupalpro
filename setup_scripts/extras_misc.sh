@@ -7,7 +7,7 @@ source "${HOME}/${DDD}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # add some useful git tools
-sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk
+sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk grsync
 # mostly based off http://cheat.errtheblog.com/s/git
 git config --global alias.st status
 git config --global alias.ci commit
