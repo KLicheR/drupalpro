@@ -113,8 +113,8 @@ On_IWhite="\[\033[0;107m\]"   # White
 
 Time12h="\T"
 Time12a="\@"
-PathShort="\w"
-PathFull="\W"
+PathShort="\W" #basename
+PathFull="\w"  #path
 NewLine="\n"
 Jobs="\j"
 
