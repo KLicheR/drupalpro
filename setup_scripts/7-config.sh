@@ -68,7 +68,7 @@ cat > ${HOME}/Desktop/drupalproissues.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Link
-URL=http://http://drupal.org/project/issues/1635724?categories=All
+URL=http://drupal.org/project/issues/1635724?categories=All
 Name=DrupalPro Issues
 Icon=${HOME}/websites/example7.dev/misc/powered-black-135x42.png
 END
