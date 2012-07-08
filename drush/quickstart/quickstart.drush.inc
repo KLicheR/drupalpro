@@ -68,6 +68,7 @@ function quickstart_drush_command() {
           'options' => array(
                   'domain' => 'Domain name to destroy.',
                   'codepath' => 'Path to drupal code.  Defaults to ~/websites/[domain]',
+                  'yes'      => 'Optional. Skip confirmation',
           ),
           'examples' => array(
                   'Simplest format' => 'drush qd --domain=example.dev',
@@ -267,10 +268,17 @@ function drush_quickstart_create() {
  * @return true on success
  */
 function drush_quickstart_destroy() {
-
   $params = _quickstart_params(array('domain'));
   if (isset($params['fail'])) return drush_set_error(0, dt('Bad parameters.  Try "drush help quickstart-destroy"'));
   $domain = $params['domain'];
+
+  $prompt = dt(
+    'This will destroy the code, database and user, apache config, and dns config for @domain. Continue?',
+    array('@domain' => $domain)
+  );
+  if (!drush_confirm($prompt)) {
+    return drush_user_abort();
+  }
 
   drush_log(' ', 'ok'); // add newline at top of output
 
