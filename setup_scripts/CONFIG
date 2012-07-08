@@ -14,8 +14,8 @@ MYSQL_USER=root
 USER_USER=${USER}
 
 #======================================| SERVER SETTINGS
-WWW_FQDN="localhost"   # used by apache setup
-WWW_SERVER="apache2"   # webserver to install (used by phpmyadmin)
+WWW_FQDN="localhost"          # used by apache setup
+WWW_SERVER="apache2"          # webserver to install (used by phpmyadmin)
 
 # VBOX HOST SHARED FOLDER NAME
 # (C_DRIVE or D_DRIVE are good alternatives)
@@ -42,11 +42,22 @@ INSTALL_NETBEANS=true
 INSTALL_ECLIPSE=true
 INSTALL_APTANA=true
 INSTALL_GEANY=true
-INSTALL_JRE=false            # Override defaults and make sure JRE is installed?
-INSTALL_EMAIL_CATCHER=true   # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
-INSTALL_XDEBUG=true          # Used for PHP debuging
-  INSTALL_WEBGRIND=true      # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
-INSTALL_XHPROF=false         # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
+INSTALL_JRE=false             # Override defaults and make sure JRE is installed?
+INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
+INSTALL_XDEBUG=true           # Used for PHP debuging
+INSTALL_WEBGRIND=true         # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
+INSTALL_XHPROF=false          # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
+
+#======================================| REMOVE OPTIONAL SERVICES
+PURGE_OFFICE=true             # Libre Office
+PURGE_GAMES=true              # Standard Games
+PURGE_BLUETOOTH=true          # Bluetooth support
+PURGE_MEDIA=true              # Audio and Video applications and unity lens'
+PURGE_MISC=true               # Various: screensaver, speech synthesis, bittorrent, ubuntuone, remote desktop, USB creator, driver UI,
+PURGE_SOCIAL=false            # IM, VOIP, gwibber, email clients
+PURGE_HELP=false              # Help documents
+PURGE_PRINT=false             # Printing system
+
 
 #======================================| WGET variables
 REFERER="http://www.drupal.org/project/development_desktop"   # @FIXME not sure of project URL
