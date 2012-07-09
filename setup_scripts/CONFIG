@@ -86,8 +86,8 @@ FEBE_URL="https://dl.dropbox.com/u/6569361/ddd/profileFx4%7Bddd%7D.fbu"
 # NETBEANS
 NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
 NETBEANS_PREF="https://dl.dropbox.com/u/6569361/ddd/netbeans-prefs.zip"
-# To install Netbeans beta, remove the comment below
-#NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/beta/bundles/netbeans-7.2beta-ml-php-linux.sh"
+# To not/install Netbeans beta, add/remove the comment below
+NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/rc/bundles/netbeans-7.2rc1-ml-php-linux.sh"
 
 # ECLIPSE http://www.eclipse.org/pdt/downloads/
 if [ `uname -p` == "x86_64" ]
@@ -102,9 +102,9 @@ fi
 # APTANA
 if [ `uname -p` == "x86_64" ]
 then
-  APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_64_3.1.3.zip"
+  APTANA_URL="http://download.aptana.com/studio3/standalone/3.2.0/linux/Aptana_Studio_3_Setup_Linux_x86_64_3.2.0.zip"
 else
-  APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_3.1.3.zip"
+  APTANA_URL="http://download.aptana.com/studio3/standalone/3.2.0/linux/Aptana_Studio_3_Setup_Linux_x86_3.2.0.zip"
 fi
 
 # Sublime Text 2
