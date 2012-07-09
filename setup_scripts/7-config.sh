@@ -63,20 +63,22 @@ URL=http://localhost
 Name=README
 Icon=/usr/share/pixmaps/firefox.png
 END
+chmod 750 "${HOME}/Desktop/README.desktop"
 
-cat > ${HOME}/Desktop/drupalpro-issues.desktop <<END
+cat > "${HOME}/Desktop/drupalpro-issues.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Link
 URL=http://drupal.org/project/issues/drupalpro?categories=All
 Name=DrupalPro Issues
-Icon=${HOME}/websites/example7.dev/misc/powered-black-135x42.png
+Icon=${WWW_ROOT}/example7.dev/misc/powered-black-135x42.png
 END
+chmod 750 "${HOME}/Desktop/drupalpro-issues.desktop"
 
 ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 #======================================| Add Nautilus Emblems
-if [ -d "${HOME}/drush" ]; then gvfs-set-attribute -t stringv ${HOME}/drush metadata::emblems development; fi
+if [ -d "${APP_FOLDER}" ]; then gvfs-set-attribute -t stringv "${APP_FOLDER}" metadata::emblems development; fi
 if [ -d "${HOME}/Desktop/${HOSTSHARE}" ]; then gvfs-set-attribute -t stringv "${HOME}/Desktop/${HOSTSHARE}" metadata::emblems shared; fi
 if [ -d "${HOME}/${DDD}" ]; then gvfs-set-attribute -t stringv ${HOME}/${DDD} metadata::emblems development; fi
 if [ -d "${WWW_ROOT}" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT} metadata::emblems web; fi
