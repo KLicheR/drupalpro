@@ -34,8 +34,8 @@ fi
 if [[ "${INSTALL_SUBLIME}" == true ]]; then
   mkdir -p "${HOME}/opt"
   cd "${HOME}/opt"
-  wget ${WGET_VERBOSE} -O ${HOME}/sublime.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${SUBLIME_URL}"
-  tar jxf "${HOME}/geany-themes.tar.bz2" && rm "${HOME}/geany-themes.tar.bz2"
+  wget ${WGET_VERBOSE} -O "${HOME}/sublime.tar.bz2" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${SUBLIME_URL}"
+  tar jxf "${HOME}/sublime.tar.bz2" && rm "${HOME}/sublime.tar.bz2"
   cd "${HOME}/opt/Sublime Text 2"
   chmod u=rwx,o= "${HOME}/opt/Sublime Text 2/sublime_text"
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
