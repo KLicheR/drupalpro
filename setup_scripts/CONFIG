@@ -16,7 +16,7 @@ USER_USER=${USER}
 #======================================| SERVER SETTINGS
 WWW_FQDN="localhost"          # used by apache setup
 WWW_SERVER="apache2"          # webserver to install (used by phpmyadmin)
-
+SQL_SERVER="mariadb"          # allowed values: mysql, mariadb
 # VBOX HOST SHARED FOLDER NAME
 # (C_DRIVE or D_DRIVE are good alternatives)
 HOSTSHARE="shared"

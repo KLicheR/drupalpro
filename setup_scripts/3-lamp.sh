@@ -15,19 +15,43 @@ sudo chmod -R u=rwX,g=rX,o= "${WWW_ROOT}"
 #======================================| Install LAMP packages
 # Define package names, and debconf config values.  Keep package names in sync.
 LAMP_APACHE="libapache2-mod-php5 php-pear"
-LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
-echo mysql-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
-echo mysql-server-5.5 mysql-server/root_password_again  password ${MYSQL_PASS} | sudo debconf-set-selections
-#LAMP_PHP="php5 php5-dev php5-common php5-xsl php5-curl php5-gd php5-pgsql php5-cli php5-mcrypt php5-sqlite php5-mysql php-pear php5-imap php5-xdebug php-apc"
-LAMP_PHP="php5 php-apc php5-cli php5-curl php5-gd php5-imap php5-mysql php5-mcrypt php5-sqlite php5-xdebug php5-xsl"
+
+#======================================| Prepare PHP
+LAMP_PHP="php5 php-apc php5-cli php5-curl php5-gd php5-imap php5-mcrypt php5-xsl php5-sqlite"
+
+#======================================| Prepare MYSQL
+if [[ "${SQL_SERVER}" == "mysql" ]]; then
+  LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
+  echo mysql-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
+  echo mysql-server-5.5 mysql-server/root_password_again  password ${MYSQL_PASS} | sudo debconf-set-selections
+  LAMP_PHP="$LAMP_PHP php5-mysql"
+fi
+
+if [[ "${INSTALL_XDEBUG}" == true ]]; then
+  LAMP_PHP="$LAMP_PHP php5-xdebug"
+fi
+#======================================| Prepare Mariadb
+if [[ "${SQL_SERVER}" == "mariadb" ]]; then
+  echo 'deb http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
+  echo 'deb-src http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
+  sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+  sudo apt-get update
+
+  LAMP_MYSQL="mariadb-server"
+  echo mariadb-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
+  echo mariadb-server-5.5 mysql-server/root_password_again  password ${MYSQL_PASS} | sudo debconf-set-selections
+  LAMP_PHP="$LAMP_PHP php5-mysql"
+fi
+
+
 LAMP_TOOLS="phpmyadmin"
 echo phpmyadmin       phpmyadmin/reconfigure-webserver  text     ${WWW_SERVER}    | sudo debconf-set-selections
 echo phpmyadmin       phpmyadmin/dbconfig-install       boolean  true       | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/app-password-confirm   password ${USER_PASS} | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/mysql/admin-pass       password ${MYSQL_PASS} | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/password-confirm       password ${USER_PASS} | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/setup-password         password ${USER_PASS} | sudo debconf-set-selections
-echo phpmyadmin       phpmyadmin/mysql/app-pass         password ${MYSQL_PASS} | sudo debconf-set-selections
+echo phpmyadmin       phpmyadmin/app-password-confirm   password ${USER_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
+echo phpmyadmin       phpmyadmin/mysql/admin-pass       password ${MYSQL_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
+echo phpmyadmin       phpmyadmin/password-confirm       password ${USER_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
+echo phpmyadmin       phpmyadmin/setup-password         password ${USER_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
+echo phpmyadmin       phpmyadmin/mysql/app-pass         password ${MYSQL_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
 
 # Now install the packages.  debconf shouldn't need to ask so many questions.
 sudo apt-get ${APTGET_VERBOSE} install $LAMP_APACHE $LAMP_MYSQL $LAMP_PHP $LAMP_TOOLS
