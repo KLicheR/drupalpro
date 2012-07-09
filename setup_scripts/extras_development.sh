@@ -60,12 +60,12 @@ For more information:
 # Install drush
 
 git clone http://git.drupal.org/project/drush.git
-cd ${HOME}/drush
+cd ${APP_FOLDER}/drush
 git checkout $DRUSH_VERSION
 
 #mdrmike @FIXME (don't need once pear install works):
-chmod u+x ${HOME}/drush/drush
-sudo ln -s ${HOME}/drush/drush /usr/local/bin/drush
+chmod u+x ${APP_FOLDER}/drush/drush
+sudo ln -s ${APP_FOLDER}/drush/drush /usr/local/bin/drush
 
 # Install drush make and drush site-install6
 mkdir ${HOME}/.drush
@@ -73,8 +73,8 @@ mkdir ${HOME}/.drush
 # Setup Drush
 ln -s ${HOME}/${DDD}/drush/quickstart ${HOME}/.drush/quickstart
 ln -s ${HOME}/${DDD}/make_templates/*.make "${HOME}/.drush"
-if [ -e ${HOME}/drush/examples/example.drushrc.php ];
-  then cp ${HOME}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
+if [ -e ${APP_FOLDER}/drush/examples/example.drushrc.php ];
+  then cp ${APP_FOLDER}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
   echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"
 fi
 
