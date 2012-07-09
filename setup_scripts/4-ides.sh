@@ -35,6 +35,12 @@ fi
 # Geany is a small fast IDE (based on scintilla ... also what notepad++ is also built on)
 # info: http://en.wikipedia.org/wiki/Geany
 if [[ "${INSTALL_GEANY}" == true ]]; then
+  # add ppa for 1.22 version of Geany which fixes a bug in Unity
+  echo 'deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/geany-dev-precise.list > /dev/null
+  echo 'deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/geany-dev-precise.list > /dev/null
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B3641232
+  sudo apt-get update
+
   sudo apt-get install -yq geany
   mkdir -p ${HOME}/.config/geany/tags
 
@@ -42,8 +48,8 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   cd
   wget ${WGET_VERBOSE} -O ${HOME}/geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
   tar jxf geany-themes.tar.bz2 && rm geany-themes.tar.bz2
-  mv -f geany-themes-0.21/* ${HOME}/.config/geany/
-  rm -r geany-themes-0.21
+  mv -f geany-themes-0.22/* ${HOME}/.config/geany/
+  rm -r geany-themes-0.22
 
   # GEANY: Install extra tag files
   wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"

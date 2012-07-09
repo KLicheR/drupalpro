@@ -106,7 +106,7 @@ else
 fi
 
 # GEANY add-ons
-GEANY_THEME="https://github.com/downloads/codebrainz/geany-themes/geany-themes-0.21.tar.bz2"
+GEANY_THEME="https://github.com/downloads/codebrainz/geany-themes/geany-themes-1.22.tar.bz2"
 GEANY_DRUPAL="http://wiki.geany.org/_media/tags/drupal.php.tags"
 GEANY_PHP="http://wiki.geany.org/_media/tags/phpfull-5.3.5.php.tags"
 GEANY_JS="http://dl.yent.eu/em.js.tags"
