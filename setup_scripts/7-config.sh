@@ -64,11 +64,11 @@ Name=README
 Icon=/usr/share/pixmaps/firefox.png
 END
 
-cat > ${HOME}/Desktop/drupalproissues.desktop <<END
+cat > ${HOME}/Desktop/drupalpro-issues.desktop <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Link
-URL=http://drupal.org/project/issues/1635724?categories=All
+URL=http://drupal.org/project/issues/drupalpro?categories=All
 Name=DrupalPro Issues
 Icon=${HOME}/websites/example7.dev/misc/powered-black-135x42.png
 END
