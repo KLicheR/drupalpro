@@ -19,7 +19,7 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 
 #======================================| Update Zenity (12.04 has a bug)
-sudo apt-get install zenity
+sudo apt-get ${APTGET_VERBOSE} install zenity
 
 ################################################################################
 # Prompt for installation type or to abort (to avoid borking system)
