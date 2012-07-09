@@ -38,6 +38,7 @@ if [[ "${INSTALL_SUBLIME}" == true ]]; then
   tar jxf "${HOME}/sublime.tar.bz2" && rm "${HOME}/sublime.tar.bz2"
   cd "${HOME}/opt/Sublime Text 2"
   chmod u=rwx,o= "${HOME}/opt/Sublime Text 2/sublime_text"
+  mkdir -p "${HOME}/.local/share/applications"
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
@@ -126,6 +127,7 @@ if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   if [ -e ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png ]; then sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
   if [ -e ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png ]; then sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
 #  if [ -e ${HOME}/eclipse/eclipse ]; then sudo ln -s "${HOME}/eclipse/eclipse" /usr/bin/eclipse; fi
+  mkdir -p "${HOME}/.local/share/applications"
   cat > "${HOME}/.local/share/applications/Eclipse.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
@@ -147,8 +149,8 @@ if [[ "${INSTALL_APTANA}" == true ]]; then
   wget ${WGET_VERBOSE} -O aptana.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${APTANA_URL}"
   unzip -q aptana.zip
   rm aptana.zip
-
-cat > "${HOME}/.local/share/applications/AptanaStudio3.desktop" <<END
+  mkdir -p "${HOME}/.local/share/applications"
+  cat > "${HOME}/.local/share/applications/AptanaStudio3.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
