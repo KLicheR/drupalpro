@@ -46,11 +46,17 @@ git config --global merge.tool meld
 echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
 echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2
-sudo apt-get update
+
+#======================================| Add Unity Scopes PPA
+echo 'deb http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
+echo 'deb-src http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia diodon diodon-plugins
+sudo apt-get update
+sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia diodon diodon-plugins gnome-activity-journal nautilus-open-terminal nautilus-compare nautilus-pastebin
+sudo apt-get install -yq unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia
 
 # Whitelist autokey for Unity panel
 if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
