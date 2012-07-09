@@ -62,17 +62,33 @@ zenity --info --text="This script may take hours to run (depending on your hardw
 
 Towards the end, the process requires some manual steps, guided by popups like this. \nThis script shouldn't be run more than once.";
 
+#======================================| Install/Update some basics
+sudo apt-get ${APTGET_VERBOSE} install git wget curl
+
+#======================================| Install Etckeeper to track config changes
+if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
+  sudo apt-get ${APTGET_VERBOSE} etckeeper
+  #configure etckeeper to use git and avoid uneccesarry commits, then initialize
+  sudo sed -i 's/#VCS="git"/VCS="git"/g'          /etc/etckeeper/etckeeper.conf
+  sudo sed -i 's/VCS="bzr"/#VCS="bzr"/g'          /etc/etckeeper/etckeeper.conf
+  sudo sed -i 's/#AVOID_DAILY_AUTOCOMMITS=1/AVOID_DAILY_AUTOCOMMITS=1/g'  /etc/etckeeper/etckeeper.conf
+  sudo etckeeper init
+fi
+
 ## The last password you'll ever need.
 # add current user to sudoers file - careful, this line could brick the box.
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
 sudo chmod 0440 "/etc/sudoers.d/${DDD}"
-
-#======================================| Install/Update some basics
-sudo apt-get ${APTGET_VERBOSE} install git wget curl
+if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
+  sudo etckeeper commit "PERMISSIONS: ADD ${USER} to sudoers file - careful, this line could brick the box."
+fi
 
 # Add current user to root 'group' to make it easier to edit config files
 # note: seems unsafe for anyone unaware.
 sudo adduser $USER root
+if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
+  sudo etckeeper commit "PERMISSIONS: ADD ${USER} to group 'root' to make it easier to edit config files"
+fi
 
 ## Disk size Accounting
 # Starting size:

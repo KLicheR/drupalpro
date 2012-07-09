@@ -38,6 +38,7 @@ PINGHOST2=wikipedia.org
 PINGRESULTS=2
 
 #======================================| SETUP OPTIONAL SERVICES
+INSTALL_ETCKEEPER=true
 INSTALL_NETBEANS=true
 INSTALL_ECLIPSE=false
 INSTALL_APTANA=false          # Install and configure Geany
