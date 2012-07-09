@@ -54,7 +54,8 @@ echo phpmyadmin       phpmyadmin/setup-password         password ${USER_PASS} | 
 echo phpmyadmin       phpmyadmin/mysql/app-pass         password ${MYSQL_PASS} | sudo debconf-set-selections  # @TODO need to confirm user and passowrd is set correctly
 
 # Now install the packages.  debconf shouldn't need to ask so many questions.
-sudo apt-get ${APTGET_VERBOSE} install $LAMP_APACHE $LAMP_MYSQL $LAMP_PHP $LAMP_TOOLS
+sudo apt-get ${APTGET_VERBOSE} install $LAMP_MYSQL $LAMP_APACHE $LAMP_PHP
+sudo apt-get ${APTGET_VERBOSE} install $LAMP_TOOLS
 
 
 # ###### Configure APACHE
