@@ -126,7 +126,7 @@ if [[ "${INSTALL_ECLIPSE}" == true ]]; then
   if [ -e ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png ]; then sudo cp ${HOME}/eclipse/plugins/org.eclipse.platform_3.6.2.v201102101200/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
   if [ -e ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png ]; then sudo cp ${HOME}/eclipse-php/configuration/org.eclipse.osgi/bundles/224/1/.cp/icons/eclipse48.png /usr/share/pixmaps/eclipse.png; fi
 #  if [ -e ${HOME}/eclipse/eclipse ]; then sudo ln -s "${HOME}/eclipse/eclipse" /usr/bin/eclipse; fi
-  cat > ${HOME}/Desktop/Eclipse.desktop <<END
+  cat > "${HOME}/.local/share/applications/Eclipse.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
@@ -137,7 +137,7 @@ Exec=${HOME}/eclipse/eclipse
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ${HOME}/.local/share/applications/Eclipse.desktop
+chmod 750 "${HOME}/.local/share/applications/Eclipse.desktop"
 
 fi
 
@@ -148,7 +148,7 @@ if [[ "${INSTALL_APTANA}" == true ]]; then
   unzip -q aptana.zip
   rm aptana.zip
 
-cat > ${HOME}/.local/share/applications/AptanaStudio3.desktop <<END
+cat > "${HOME}/.local/share/applications/AptanaStudio3.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
@@ -159,7 +159,7 @@ Exec=${HOME}/Aptana_Studio_3/AptanaStudio3
 Terminal=false
 Categories=Development;IDE;Java;
 END
-chmod 750 ${HOME}/.local/share/applications/AptanaStudio3.desktop
+chmod 750 "${HOME}/.local/share/applications/AptanaStudio3.desktop"
 fi
 
 #======================================| NETBEANS
