@@ -41,15 +41,15 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B3641232
   sudo apt-get update
 
-  sudo apt-get install -yq geany
+  sudo apt-get install -yq geany geany-common geany-plugin-addons
   mkdir -p ${HOME}/.config/geany/tags
 
   # GEANY: Extra color themes
   cd
   wget ${WGET_VERBOSE} -O ${HOME}/geany-themes.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_THEME}"
   tar jxf geany-themes.tar.bz2 && rm geany-themes.tar.bz2
-  mv -f geany-themes-0.22/* ${HOME}/.config/geany/
-  rm -r geany-themes-0.22
+  mv -f geany-themes-1.22/* ${HOME}/.config/geany/
+  rm -r geany-themes-1.22
 
   # GEANY: Install extra tag files
   wget ${WGET_VERBOSE} -O ${HOME}/.config/geany/tags/geany-tags-drupal --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${GEANY_DRUPAL}"
