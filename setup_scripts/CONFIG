@@ -40,10 +40,11 @@ PINGRESULTS=2
 #======================================| SETUP OPTIONAL SERVICES
 INSTALL_NETBEANS=true
 INSTALL_ECLIPSE=false
-INSTALL_APTANA=false
-INSTALL_SUBLIME=true
-INSTALL_GEANY=true
-INSTALL_JRE=false             # Override defaults and make sure JRE is installed?
+INSTALL_APTANA=false          # Install and configure Geany
+INSTALL_SUBLIME=true          # Install and configure Sublime Text
+INSTALL_GEANY=true            # Install and configure Geany
+INSTALL_GEDIT=true            # Configure Gedit
+INSTALL_JRE=false             # Install JRE even if not installing Netbeans, Eclipse or Aptana
 INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
 INSTALL_XDEBUG=true           # Used for PHP debuging
 INSTALL_WEBGRIND=true         # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
