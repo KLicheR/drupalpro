@@ -30,7 +30,7 @@ zenity --info --text="Firefox profile manager will start.\n1) Delete temp profil
 #rm profileFx4{ddd}.fbu
 
 # Load Sublime Text with default README.txt file
-"${HOME}/opt/Sublime Text 2/sublime_text" "${HOME}/opt/Sublime Text 2/README.txt"
+"${APP_FOLDER}/Sublime Text 2/sublime_text" "${APP_FOLDER}/Sublime Text 2/README.txt"
 
 # final size
 if [ "${EXTRA_DEBUG_INFO}" = true ]; then

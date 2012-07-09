@@ -17,14 +17,13 @@ USER_USER=${USER}
 WWW_FQDN="localhost"          # used by apache setup
 WWW_SERVER="apache2"          # webserver to install (used by phpmyadmin)
 SQL_SERVER="mariadb"          # allowed values: mysql, mariadb
-# VBOX HOST SHARED FOLDER NAME
-# (C_DRIVE or D_DRIVE are good alternatives)
-HOSTSHARE="shared"
 
 #======================================| PATHS TO (easy) LOG FILES
 WWW_ROOT="${HOME}/websites"
 LOGS="${WWW_ROOT}/logs"
 CONFIGS="${WWW_ROOT}/config"
+APP_FOLDER="${HOME}/opt"      # PATH TO PARENT FOLDER TO INSTALL APPLICATIONS & SCRIPTS
+HOSTSHARE="shared"            # FOLDER NAME TO ACCESS VBOX HOST FILES
 
 #======================================| DRUSH version to install
 DRUSH_VERSION="7.x-5.3"
