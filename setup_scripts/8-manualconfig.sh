@@ -14,9 +14,7 @@ drush qc --domain=example6.dev --makefile=d6.make
 
 firefox -CreateProfile temp &
 sleep 5
-firefox -CreateProfile Default &
-#sleep 5
-#zenity --info --text="Firefox started in order to create profiles.\n\nPlease CLOSE FIREFOX. "
+# firefox -CreateProfile Default &
 firefox -P temp http://softwarebychuck.com/xpis/FEBE7.0.3.3.xpi &
 sleep 5
 zenity --info --text="Firefox is starting in order to install FEBE.
@@ -30,6 +28,9 @@ firefox -ProfileManager &
 sleep 5
 zenity --info --text="Firefox profile manager will start.\n1) Delete temp profile.\n2) THEN CLOSE MANAGER."
 #rm profileFx4{ddd}.fbu
+
+# Load Sublime Text with default README.txt file
+"${HOME}/opt/Sublime Text 2/sublime_text" "${HOME}/opt/Sublime Text 2/README.txt"
 
 # final size
 if [ "${EXTRA_DEBUG_INFO}" = true ]; then

@@ -39,8 +39,9 @@ PINGRESULTS=2
 
 #======================================| SETUP OPTIONAL SERVICES
 INSTALL_NETBEANS=true
-INSTALL_ECLIPSE=true
-INSTALL_APTANA=true
+INSTALL_ECLIPSE=false
+INSTALL_APTANA=false
+INSTALL_SUBLIME=true
 INSTALL_GEANY=true
 INSTALL_JRE=false             # Override defaults and make sure JRE is installed?
 INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
@@ -103,6 +104,14 @@ then
   APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_64_3.1.3.zip"
 else
   APTANA_URL="http://download.aptana.com/studio3/standalone/3.1.3/linux/Aptana_Studio_3_Setup_Linux_x86_3.1.3.zip"
+fi
+
+# Sublime Text 2
+if [ `uname -p` == "x86_64" ]
+then
+  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0%20x64.tar.bz2"
+else
+  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.tar.bz2"
 fi
 
 # GEANY add-ons

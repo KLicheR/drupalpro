@@ -30,6 +30,65 @@ if [[ "${INSTALL_GEDIT}" == true ]]; then
   gconftool-2 -s /apps/gedit-2/preferences/editor/save/auto_save --type=bool true
 fi
 
+#======================================| SUBLIME TEXT 2
+if [[ "${INSTALL_SUBLIME}" == true ]]; then
+  mkdir -p "${HOME}/opt"
+  cd "${HOME}/opt"
+  wget ${WGET_VERBOSE} -O ${HOME}/sublime.tar.bz2 --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${SUBLIME_URL}"
+  tar jxf "${HOME}/geany-themes.tar.bz2" && rm "${HOME}/geany-themes.tar.bz2"
+  cd "${HOME}/opt/Sublime Text 2"
+  chmod u=rwx,o= "${HOME}/opt/Sublime Text 2/sublime_text"
+  cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Sublime Text
+GenericName=Text Editor
+Comment=Edit source code
+Encoding=UTF-8
+Exec="${HOME}/opt/Sublime Text 2/sublime_text" %F
+Icon=${HOME}/opt/Sublime Text 2/Icon/48x48/sublime_text.png
+Categories=Application;Development;Utility
+Version=1.0
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=text/plain;
+Categories=TextEditor;Development;Utility;
+END
+
+chmod 750 "${HOME}/.local/share/applications/Sublime.desktop"
+
+cat > "${HOME}/opt/Sublime Text 2/README.txt" <<END
+
+NOTICE:
+Sublime Text is NOT Open Source software nor is it Freeware.  It was downloaded
+and installed as part of DrupalPro so you may easily evaluate it because it is
+a popular text editor.  It's just not simple for newbies to install.  You might
+also want to search Synaptic or Ubuntu Software Center for other editors.
+
+If you use & like Sublime Text, you should support the product and buy it:
+
+http://www.sublimetext.com/buy
+
+
+If you don't like it, or prefer to only use FOSS software, please delete it from
+your system by deleting the folder or running this command from a terminal:
+
+    rm -R ${HOME}/opt/Sublime Text 2
+
+
+
+NOTICE FROM THE SUBLIME TEXT WEBSITE:
+Sublime Text 2 may be downloaded and evaluated for free, however a license must
+be purchased for continued use. There is currently no enforced time limit
+for the evaluation.
+
+Please submit feature requests to http://sublimetext.userecho.com/.
+For notification about new versions, follow sublimehq on twitter.
+END
+
+fi
+
 #======================================| GEANY
 # INSTALL GEANY & SETUP FOR DRUPAL / WEB DEVELOPMENT
 # Geany is a small fast IDE (based on scintilla ... also what notepad++ is also built on)
