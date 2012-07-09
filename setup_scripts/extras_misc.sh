@@ -42,10 +42,15 @@ git config --global gui.editor geany
 git config --global merge.summary true
 git config --global merge.tool meld
 
+#======================================| Add Diodon Clipboard Manager PPA
+echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
+echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2
+sudo apt-get update
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia
+sudo apt-get install -yq synaptic xchat gnote guake gufw p7zip autokey-gtk bleachbit ardesia diodon diodon-plugins
 
 # Whitelist autokey for Unity panel
 if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
