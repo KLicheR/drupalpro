@@ -20,7 +20,7 @@ LAMP_APACHE="libapache2-mod-php5 php-pear"
 LAMP_PHP="php5 php-apc php5-cli php5-curl php5-gd php5-imap php5-mcrypt php5-xsl php5-sqlite"
 
 #======================================| Prepare MYSQL
-if [[ "${SQL_SERVER}" == "mysql" ]]; then
+if [[ "${SQL_SERVER}" == mysql ]]; then
   LAMP_MYSQL="mysql-server libmysqlclient18 mysql-common"
   echo mysql-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
   echo mysql-server-5.5 mysql-server/root_password_again  password ${MYSQL_PASS} | sudo debconf-set-selections
@@ -31,7 +31,7 @@ if [[ "${INSTALL_XDEBUG}" == true ]]; then
   LAMP_PHP="$LAMP_PHP php5-xdebug"
 fi
 #======================================| Prepare Mariadb
-if [[ "${SQL_SERVER}" == "mariadb" ]]; then
+if [[ "${SQL_SERVER}" == mariadb ]]; then
   echo 'deb http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
   echo 'deb-src http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
   sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
