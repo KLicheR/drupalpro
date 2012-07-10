@@ -8,49 +8,25 @@ AUTOREBOOT=true
 if [[ ${DEBUG} == true ]] && [[ ${EXTRA_DEBUG_INFO} == true ]]; then set -x -v; fi
 
 #======================================| USERS & PASSWORDS
+OVERRIDE_UBUNTU_SECURITY=true # @TODO: at the moment drush qc doesn't work without this.
+USER_USER=${USER}             # @TODO: prompt user to enter user/passwords
 USER_PASS=drupalpro
-MYSQL_PASS=drupalpro
 MYSQL_USER=root
-USER_USER=${USER}
+MYSQL_PASS=drupalpro
 
 #======================================| SERVER SETTINGS
 WWW_FQDN="localhost"          # used by apache setup
 WWW_SERVER="apache2"          # webserver to install (used by phpmyadmin)
-SQL_SERVER="mariadb"          # allowed values: mysql, mariadb
+SQL_SERVER="mariadb"          # allowed values: mysql, mariadb @TODO: add sqlite
 
-#======================================| PATHS TO (easy) LOG FILES
-WWW_ROOT="${HOME}/websites"
-LOGS="${WWW_ROOT}/logs"
-CONFIGS="${WWW_ROOT}/config"
-APP_FOLDER="${HOME}/opt"      # PATH TO PARENT FOLDER TO INSTALL APPLICATIONS & SCRIPTS
-HOSTSHARE="shared"            # FOLDER NAME TO ACCESS VBOX HOST FILES
+#======================================| PATHS
+WWW_ROOT="${HOME}/websites"   # Fullpath to where websites will be installed
+LOGS="${WWW_ROOT}/logs"       # Fullpath to where symlink to LAMP logfiles will be stored
+CONFIGS="${WWW_ROOT}/config"  # Fullpath to where symlink to LAMP config will be stored
+APP_FOLDER="${HOME}/Applications" # Fullpath installed user APPLICATIONS & SCRIPTS
+HOSTSHARE="shared"            # FOLDER NAME of share to access Virtualbox (host) files
 
-#======================================| DRUSH version to install
-DRUSH_VERSION="7.x-5.3"
-
-# Drush addons
-FEATHER="7.x-1.x"
-
-#======================================| Used for network testing
-PINGHOST1=google.com
-PINGHOST2=wikipedia.org
-PINGRESULTS=2
-
-#======================================| SETUP OPTIONAL SERVICES
-INSTALL_ETCKEEPER=true
-INSTALL_NETBEANS=true
-INSTALL_ECLIPSE=false
-INSTALL_APTANA=false          # Install and configure Geany
-INSTALL_SUBLIME=true          # Install and configure Sublime Text
-INSTALL_GEANY=true            # Install and configure Geany
-INSTALL_GEDIT=true            # Configure Gedit
-INSTALL_JRE=false             # Install JRE even if not installing Netbeans, Eclipse or Aptana
-INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
-INSTALL_XDEBUG=true           # Used for PHP debuging
-INSTALL_WEBGRIND=true         # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
-INSTALL_XHPROF=false          # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
-
-#======================================| REMOVE OPTIONAL SERVICES
+#======================================| Default Ubuntu apps that can be purged
 PURGE_OFFICE=true             # Libre Office
 PURGE_GAMES=true              # Standard Games
 PURGE_BLUETOOTH=true          # Bluetooth support
@@ -60,7 +36,46 @@ PURGE_ASYNC_COMM=true         # Async communications: microblog, email
 PURGE_RT_COMM=false           # Realtime communications: IM, VOIP, IRC
 PURGE_HELP=false              # Help documents
 PURGE_PRINT=false             # Printing system
+PURGE_ACCESSIBILITY=false     # This should be false if making an image for the public.
 
+#======================================| Add Optional Applications
+INSTALL_ETCKEEPER=true        # Keeps /etc/ folder under version control in order to track whats changed since vanilla setup.
+INSTALL_FIREWALL=true         # Install and setup Firewall
+INSTALL_JRE=false             # Optional. If needed JAVA will automatically be installed by Netbeans, Eclipse or Aptana
+# LAMP Developer tools
+INSTALL_DRUSH=true            # Install and configure Drush
+INSTALL_XDEBUG=true           # Used for PHP debuging
+INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
+INSTALL_WEBGRIND=true         # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
+INSTALL_XHPROF=false          # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
+# Editors / IDEs
+INSTALL_NETBEANS=true         # Install Nebeans, a JAVA IDE that support XDEBUG
+INSTALL_ECLIPSE=false         # Install Eclipse, a JAVA IDE that supports XDEBUG
+INSTALL_APTANA=false          # Install Aptana, a JAVA IDE, PHP/Python/Ruby/Web focussed commercial fork of eclipse.  @FIXME - may have SWT errors related to current JAVA stack
+INSTALL_GEDIT=true            # Configure Gedit
+INSTALL_GEANY=true            # Install and configure Geany
+INSTALL_BLUEFISH=true         # Install BLuefish HTML Editor (Similarities to Dreamweaver)
+INSTALL_SUBLIME=true          # NONFREE/TRIALWARE: Install and configure Sublime Text
+# Graphics / Theming
+INSTALL_GIMP=false            # Install gimp and icc-profiles-free
+INSTALL_INKSCAPE=false        # Install inkscape
+INSTALL_COMPASS=true          # Install Compass
+INSTALL_GRAPHIC_XTRAS=true    # Install Ardesia and Graphics Lens
+# Developer Utilities
+INSTALL_POWER_UTILS=true      # Install Diodon clipboard, Autokey, xchat, bleachbit, synaptic
+INSTALL_GIT_POWER=true        # Install GIT GUI, gitg, gitk, meld, nautilus-compare
+INSTALL_TERMINAL_UTILS=true   # Install grsync, nautilus-open-in-terminal, guake
+
+#======================================| DRUSH version to install
+DRUSH_VERSION="7.x-5.3"
+
+# Drush addons
+FEATHER="7.x-1.x"
+
+#======================================| Used for network testing during installation
+PINGHOST1=google.com
+PINGHOST2=wikipedia.org
+PINGRESULTS=2
 
 #======================================| WGET variables
 REFERER="http://www.drupal.org/project/DrupalPro"

@@ -55,32 +55,33 @@ For more information:
   $ drush help quickstart-destroy
   Or goto http://drupal.org/node/819398" > ${HOME}/websites/README.txt
 
-
 #======================================| Drush
-# Install drush
+if [[ ${INSTALL_DRUSH} == true ]]; then
+  # Install drush
 
-git clone http://git.drupal.org/project/drush.git
-cd ${APP_FOLDER}/drush
-git checkout $DRUSH_VERSION
+  cd ${APP_FOLDER}
+  git clone http://git.drupal.org/project/drush.git
+  cd ${APP_FOLDER}/drush
+  git checkout $DRUSH_VERSION
 
-#mdrmike @FIXME (don't need once pear install works):
-chmod u+x ${APP_FOLDER}/drush/drush
-sudo ln -s ${APP_FOLDER}/drush/drush /usr/local/bin/drush
+  #mdrmike @FIXME (don't need once pear install works):
+  chmod u+x ${APP_FOLDER}/drush/drush
+  sudo ln -s ${APP_FOLDER}/drush/drush /usr/local/bin/drush
 
-# Install drush make and drush site-install6
-mkdir ${HOME}/.drush
+  # Install drush make and drush site-install6
+  mkdir ${HOME}/.drush
 
-# Setup Drush
-ln -s ${HOME}/${DDD}/drush/quickstart ${HOME}/.drush/quickstart
-ln -s ${HOME}/${DDD}/make_templates/*.make "${HOME}/.drush"
-if [ -e ${APP_FOLDER}/drush/examples/example.drushrc.php ];
-  then cp ${APP_FOLDER}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
-  echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"
+  # Setup Quickstart Drush addon
+  ln -s ${HOME}/${DDD}/drush/quickstart ${HOME}/.drush/quickstart   # Links allow a git pull to update
+  ln -s ${HOME}/${DDD}/make_templates/*.make "${HOME}/.drush"
+  if [ -e ${APP_FOLDER}/drush/examples/example.drushrc.php ];
+    then cp ${APP_FOLDER}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
+    echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"
+  fi
+
+  # Install Feather (Drush addon)
+  git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ${HOME}/.drush/feather
 fi
-
-# Install Feather (Drush addon)
-git clone --recursive --branch ${FEATHER} http://git.drupal.org/project/feather.git ${HOME}/.drush/feather
-
 
 #======================================| Email catcher
 if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then

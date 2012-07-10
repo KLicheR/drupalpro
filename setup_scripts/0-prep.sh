@@ -58,10 +58,15 @@ echo "
 # ################## START_USER_CONFIG
 INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD}/setup_scripts/CONFIG"
 
-zenity --info --text="This script may take hours to run (depending on your hardware and internet bandwidth), plus multiple automated reboots (which requires AUTOMATIC USER LOGIN for an unattended setup).
+zenity --info --text="This script can take a long time to run, plus multiple automated reboots. At the end there are some manual steps, guided by popups like this.
 
-Towards the end, the process requires some manual steps, guided by popups like this. \nThis script shouldn't be run more than once.";
+Note: This script shouldn't be run more than once." &
 
+#======================================| Disk size Accounting
+# Starting size:
+if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
+  df -h -T > "${HOME}/${DDD}/setup_scripts/logs/size-start.log"
+fi
 #======================================| Install/Update some basics
 sudo apt-get ${APTGET_VERBOSE} install git wget curl
 
@@ -74,24 +79,26 @@ if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
   sudo sed -i 's/#AVOID_DAILY_AUTOCOMMITS=1/AVOID_DAILY_AUTOCOMMITS=1/g'  /etc/etckeeper/etckeeper.conf
   sudo etckeeper init
 fi
-
-## The last password you'll ever need.
-# add current user to sudoers file - careful, this line could brick the box.
-echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
-sudo chmod 0440 "/etc/sudoers.d/${DDD}"
-if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
-  sudo etckeeper commit "PERMISSIONS: ADD ${USER} to sudoers file - careful, this line could brick the box."
+if [[ ${INSTALL_FIREWALL} == true ]]; then
+  #======================================| Install and setup Firewall  @TODO: isolate samba ports for bridged subnet
+  sudo apt-get ${APTGET_VERBOSE} install gufw
+  sudo ufw enable
+  sudo ufw allow in proto tcp from any to any port 443
+  sudo ufw allow in proto tcp from any to any port 80
 fi
+if [[ ${OVERRIDE_UBUNTU_SECURITY} == true ]]; then
+  #======================================| The last password you'll ever need.
+  # add current user to sudoers file - careful, this line could brick the box.
+  echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee -a "/etc/sudoers.d/${DDD}" > /dev/null
+  sudo chmod 0440 "/etc/sudoers.d/${DDD}"
+  if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
+    sudo etckeeper commit "PERMISSIONS: ADD ${USER} to sudoers file - careful, this line could brick the box."
+  fi
 
-# Add current user to root 'group' to make it easier to edit config files
-# note: seems unsafe for anyone unaware.
-sudo adduser $USER root
-if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
-  sudo etckeeper commit "PERMISSIONS: ADD ${USER} to group 'root' to make it easier to edit config files"
-fi
-
-## Disk size Accounting
-# Starting size:
-if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
-  df -h -T > "${HOME}/${DDD}/setup_scripts/logs/size-start.log"
+  # Add current user to root 'group' to make it easier to edit config files
+  # note: seems unsafe for anyone unaware.
+  sudo adduser $USER root
+  if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
+    sudo etckeeper commit "PERMISSIONS: ADD ${USER} to group 'root' to make it easier to edit config files"
+  fi
 fi

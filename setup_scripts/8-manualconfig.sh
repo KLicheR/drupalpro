@@ -8,9 +8,10 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # Create example site.  This done after previous reboot to avoid error.
 cd ${HOME}/websites
-drush qc --domain=example7.dev
-drush qc --domain=example6.dev --makefile=d6.make
-
+if [[ ${INSTALL_DRUSH} == true ]]; then
+  drush qc --domain=example7.dev
+  drush qc --domain=example6.dev --makefile=d6.make
+fi
 
 firefox -CreateProfile temp &
 sleep 5
@@ -22,10 +23,10 @@ zenity --info --text="Firefox is starting in order to install FEBE.
 1) Install the FEBE extention.
 2) Once FEBE is installed, choose the option to RESTART Firefox.
 3) Next, choose Tools > FEBE > Restore Profile to restore the default profile using the file: ${HOME}/profileFx4{default}.fbu.\n
-4) Finally, close Firefox "
+4) Finally, close Firefox, then this dialog"
 
 firefox -ProfileManager &
-sleep 5
+sleep 2
 zenity --info --text="Firefox profile manager will start.\n1) Delete temp profile.\n2) THEN CLOSE MANAGER."
 #rm profileFx4{ddd}.fbu
 

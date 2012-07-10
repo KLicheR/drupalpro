@@ -66,6 +66,10 @@ if [ "${PURGE_PRINT}" = true ]; then
   # 15mb - Scanner drivers
   sudo apt-get ${APTGET_VERBOSE} purge sane-utils simple-scan libsane libsane-hpaio
 fi
+if [ "${PURGE_ACCESSIBILITY}" = true ]; then
+  #  12MB - ACCESSIBILITY APPLICATIONS
+  sudo apt-get ${APTGET_VERBOSE} purge gnome-orca gnome-accessibility-themes gnome-accessibility-themes-extras libgail-common qt-at-spi onboard
+fi
 
 sudo apt-get ${APTGET_VERBOSE} autoremove # autoremove is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed.
 sudo apt-get ${APTGET_VERBOSE} clean # clean clears out the local repository of retrieved package files. It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/.

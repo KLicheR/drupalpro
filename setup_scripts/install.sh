@@ -123,8 +123,6 @@ case "$STAGE" in
   reboot 50
   ;;
 "50")
-  ${HOME}/${DDD}/setup_scripts/extras_theming.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ extras_theming.sh"
   ${HOME}/${DDD}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD}/setup_scripts/logs/install.log
   check_errs "$?" "$_ 7-config.sh"
   reboot 60

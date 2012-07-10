@@ -8,12 +8,17 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| JRE
 # REQUIREMENT for Netbeans / Eclipse / Apatana
-if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_APTANA}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
+if [[ "${INSTALL_NETBEANS}" == true ]] || [[ "${INSTALL_ECLIPSE}" == true ]] || [[ "${INSTALL_APTANA}" == true ]] || [[ "${INSTALL_JRE}" == true ]]; then
   ## Install java - 100mb
   sudo apt-get ${APTGET_VERBOSE} install default-jre
 fi
 
 #======================================| Lightweight Editors
+#======================================| Bluefish
+if [[ "${INSTALL_BLUEFISH}" == true ]]; then
+  sudo apt-get ${APTGET_VERBOSE} install bluefish bluefish-data bluefish-plugins
+fi
+
 #======================================| GEDIT
 if [[ "${INSTALL_GEDIT}" == true ]]; then
   sudo apt-get ${APTGET_VERBOSE} install gedit-plugins
@@ -101,7 +106,7 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B3641232
   sudo apt-get update
 
-  sudo apt-get install -yq geany geany-common geany-plugin-addons
+  sudo apt-get ${APTGET_VERBOSE} install geany geany-common geany-plugin-addons
   mkdir -p ${HOME}/.config/geany/tags
 
   # GEANY: Extra color themes
