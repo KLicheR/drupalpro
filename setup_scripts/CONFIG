@@ -56,7 +56,8 @@ PURGE_GAMES=true              # Standard Games
 PURGE_BLUETOOTH=true          # Bluetooth support
 PURGE_MEDIA=true              # Audio and Video applications and unity lens'
 PURGE_MISC=true               # Various: screensaver, speech synthesis, bittorrent, ubuntuone, remote desktop, USB creator, driver UI,
-PURGE_SOCIAL=false            # IM, VOIP, gwibber, email clients
+PURGE_ASYNC_COMM=true         # Async communications: microblog, email
+PURGE_RT_COMM=false           # Realtime communications: IM, VOIP, IRC
 PURGE_HELP=false              # Help documents
 PURGE_PRINT=false             # Printing system
 

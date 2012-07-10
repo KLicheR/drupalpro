@@ -47,9 +47,14 @@ if [ "${PURGE_MISC}" = true ]; then
   #   Etc
   sudo apt-get ${APTGET_VERBOSE} purge usb-creator-gtk checkbox-gtk jockey-common jockey-gtk #computer-janitor-gtk
 fi
-if [ "${PURGE_SOCIAL}" = true ]; then
-  #  67.5mb - social, IM, mail
-  sudo apt-get ${APTGET_VERBOSE} purge telepathy-indicator folks-common telepathy-logger telepathy-gabble gwibber-service-identica thunderbird telepathy-haze empathy-common gwibber-service-twitter gwibber-service-facebook telepathy-idle empathy telepathy-salut libgwibber2 gwibber-service libfolks-eds25 thunderbird-globalmenu thunderbird-gnome-support gwibber libgwibber-gtk2 nautilus-sendto-empathy telepathy-mission-control-5
+if [ "${PURGE_ASYNC_COMM}" = true ]; then
+  #  Async communications: microblog client, email client
+  sudo apt-get ${APTGET_VERBOSE} purge empathy empathy-common nautilus-sendto-empathy telepathy-indicator folks-common telepathy-logger telepathy-gabble telepathy-haze telepathy-idle telepathy-salut telepathy-mission-control-5
+  sudo apt-get ${APTGET_VERBOSE} purge thunderbird thunderbird-globalmenu thunderbird-gnome-support evolution-data-server libfolks-eds25
+fi
+if [ "${PURGE_RT_COMM}" = true ]; then
+  # Realtime Communications: IM, VOIP, & IRC
+  sudo apt-get ${APTGET_VERBOSE} purge gwibber gwibber-service libgwibber-gtk2 gwibber-service-identica gwibber-service-twitter gwibber-service-facebook libgwibber2
 fi
 if [ "${PURGE_HELP}" = true ]; then
   # User guide
