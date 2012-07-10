@@ -177,6 +177,14 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   chmod +x ./netbeans.sh
   bash ./netbeans.sh --silent --nospacecheck
   rm netbeans.sh
+  # Test if desktop icon exists, if so then move installation to Applications folder since netbeans installs to HOME by default
+  if [[ -f "$HOME/.local/share/applications/${NETBEANS_ROOT}.desktop" ]];
+  then
+    # move netbeans to applicaitons folder
+    mv "${HOME}/${NETBEANS_ROOT}" "${APP_FOLDER}/${NETBEANS_ROOT}"
+    # and update paths in [Desktop Entry]
+    sed -i "s|${HOME}/${NETBEANS_ROOT}|${APP_FOLDER}/${NETBEANS_ROOT}|g" "$HOME/.local/share/applications/${NETBEANS_DESKTOP}.desktop"
+  fi
 
   # Download Netbeans preferences used for importing
   wget ${WGET_VERBOSE} -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"

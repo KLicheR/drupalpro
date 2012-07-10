@@ -86,6 +86,16 @@ if [ -d "${HOME}/Desktop/websites" ]; then gvfs-set-attribute -t stringv ${HOME}
 if [ -d "${WWW_ROOT}/config" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/config metadata::emblems system; fi
 if [ -d "${WWW_ROOT}/logs" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/logs metadata::emblems documents; fi
 
+#======================================| Remove uneeded folders
+if [[ "${REMOVE_DEFAULT_FOLDERS}" == true ]];
+  if [ -d "$HOME/Music" ]; then rm "$HOME/Music"; fi
+  if [ -d "$HOME/Pictures" ]; then rm "$HOME/Pictures"; fi
+  if [ -d "$HOME/Public" ]; then rm "$HOME/Public"; fi
+  if [ -d "$HOME/Templates" ]; then rm "$HOME/Templates"; fi
+  if [ -d "$HOME/Vidoes" ]; then rm "$HOME/Vidoes"; fi
+  if [ -f "$HOME/examples.desktop" ]; then rm "$HOME/examples.desktop"; fi
+fi
+
 # final size
 if [[ ${EXTRA_DEBUG_INFO} == true ]];
   df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log

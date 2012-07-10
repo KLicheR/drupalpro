@@ -27,27 +27,25 @@ APP_FOLDER="${HOME}/Applications" # Fullpath installed user APPLICATIONS & SCRIP
 HOSTSHARE="shared"            # FOLDER NAME of share to access Virtualbox (host) files
 
 #======================================| Default Ubuntu apps that can be purged
-PURGE_OFFICE=true             # Libre Office
-PURGE_GAMES=true              # Standard Games
-PURGE_BLUETOOTH=true          # Bluetooth support
-PURGE_MEDIA=true              # Audio and Video applications and unity lens'
-PURGE_MISC=true               # Various: screensaver, speech synthesis, bittorrent, ubuntuone, remote desktop, USB creator, driver UI,
-PURGE_ASYNC_COMM=true         # Async communications: microblog, email
+PURGE_OFFICE=false             # Libre Office
+PURGE_GAMES=false              # Standard Games
+PURGE_BLUETOOTH=false          # Bluetooth support
+PURGE_MEDIA=false              # Audio and Video applications and unity lens'
+PURGE_MISC=false               # Various: screensaver, speech synthesis, bittorrent, ubuntuone, remote desktop, USB creator, driver UI,
+PURGE_ASYNC_COMM=false         # Async communications: microblog, email
+# The followind default to false in DrupalPro image, but may be usesful to some people
 PURGE_RT_COMM=false           # Realtime communications: IM, VOIP, IRC
 PURGE_HELP=false              # Help documents
 PURGE_PRINT=false             # Printing system
 PURGE_ACCESSIBILITY=false     # This should be false if making an image for the public.
 
 #======================================| Add Optional Applications
-INSTALL_ETCKEEPER=true        # Keeps /etc/ folder under version control in order to track whats changed since vanilla setup.
-INSTALL_FIREWALL=true         # Install and setup Firewall
-INSTALL_JRE=false             # Optional. If needed JAVA will automatically be installed by Netbeans, Eclipse or Aptana
 # LAMP Developer tools
 INSTALL_DRUSH=true            # Install and configure Drush
 INSTALL_XDEBUG=true           # Used for PHP debuging
 INSTALL_EMAIL_CATCHER=true    # Redirects PHP email requests to a file. Prevents accidentally sending email while developing.
 INSTALL_WEBGRIND=true         # Requires XDEBUG. Webgrind is an Xdebug profiling web frontend in PHP5. It implements a subset of the features of kcachegrind and installs in seconds and works on all platforms. For quick'n'dirty optimizations it does the job.
-INSTALL_XHPROF=false          # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface.
+INSTALL_XHPROF=false          # XHProf is a function-level hierarchical profiler for PHP and has a simple HTML based user interface. @FIXME: not currently working?
 # Editors / IDEs
 INSTALL_NETBEANS=true         # Install Nebeans, a JAVA IDE that support XDEBUG
 INSTALL_ECLIPSE=false         # Install Eclipse, a JAVA IDE that supports XDEBUG
@@ -65,6 +63,11 @@ INSTALL_GRAPHIC_XTRAS=true    # Install Ardesia and Graphics Lens
 INSTALL_POWER_UTILS=true      # Install Diodon clipboard, Autokey, xchat, bleachbit, synaptic
 INSTALL_GIT_POWER=true        # Install GIT GUI, gitg, gitk, meld, nautilus-compare
 INSTALL_TERMINAL_UTILS=true   # Install grsync, nautilus-open-in-terminal, guake
+# Extra Configuration
+INSTALL_ETCKEEPER=true        # Keeps /etc/ folder under version control in order to track whats changed since vanilla setup.
+INSTALL_FIREWALL=true         # Install and setup Firewall
+INSTALL_JRE=false             # Optional. If needed JAVA will automatically be installed by Netbeans, Eclipse or Aptana
+REMOVE_DEFAULT_FOLDERS=false   # Remove default Ubuntu folders
 
 #======================================| DRUSH version to install
 DRUSH_VERSION="7.x-5.3"
@@ -100,12 +103,21 @@ FEBE_URL="https://dl.dropbox.com/u/6569361/ddd/profileFx4%7Bddd%7D.fbu"
 
 #====================| IDE RELATED
 # NETBEANS
-NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
-NETBEANS_PREF="https://dl.dropbox.com/u/6569361/ddd/netbeans-prefs.zip"
-# To not/install Netbeans beta, add/remove the comment below
-NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/rc/bundles/netbeans-7.2rc1-ml-php-linux.sh"
 
-# ECLIPSE http://www.eclipse.org/pdt/downloads/
+# Stable Netbeans Release
+#NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.1.2/final/bundles/netbeans-7.1.2-ml-php-linux.sh"
+#NETBEANS_ROOT="netbeans-7.1.2"
+#NETBEANS_DESKTOP="$NETBEANS_ROOT"
+
+# Latest Netbeans RC
+NETBEANS_URL="http://dlc.sun.com.edgesuite.net/netbeans/7.2/rc/bundles/netbeans-7.2rc1-ml-php-linux.sh"
+NETBEANS_ROOT="netbeans-7.2rc1"
+NETBEANS_DESKTOP="netbeans-7.2rc1"
+
+# Preferences file for Drupal coding
+NETBEANS_PREF="https://dl.dropbox.com/u/6569361/ddd/netbeans-prefs.zip"
+
+# ECLIPSE >> http://www.eclipse.org/pdt/downloads/
 if [ `uname -p` == "x86_64" ]
 then
   ECLIPSE_URL="http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/helios/SR2/eclipse-php-helios-SR2-linux-gtk-x86_64.tar.gz"
