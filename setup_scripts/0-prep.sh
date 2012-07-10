@@ -67,7 +67,7 @@ sudo apt-get ${APTGET_VERBOSE} install git wget curl
 
 #======================================| Install Etckeeper to track config changes
 if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
-  sudo apt-get ${APTGET_VERBOSE} etckeeper
+  sudo apt-get ${APTGET_VERBOSE} install etckeeper
   #configure etckeeper to use git and avoid uneccesarry commits, then initialize
   sudo sed -i 's/#VCS="git"/VCS="git"/g'          /etc/etckeeper/etckeeper.conf
   sudo sed -i 's/VCS="bzr"/#VCS="bzr"/g'          /etc/etckeeper/etckeeper.conf
