@@ -33,6 +33,26 @@ if [[ "${INSTALL_GEDIT}" == true ]]; then
   gconftool-2 -s /apps/gedit-2/preferences/editor/tabs/insert_spaces --type=bool true
   gconftool-2 -s /apps/gedit-2/preferences/editor/tabs/tabs_size --type=integer 2
   gconftool-2 -s /apps/gedit-2/preferences/editor/save/auto_save --type=bool true
+
+  # Config gedit in gnome3 / unity
+  gsettings set org.gnome.gedit.preferences.editor auto-indent true
+  gsettings set org.gnome.gedit.preferences.editor bracket-matching true
+  gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
+  gsettings set org.gnome.gedit.preferences.editor display-right-margin true
+  gsettings set org.gnome.gedit.preferences.editor editor-font 'Monospace 12'
+  gsettings set org.gnome.gedit.preferences.editor ensure-trailing-newline true
+  gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
+  gsettings set org.gnome.gedit.preferences.editor insert-spaces true
+  gsettings set org.gnome.gedit.preferences.editor right-margin-position 80
+  gsettings set org.gnome.gedit.preferences.editor scheme 'classic'
+  gsettings set org.gnome.gedit.preferences.editor syntax-highlighting true
+  gsettings set org.gnome.gedit.preferences.editor tabs-size 2
+  gsettings set org.gnome.gedit.preferences.editor wrap-mode 'none'
+  gsettings set org.gnome.gedit.plugins active-plugins "['bookmarks', 'bracketcompletion', 'codecomment', 'dashboard', 'snippets', 'filebrowser', 'spell', 'modelines', 'colorpicker', 'wordcompletion', 'zeitgeistplugin', 'sessionsaver', 'time', 'docinfo', 'multiedit']"
+  gsettings set org.gnome.gedit.plugins.filebrowser enable-remote false
+  gsettings set org.gnome.gedit.preferences.ui bottom-panel-visible false
+  gsettings set org.gnome.gedit.preferences.ui side-panel-visible true
+  gsettings set org.gnome.gedit.preferences.ui statusbar-visible true
 fi
 
 #======================================| SUBLIME TEXT 2
