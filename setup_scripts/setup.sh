@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+clear   #clear screen
 # See README.txt for more information
 #
 #     To install Drupal Development Desktop:
