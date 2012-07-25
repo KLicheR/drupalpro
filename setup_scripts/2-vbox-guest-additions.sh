@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| SETUP KERNEL
@@ -43,3 +43,6 @@ If you are seeing this file, then Virtualbox shared folders are not setup correc
 
 When completed correctly, this file will disappear and you'll have access to files on the host.
 END
+
+stage_finished=0
+exit "$stage_finished"

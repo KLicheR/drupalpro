@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 ## Some configuration
@@ -43,14 +43,14 @@ APT::Periodic::Unattended-Upgrade \"1\";
 #======================================| Replace localhost/index.html
 # Add interesting default document for localhost
 sudo rm /var/www/index.html
-sudo cp "${HOME}/${DDD}/config/index.php" /var/www/index.php
+sudo cp "${HOME}/${DDD_PATH}/config/index.php" /var/www/index.php
 sudo chmod -R u=rwX,g=rX,o= /var/www
 sudo chown -R $USER:www-data /var/www
 
 #======================================| Command line shortcuts (bash aliases)
 
 # Don't sudo here...
-cat "${HOME}/${DDD}/config/ddd_bash_aliases" >> ${HOME}/.bash_aliases
+cat "${HOME}/${DDD_PATH}/config/ddd_bash_aliases" >> ${HOME}/.bash_aliases
 
 
 #======================================| Desktop shortcuts
@@ -78,16 +78,17 @@ chmod 750 "${HOME}/Desktop/drupalpro-issues.desktop"
 ln -s "${WWW_ROOT}" ${HOME}/Desktop/websites
 
 #======================================| Add Nautilus Emblems
-if [ -d "${APP_FOLDER}" ]; then gvfs-set-attribute -t stringv ${APP_FOLDER} metadata::emblems development; fi
-if [ -d "${HOME}/Desktop/${HOSTSHARE}" ]; then gvfs-set-attribute -t stringv ${HOME}/Desktop/${HOSTSHARE} metadata::emblems shared; fi
-if [ -d "${HOME}/${DDD}" ]; then gvfs-set-attribute -t stringv ${HOME}/${DDD} metadata::emblems development; fi
-if [ -d "${WWW_ROOT}" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT} metadata::emblems web; fi
-if [ -d "${HOME}/Desktop/websites" ]; then gvfs-set-attribute -t stringv ${HOME}/Desktop/websites metadata::emblems web; fi
-if [ -d "${WWW_ROOT}/config" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/config metadata::emblems system; fi
-if [ -d "${WWW_ROOT}/logs" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/logs metadata::emblems documents; fi
-
+if [[ "${ADD_NAUTILUS_EMBLEMS}" == true ]]; then
+  if [ -d "${APP_FOLDER}" ]; then gvfs-set-attribute -t stringv ${APP_FOLDER} metadata::emblems development; fi
+  if [ -d "${HOME}/Desktop/${HOSTSHARE}" ]; then gvfs-set-attribute -t stringv ${HOME}/Desktop/${HOSTSHARE} metadata::emblems shared; fi
+  if [ -d "${HOME}/${DDD_PATH}" ]; then gvfs-set-attribute -t stringv ${HOME}/${DDD_PATH} metadata::emblems development; fi
+  if [ -d "${WWW_ROOT}" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT} metadata::emblems web; fi
+  if [ -d "${HOME}/Desktop/websites" ]; then gvfs-set-attribute -t stringv ${HOME}/Desktop/websites metadata::emblems web; fi
+  if [ -d "${WWW_ROOT}/config" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/config metadata::emblems system; fi
+  if [ -d "${WWW_ROOT}/logs" ]; then gvfs-set-attribute -t stringv ${WWW_ROOT}/logs metadata::emblems documents; fi
+fi
 #======================================| Remove uneeded folders
-if [[ "${REMOVE_DEFAULT_FOLDERS}" == true ]];
+if [[ "${REMOVE_DEFAULT_FOLDERS}" == true ]]; then
   if [ -d "$HOME/Music" ]; then rm "$HOME/Music"; fi
   if [ -d "$HOME/Pictures" ]; then rm "$HOME/Pictures"; fi
   if [ -d "$HOME/Public" ]; then rm "$HOME/Public"; fi
@@ -97,7 +98,7 @@ if [[ "${REMOVE_DEFAULT_FOLDERS}" == true ]];
 fi
 
 # final size
-if [[ ${EXTRA_DEBUG_INFO} == true ]];
-  df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
+  df -h -T > ${HOME}/${DDD_PATH}/setup_scripts/logs/size-end.log
 fi
 

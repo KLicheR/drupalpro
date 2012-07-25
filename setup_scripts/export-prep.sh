@@ -39,7 +39,7 @@ find ${HOME} -name "cache" -print0 | xargs -0 -I {} find {} -type f | xargs /bin
 
 
 #clear logs
-sudo logrotate -f -s ${HOME}/${DDD}/setup_scripts/logs/logrotate-status.log ${HOME}/${DDD}/config/clear-all-logs.conf
+sudo logrotate -f -s ${HOME}/${DDD_PATH}/setup_scripts/logs/logrotate-status.log ${HOME}/${DDD_PATH}/config/clear-all-logs.conf
 sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
 
 # Zero-fill unused sectors on vm disk

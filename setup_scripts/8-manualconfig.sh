@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # Create example site.  This done after previous reboot to avoid error.
@@ -35,10 +35,10 @@ zenity --info --text="Firefox profile manager will start.\n1) Delete temp profil
 
 # final size
 if [ "${EXTRA_DEBUG_INFO}" = true ]; then
-  df -h -T > ${HOME}/${DDD}/setup_scripts/logs/size-end.log
+  df -h -T > ${HOME}/${DDD_PATH}/setup_scripts/logs/size-end.log
 fi
 
 # Manual config instructions.
-firefox ${HOME}/${DDD}/config/manualconfig.txt
+firefox ${HOME}/${DDD_PATH}/config/manualconfig.txt
 
 

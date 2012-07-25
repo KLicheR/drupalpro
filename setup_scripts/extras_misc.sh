@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # Install some useful utilities for developing & theming in Ubuntu
@@ -106,6 +106,17 @@ gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
 gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
 
+#======================================| INSTALL EXTRA INDICATORS
+if [ "${INSTALL_EXTRA_INDICATORS}" ]; then
+  new_indicators=""
+  sudo apt-add-repository -y ppa:indicator-multiload/stable-daily && new_indicators="${new_indicators}indicator-multiload "
+  sudo apt-add-repository -y ppa:kilian/f.lux                     && new_indicators="${new_indicators}fluxgui "
+  #sudo apt-add-repository -y
+  #sudo apt-add-repository -y
+  #sudo apt-add-repository -y
+  sudo apt-get update
+  sudo apt-get ${APTGET_VERBOSE} install "${new_indicators}"
+fi
 
 #======================================| FIREFOX
 # Install flash-plugin browser

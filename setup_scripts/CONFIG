@@ -63,11 +63,13 @@ INSTALL_GRAPHIC_XTRAS=true    # Install Ardesia and Graphics Lens
 INSTALL_POWER_UTILS=true      # Install Diodon clipboard, Autokey, xchat, bleachbit, synaptic
 INSTALL_GIT_POWER=true        # Install GIT GUI, gitg, gitk, meld, nautilus-compare
 INSTALL_TERMINAL_UTILS=true   # Install grsync, nautilus-open-in-terminal, guake
+INSTALL_EXTRA_INDICATORS=false # Install additional PPA's to enable indicators for: system load, recent notifications, FluxGui, google tasks, google drive
 # Extra Configuration
 INSTALL_ETCKEEPER=true        # Keeps /etc/ folder under version control in order to track whats changed since vanilla setup.
 INSTALL_FIREWALL=true         # Install and setup Firewall
 INSTALL_JRE=false             # Optional. If needed JAVA will automatically be installed by Netbeans, Eclipse or Aptana
 REMOVE_DEFAULT_FOLDERS=false   # Remove default Ubuntu folders
+ADD_NAUTILUS_EMBLEMS=false     # Add emblems to folders in Nautilus @FIXME: not currently working in a script
 
 #======================================| DRUSH version to install
 DRUSH_VERSION="7.x-5.3"
@@ -89,10 +91,11 @@ HEAD3="Accept-Encoding: gzip,deflate"
 HEAD4="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7"
 HEAD5="Keep-Alive: 300"
 # If debugging then turn on WGET debug output
-if [[ ${DEBUG} == true ]];
-  then WGET_VERBOSE=""
+if [[ ${DEBUG} == true ]]; then
+  WGET_VERBOSE=""
   if [[ ${EXTRA_DEBUG_INFO} == true ]];then WGET_VERBOSE="-v";fi
-  else WGET_VERBOSE="-nv"
+  else
+  WGET_VERBOSE="-nv"
 fi
 
 # XHPROF
@@ -138,9 +141,10 @@ fi
 # Sublime Text 2
 if [ `uname -p` == "x86_64" ]
 then
-  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0%20x64.tar.bz2"
+  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2"
 else
-  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.tar.bz2"
+  # 32-bit
+  SUBLIME_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2"
 fi
 
 # GEANY add-ons
@@ -165,11 +169,15 @@ CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd -P "${CWD}"
 cd ..
 export DDD=${PWD##*/}
+export DDD_PATH=${PWD#"$HOME/"}
 
 # If debugging, figure out appropriate APTGET debug output
-if [[ ${EXTRA_DEBUG_INFO} == true ]];
-  then APTGET_VERBOSE="-yq"
-  else APTGET_VERBOSE="-yqq"
+if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
+  APTGET_VERBOSE="-yq"
+  else
+  APTGET_VERBOSE="-yqq"
 fi
+
+stage_finished=99
 
 #======================================| RUNTIME VARIABLES AFTER THIS POINT
