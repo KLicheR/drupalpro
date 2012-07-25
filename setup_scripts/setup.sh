@@ -14,7 +14,7 @@ set -e
 # Make sure you have edited this file
 # CWD based on http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 CWD="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${CWD}"/CONFIG
+source "${CWD}"/config.ini
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| Error Checking

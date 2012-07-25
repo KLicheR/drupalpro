@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # Create example site.  This done after previous reboot to avoid error.

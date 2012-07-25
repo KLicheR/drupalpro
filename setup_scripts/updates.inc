@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 sudo chmod 0440 "/etc/sudoers.d/${DDD}"

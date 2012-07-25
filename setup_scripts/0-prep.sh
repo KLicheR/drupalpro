@@ -14,7 +14,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 
@@ -56,7 +56,7 @@ fi
 #======================================| SAVE INSTALLATION TYPE
 echo "
 # ################## START_USER_CONFIG
-INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
+INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 
 zenity --info --text="This script can take a long time to run, plus multiple automated reboots. At the end there are some manual steps, guided by popups like this.
 
@@ -90,7 +90,7 @@ if [[ ${OVERRIDE_UBUNTU_SECURITY} == true ]]; then
   #======================================| The last password you'll ever need.
   # add current user to sudoers file - careful, this line could brick the box.
   clear
-  echo "WARNING:  THIS WILL OVERRIDE DEFAULT UBUNTU SECURITY.  IF YOU DON'T WANT TO DO THIS, PRESS CTRL-C AND EDIT THE FILE: 'CONFIG'
+  echo "WARNING:  THIS WILL OVERRIDE DEFAULT UBUNTU SECURITY.  IF YOU DON'T WANT TO DO THIS, PRESS CTRL-C AND EDIT THE FILE: 'config.ini'
 
   THEN CHANGE
   from: OVERRIDE_UBUNTU_SECURITY=true

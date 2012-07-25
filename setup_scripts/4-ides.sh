@@ -3,7 +3,7 @@ set -e
 
 #======================================| Import Variables
 # Make sure you have edited this file
-source "${HOME}/${DDD_PATH}/setup_scripts/CONFIG"
+source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| JRE
@@ -198,7 +198,7 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   bash ./netbeans.sh --silent --nospacecheck
   rm netbeans.sh
   # Test if desktop icon exists, if so then move installation to Applications folder since netbeans installs to HOME by default
-  if [[ -f "$HOME/.local/share/applications/${NETBEANS_ROOT}.desktop" ]]; then
+  if [[ -f "$HOME/.local/share/applications/${NETBEANS_DESKTOP}.desktop" ]]; then
     # move netbeans to applicaitons folder
     mv "${HOME}/${NETBEANS_ROOT}" "${APP_FOLDER}/${NETBEANS_ROOT}"
     # and update paths in [Desktop Entry]
