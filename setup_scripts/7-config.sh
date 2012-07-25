@@ -102,3 +102,5 @@ if [[ ${EXTRA_DEBUG_INFO} == true ]]; then
   df -h -T > ${HOME}/${DDD_PATH}/setup_scripts/logs/size-end.log
 fi
 
+stage_finished=0
+exit "$stage_finished"

@@ -193,3 +193,6 @@ sudo adduser $USER www-data
 
 sudo /etc/init.d/mysql restart      #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 sudo /etc/init.d/apache2 restart    #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
+
+stage_finished=0
+exit "$stage_finished"

@@ -41,4 +41,5 @@ fi
 # Manual config instructions.
 firefox ${HOME}/${DDD_PATH}/resources/manualconfig.txt
 
-
+stage_finished=0
+exit "$stage_finished"

@@ -11,3 +11,5 @@ cd ${HOME}/${DDD_PATH}
 git pull
 bash "setup_scripts/updates.inc"
 
+stage_finished=0
+exit "$stage_finished"

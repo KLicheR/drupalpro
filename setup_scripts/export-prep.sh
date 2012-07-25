@@ -46,3 +46,6 @@ sudo find /var/log/ -name '*.gz' -type f -print0 -exec rm '{}' \;
 # Zero-filled sectors compress very nice :-)
 # No need to export sectors for files that could be "undeleted"
 sudo dd if=/dev/zero of=/zerofile; sudo rm /zerofile
+
+stage_finished=0
+exit "$stage_finished"

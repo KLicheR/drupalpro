@@ -14,3 +14,5 @@ else
   echo "Successfully completed updated 7.x-3.x-beta1-update10" | tee -a ${HOME}/${DDD_PATH}/logs/update.log
 fi
 
+stage_finished=0
+exit "$stage_finished"

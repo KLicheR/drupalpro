@@ -147,3 +147,6 @@ fi
 # Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
 # sudo apt-get ${APTGET_VERBOSE} install chromium-browser
 # sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
+
+stage_finished=0
+exit "$stage_finished"

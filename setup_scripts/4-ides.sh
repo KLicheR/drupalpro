@@ -208,3 +208,6 @@ if [[ "${INSTALL_NETBEANS}" == true ]]; then
   # Download Netbeans preferences used for importing
   wget ${WGET_VERBOSE} -O ${HOME}/Desktop/netbeans-prefs.zip --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${NETBEANS_PREF}"
 fi
+
+stage_finished=0
+exit "$stage_finished"
