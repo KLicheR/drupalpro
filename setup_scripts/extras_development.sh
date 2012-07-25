@@ -72,8 +72,8 @@ if [[ ${INSTALL_DRUSH} == true ]]; then
   mkdir ${HOME}/.drush
 
   # Setup Quickstart Drush addon
-  ln -s ${HOME}/${DDD_PATH}/drush/quickstart ${HOME}/.drush/quickstart   # Links allow a git pull to update
-  ln -s ${HOME}/${DDD_PATH}/drush/make_templates/*.make "${HOME}/.drush"
+  ln -s ${HOME}/${DDD_PATH}/drush_addons/quickstart ${HOME}/.drush/quickstart   # Links allow a git pull to update
+  ln -s ${HOME}/${DDD_PATH}/drush_addons/make_templates/*.make "${HOME}/.drush"
   if [ -e ${APP_FOLDER}/drush/examples/example.drushrc.php ];
     then cp ${APP_FOLDER}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
     echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"

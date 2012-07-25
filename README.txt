@@ -1,6 +1,6 @@
 Project Page: http://drupal.org/project/drupalpro
 
-Before installation, customize settings to your liking: CONFIG
+Before installation, review and customize settings: config.ini
 Installation: /PATH/TO/drupalpro/setup_scripts/setup.sh
 
 Support:      IRC:          #drupalpro
@@ -15,8 +15,7 @@ Known Issues: The first few times you run the machine after install, there is a
 Folders
 =======
 contrib         = Community contributed utility scripts
-drush           = Useful Drush add-ons
-make_templates  = Used during setup by setup_scripts to prepare drush environment
+drush_addons    = Useful Drush add-ons
 setup_scripts   = Run in clean ubuntu environment to setup Drupal Development
                   Desktop (DDD).  Care should be used if attempting to run on a
                   physical machine.  Although the scripts will (likely/mostly)

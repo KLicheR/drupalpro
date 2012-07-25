@@ -22,12 +22,12 @@ function check_errs() {
   # Parameter 1 is the return code
   # Parameter 2 is text to display on failure.
   if [ "${1}" -ne "0" ]; then
-    echo "ERROR # ${1} : ${2}
+    echo "ERROR # ${1} : ${2} : ${3}
     " | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
     # as a bonus, return with the right error code.
     return ${1}
   else
-    echo "STAGE $STAGE ${2} SUCCESSFUL.  Exit code: ${1}
+    echo "STAGE $STAGE ${2} - ${3} SUCCESSFUL.  Exit code: ${1}
     " | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
     return 0
   fi
