@@ -39,6 +39,6 @@ if [ "${EXTRA_DEBUG_INFO}" = true ]; then
 fi
 
 # Manual config instructions.
-firefox ${HOME}/${DDD_PATH}/config/manualconfig.txt
+firefox ${HOME}/${DDD_PATH}/resources/manualconfig.txt
 
 

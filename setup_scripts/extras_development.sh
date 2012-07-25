@@ -73,7 +73,7 @@ if [[ ${INSTALL_DRUSH} == true ]]; then
 
   # Setup Quickstart Drush addon
   ln -s ${HOME}/${DDD_PATH}/drush/quickstart ${HOME}/.drush/quickstart   # Links allow a git pull to update
-  ln -s ${HOME}/${DDD_PATH}/make_templates/*.make "${HOME}/.drush"
+  ln -s ${HOME}/${DDD_PATH}/drush/make_templates/*.make "${HOME}/.drush"
   if [ -e ${APP_FOLDER}/drush/examples/example.drushrc.php ];
     then cp ${APP_FOLDER}/drush/examples/example.drushrc.php ${HOME}/.drush/drushrc.php
     echo "\$command_specific['make']= array('working-copy' => TRUE);" >> "${HOME}/.drush/drushrc.php"
@@ -89,7 +89,7 @@ if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then
   mkdir -p "${LOGS}/mail"
   chmod -R ug=rwX,o= "${LOGS}/mail"
   sudo sed -i 's|'";sendmail_path ="'|'"sendmail_path = ${CONFIGS}/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-  chmod +x ${HOME}/${DDD_PATH}/config/sendmail.php
+  chmod +x ${HOME}/${DDD_PATH}/resources/sendmail.php
 fi
 
 

@@ -6,7 +6,7 @@ set -e
 #     To install Drupal Development Desktop:
 #
 #     1) Open a terminal window in the virtual machine (Applications->Accessories->Terminal)
-#     2) bash ${HOME}/${DDD_PATH}/setup_scripts/install.sh
+#     2) bash ${HOME}/${DDD_PATH}/setup_scripts/setup.sh
 #
 
 
@@ -36,7 +36,7 @@ function check_errs() {
 #======================================| Reboot functions
 function reboot() {
   # update .profile file to continue the next step of the script.
-  echo "gnome-terminal -x bash -c \"${HOME}/${DDD_PATH}/setup_scripts/install.sh $1\" &" >> ${HOME}/.profile
+  echo "gnome-terminal -x bash -c \"${HOME}/${DDD_PATH}/setup_scripts/setup.sh $1\" &" >> ${HOME}/.profile
   echo "*** REBOOTING ***" | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   echo "
 

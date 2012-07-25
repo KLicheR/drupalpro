@@ -43,14 +43,14 @@ APT::Periodic::Unattended-Upgrade \"1\";
 #======================================| Replace localhost/index.html
 # Add interesting default document for localhost
 sudo rm /var/www/index.html
-sudo cp "${HOME}/${DDD_PATH}/config/index.php" /var/www/index.php
+sudo cp "${HOME}/${DDD_PATH}/resources/index.php" /var/www/index.php
 sudo chmod -R u=rwX,g=rX,o= /var/www
 sudo chown -R $USER:www-data /var/www
 
 #======================================| Command line shortcuts (bash aliases)
 
 # Don't sudo here...
-cat "${HOME}/${DDD_PATH}/config/ddd_bash_aliases" >> ${HOME}/.bash_aliases
+cat "${HOME}/${DDD_PATH}/resources/ddd_bash_aliases" >> ${HOME}/.bash_aliases
 
 
 #======================================| Desktop shortcuts

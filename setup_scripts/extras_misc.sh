@@ -16,6 +16,7 @@ if [[ ${INSTALL_GRAPHIC_XTRAS} == true ]]; then
   echo 'deb http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010
+  sudo apt-get update
   sudo apt-get ${APTGET_VERBOSE} install ardesia unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia
 fi
 if [[ ${INSTALL_POWER_UTILS} == true ]]; then
@@ -26,8 +27,9 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2
-
+  sudo apt-get update
   #======================================| Diodon clipboard and Autokey automation
+
   sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk
   # Whitelist autokey for Unity panel
   if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then

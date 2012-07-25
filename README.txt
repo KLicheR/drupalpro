@@ -1,10 +1,10 @@
 Project Page: http://drupal.org/project/drupalpro
 
-Before installation, customize settings to your liking in the file: CONFIG
-Installation: ~/drupalpro/setup_scripts/install.sh
+Before installation, customize settings to your liking: CONFIG
+Installation: /PATH/TO/drupalpro/setup_scripts/setup.sh
 
-Support:      IRC:  #drupalpro
-              Issue Queue:
+Support:      IRC:          #drupalpro
+              Issue Queue:  http://drupal.org/project/issues/drupalpro
 
 Known Issues: The first few times you run the machine after install, there is a
               "popup error" related to unity.  It goes away.  There are probably
@@ -14,7 +14,6 @@ Known Issues: The first few times you run the machine after install, there is a
 
 Folders
 =======
-config          = Used during setup by setup_scripts for general preparation
 contrib         = Community contributed utility scripts
 drush           = Useful Drush add-ons
 make_templates  = Used during setup by setup_scripts to prepare drush environment
@@ -24,5 +23,5 @@ setup_scripts   = Run in clean ubuntu environment to setup Drupal Development
                   work, DDD is currently less secure than a normal Ubuntu install
                   and is intended to run behind a firewall on your PC.
 
-                    Installation:   ~/drupalpro/install.sh
-                    Update:         ~/drupalpro/update.sh
+                    Installation:   /PATH/TO/drupalpro/setup_scripts/setup.sh
+                    Update:         /PATH/TO/drupalpro/setup_scripts/update.sh

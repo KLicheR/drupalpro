@@ -66,7 +66,7 @@ INSTALL_TERMINAL_UTILS=true   # Install grsync, nautilus-open-in-terminal, guake
 INSTALL_EXTRA_INDICATORS=false # Install additional PPA's to enable indicators for: system load, recent notifications, FluxGui, google tasks, google drive
 # Extra Configuration
 INSTALL_ETCKEEPER=true        # Keeps /etc/ folder under version control in order to track whats changed since vanilla setup.
-INSTALL_FIREWALL=true         # Install and setup Firewall
+INSTALL_FIREWALL=false         # Install and setup Firewall
 INSTALL_JRE=false             # Optional. If needed JAVA will automatically be installed by Netbeans, Eclipse or Aptana
 REMOVE_DEFAULT_FOLDERS=false   # Remove default Ubuntu folders
 ADD_NAUTILUS_EMBLEMS=false     # Add emblems to folders in Nautilus @FIXME: not currently working in a script
