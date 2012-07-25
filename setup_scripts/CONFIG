@@ -72,7 +72,7 @@ REMOVE_DEFAULT_FOLDERS=false   # Remove default Ubuntu folders
 ADD_NAUTILUS_EMBLEMS=false     # Add emblems to folders in Nautilus @FIXME: not currently working in a script
 
 #======================================| DRUSH version to install
-DRUSH_VERSION="7.x-5.3"
+DRUSH_VERSION="7.x-5.4"
 
 # Drush addons
 FEATHER="7.x-1.x"
