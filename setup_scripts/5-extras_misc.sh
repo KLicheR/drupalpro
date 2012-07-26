@@ -1,69 +1,109 @@
 #!/bin/bash
 set -e
 
+#======================================| Theming Tools & Desktop Utilities
 #======================================| Import Variables
 # Make sure you have edited this file
 source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# Install some useful utilities for developing & theming in Ubuntu
-# Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get update
-testlock
-sudo apt-get ${APTGET_VERBOSE} install gnome-activity-journal p7zip gnote
 
+#======================================| PART1
+#======================================| Setup PPA's and install
 if [[ ${INSTALL_GRAPHIC_XTRAS} == true ]]; then
+  GRAPHIC_PKS="ardesia unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia"
   #======================================| Add Unity Scopes PPA
   echo 'deb http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010
-  testlock
-  sudo apt-get update
-  testlock
-  sudo apt-get ${APTGET_VERBOSE} install ardesia unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia
+  Update_APT=1
 fi
 if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   # power utils
-  sudo apt-get ${APTGET_VERBOSE} install synaptic bleachbit
-
+  PWR_UTLS_PKS="synaptic bleachbit diodon diodon-plugins autokey-gtk xchat"
   #======================================| Add Diodon Clipboard Manager PPA
   echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2
-  testlock
-  sudo apt-get update
-  testlock
-  #======================================| Diodon clipboard and Autokey automation
+  Update_APT=1
+fi
+if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
+  TERMINAL_PKS="install guake nautilus-open-terminal grsync"
+fi
+if [[ ${INSTALL_GIT_POWER} == true ]]; then
+  #======================================| Add GIT tools
+  GIT_PKS="gitg meld git-gui gitk nautilus-compare"
+fi
+#======================================| INSTALL EXTRA INDICATORS
+if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then
+  unset new_indicators
+  sudo apt-add-repository -y ppa:alanbell/unity && new_indicators+="unity-window-quicklists"" "
+  sudo apt-add-repository -y ppa:bhdouglass/indicator-remindor && new_indicators+="indicator-remindor"" "
+  sudo add-apt-repository -y ppa:indicator-multiload/stable-daily && new_indicators+="indicator-multiload"" "
+  Update_APT=1
+fi
+# Install flash-plugin browser
+FLASH_PKS="flashplugin-installer"
+if [[ ${INSTALL_GIMP} == true ]]; then
+  # Install graphics editors - weights about 25mb
+  GIMP_PKS="gimp gimp-data gimp-extras icc-profiles-free" #  @TODO: suggest to user of non-free icc profiles
+  # sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+  # setup gimp ppa
+  echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
+  echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38
+  Update_APT=1
+fi
+if [[ ${INSTALL_INKSCAPE} == true ]]; then
+  INKSCAPE_PKS="inkscape"
+fi
+if [[ ${INSTALL_COMPASS} == true ]]; then
+  # Install compass (which needs ruby)
+  sudo apt-get ${APTGET_VERBOSE} install ruby1.9.1
+  sudo gem1.9.1 install compass
+fi
+# Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
+# sudo apt-get ${APTGET_VERBOSE} install chromium-browser
+# sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
 
-  sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk
-  testlock
+if [ "$Update_APT" -gt 0 ]; then
+  sudo apt-get update
+fi
+
+#======================================| Install packages
+sudo apt-get ${APTGET_VERBOSE} install gnome-activity-journal p7zip gnote &
+wait
+sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${new_indicators} ${GIMP_PKS} ${FLASH_PKS}
+
+
+
+#======================================| PART2
+#======================================| Add some nice Configurations
+
+if [[ ${INSTALL_POWER_UTILS} == true ]]; then
+  #======================================| Diodon clipboard and Autokey automation
   # Whitelist autokey for Unity panel
   if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
     echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
-  else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'autokey-gtk\']`"; fi
+  else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'autokey-gtk\']`";
+  fi
 
   #======================================| Xchat IRC
-  sudo apt-get ${APTGET_VERBOSE} install xchat
-  testlock
   # Whitelist xchat for Unity panel
   if grep -iq 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
     echo "'xchat' already exists in the Unity panel whitelist. Nothing to do here.";
   else echo "Adding 'xchat' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'xchat\']`"; fi
 fi
 if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
-  sudo apt-get ${APTGET_VERBOSE} install guake nautilus-open-terminal grsync
-  testlock
-  #Set default values for guake
-  gconftool -s /apps/guake/keybindings/global/show_hide --type=string "F4"
-  gconftool -s /apps/guake/general/history_size --type=int 8192
-  gconftool -s /apps/guake/style/background/transparency --type=int 10
-  gconftool -s /apps/guake/general/window_losefocus --type=bool true
-  gconftool -s /apps/guake/style/font/style --type=string "Monospace 13"
+  #Change Defaults for guake
+  gconftool -s /apps/guake/keybindings/global/show_hide --type=string "F4"      # Change to F4 since F12 means firebug/dev utilities in most browsers
+  gconftool -s /apps/guake/general/history_size --type=int 8192                 # more history
+  gconftool -s /apps/guake/style/background/transparency --type=int 10          # Easier to see
+  gconftool -s /apps/guake/general/window_ontop --type=bool false               # Alow dialog pop-ups to take focus
+  gconftool -s /apps/guake/style/font/style --type=string "Monospace 13"        # Easier to see
 fi
 if [[ ${INSTALL_GIT_POWER} == true ]]; then
-  #======================================| Add GIT tools and configure GIT
-  sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk nautilus-compare
-  testlock
+  #======================================| configure GIT Tools
   # mostly based off http://cheat.errtheblog.com/s/git
   git config --global alias.st status
   git config --global alias.ci commit
@@ -99,14 +139,14 @@ if [[ ${INSTALL_GIT_POWER} == true ]]; then
   git config --global merge.tool meld
 fi
 
-# Install Cheatsheet Wallpaper
+#======================================| Download Cheatsheets
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT1##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT1}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT2##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT2}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT3##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT3}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT4##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT4}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT5##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT5}"
 
-# Setup desktop
+#======================================|  Setup desktop
 gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${DEFAULT_BG}"
 gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
 gsettings set org.gnome.desktop.background draw-background true
@@ -119,14 +159,6 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 
 #======================================| INSTALL EXTRA INDICATORS
 if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then
-  unset new_indicators
-  sudo apt-add-repository -y ppa:alanbell/unity && new_indicators+="unity-window-quicklists"" "
-  sudo apt-add-repository -y ppa:bhdouglass/indicator-remindor && new_indicators+="indicator-remindor"" "
-  sudo add-apt-repository -y ppa:indicator-multiload/stable-daily && new_indicators+="indicator-multiload"" "
-  #sudo apt-add-repository -y
-  sudo apt-get update
-  testlock
-  sudo apt-get ${APTGET_VERBOSE} install ${new_indicators}
   if [ -f "/etc/xdg/autostart/unity-window-quicklists.desktop" ]; then # fix autostart bug if window quicklists is installed.  won't harm anything if ppa is already updated.
     sudo sed -i 's/OnlyShowIn=UNITY/OnlyShowIn=Unity/g' /etc/xdg/autostart/unity-window-quicklists.desktop
   fi
@@ -134,32 +166,9 @@ if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then
   sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 fi
 
-#======================================| FIREFOX
-# Install flash-plugin browser
-sudo apt-get ${APTGET_VERBOSE} install flashplugin-installer
 # Download FEBE backup file
 wget ${WGET_VERBOSE} -O ${HOME}/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
 
-if [[ ${INSTALL_GIMP} == true ]]; then
-  # Install graphics editors - weights about 25mb
-  # sudo add-apt-repository ppa:otto-kesselgulasch/gimp
-  # setup gimp ppa
-  echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
-  echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38
-  testlock
-  sudo apt-get update
-  testlock
-  sudo apt-get ${APTGET_VERBOSE} install gimp gimp-data gimp-extras icc-profiles-free #install inkscape, + icc profiles  @TODO: suggest to user of non-free icc profiles
-fi
-if [[ ${INSTALL_INKSCAPE} == true ]]; then
-  sudo apt-get ${APTGET_VERBOSE} install inkscape #install inkscape, color profiles disabled in this build of inkscape
-fi
-if [[ ${INSTALL_COMPASS} == true ]]; then
-  # Install compass (which needs ruby)
-  sudo apt-get ${APTGET_VERBOSE} install ruby1.9.1
-  sudo gem1.9.1 install compass
-fi
 # Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
 # sudo apt-get ${APTGET_VERBOSE} install chromium-browser
 # sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
