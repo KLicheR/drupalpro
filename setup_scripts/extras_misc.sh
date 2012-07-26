@@ -15,8 +15,7 @@ if [[ ${INSTALL_GRAPHIC_XTRAS} == true ]]; then
   #======================================| Add Unity Scopes PPA
   echo 'deb http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010
-  sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010 && sudo apt-get update
   sudo apt-get ${APTGET_VERBOSE} install ardesia unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia
 fi
 if [[ ${INSTALL_POWER_UTILS} == true ]]; then
@@ -26,8 +25,7 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   #======================================| Add Diodon Clipboard Manager PPA
   echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2
-  sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2 && sudo apt-get update
   #======================================| Diodon clipboard and Autokey automation
 
   sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk
@@ -112,7 +110,6 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 if [ "${INSTALL_EXTRA_INDICATORS}" ]; then
   new_indicators=""
   sudo apt-add-repository -y ppa:indicator-multiload/stable-daily && new_indicators="${new_indicators}indicator-multiload "
-  sudo apt-add-repository -y ppa:kilian/f.lux                     && new_indicators="${new_indicators}fluxgui "
   #sudo apt-add-repository -y
   #sudo apt-add-repository -y
   #sudo apt-add-repository -y
@@ -132,8 +129,7 @@ if [[ ${INSTALL_GIMP} == true ]]; then
   # setup gimp ppa
   echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38
-  sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38 && sudo apt-get update
   sudo apt-get ${APTGET_VERBOSE} install gimp gimp-data gimp-extras icc-profiles-free #install inkscape, + icc profiles  @TODO: suggest to user of non-free icc profiles
 fi
 if [[ ${INSTALL_INKSCAPE} == true ]]; then
