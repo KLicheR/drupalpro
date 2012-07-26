@@ -8,14 +8,18 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 # Install some useful utilities for developing & theming in Ubuntu
 # Synaptic Xchat gnote compass guake (instant shell) gufw (GUI for firewall)
-sudo apt-get update
+sudo apt-get update &
+wait
 sudo apt-get ${APTGET_VERBOSE} install gnome-activity-journal p7zip gnote
 
 if [[ ${INSTALL_GRAPHIC_XTRAS} == true ]]; then
   #======================================| Add Unity Scopes PPA
   echo 'deb http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/scopes-packagers/ppa/ubuntu precise main ' | sudo tee -a /etc/apt/sources.list.d/scopes-packagers-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010 && sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 48894010 &
+  wait
+  sudo apt-get update &
+  wait
   sudo apt-get ${APTGET_VERBOSE} install ardesia unity-lens-graphicdesign unity-lens-utilities unity-lens-wikipedia
 fi
 if [[ ${INSTALL_POWER_UTILS} == true ]]; then
@@ -25,7 +29,10 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   #======================================| Add Diodon Clipboard Manager PPA
   echo 'deb http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/diodon-team/stable/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/diodon-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2 && sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 523884B2 &
+  wait
+  sudo apt-get update &
+  wait
   #======================================| Diodon clipboard and Autokey automation
 
   sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk
@@ -113,7 +120,8 @@ if [ "${INSTALL_EXTRA_INDICATORS}" ]; then
   #sudo apt-add-repository -y
   #sudo apt-add-repository -y
   #sudo apt-add-repository -y
-  sudo apt-get update
+  sudo apt-get update &
+  wait
   sudo apt-get ${APTGET_VERBOSE} install "${new_indicators}"
 fi
 
@@ -129,7 +137,10 @@ if [[ ${INSTALL_GIMP} == true ]]; then
   # setup gimp ppa
   echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38 && sudo apt-get update
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 614C4B38 &
+  wait
+  sudo apt-get update &
+  wait
   sudo apt-get ${APTGET_VERBOSE} install gimp gimp-data gimp-extras icc-profiles-free #install inkscape, + icc profiles  @TODO: suggest to user of non-free icc profiles
 fi
 if [[ ${INSTALL_INKSCAPE} == true ]]; then

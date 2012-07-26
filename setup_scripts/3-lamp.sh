@@ -34,7 +34,10 @@ fi
 if [[ "${SQL_SERVER}" == mariadb ]]; then
   echo 'deb http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
   echo 'deb-src http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/mariadb-precise.list > /dev/null
-  sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db && sudo apt-get update
+  sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db &
+  wait
+  sudo apt-get update &
+  wait
 
   LAMP_MYSQL="mariadb-server"
   echo mariadb-server-5.5 mysql-server/root_password        password ${MYSQL_PASS} | sudo debconf-set-selections
