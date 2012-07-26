@@ -28,7 +28,7 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   Update_APT=1
 fi
 if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
-  TERMINAL_PKS="install guake nautilus-open-terminal grsync"
+  TERMINAL_PKS="guake nautilus-open-terminal grsync"
 fi
 if [[ ${INSTALL_GIT_POWER} == true ]]; then
   #======================================| Add GIT tools
