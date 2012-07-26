@@ -6,7 +6,7 @@ set -e
 source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-cd
+cd ~
 
 #======================================| Configure phpmyadmin
 # show hex data on detail pages.
@@ -136,7 +136,7 @@ if [[ "${INSTALL_XHPROF}" == true ]]; then
   sudo apt-get ${APTGET_VERBOSE} install graphviz
 
   # get it
-  cd
+  cd ~
   wget ${WGET_VERBOSE} --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${XHPROF_URL}"
   tar xvf xhprof-0.9.2.tgz
   mv xhprof-0.9.2 "${LOGS}/xhprof"

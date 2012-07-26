@@ -30,8 +30,11 @@ sleep 2
 zenity --info --text="Firefox profile manager will start.\n1) Delete temp profile.\n2) THEN CLOSE MANAGER."
 #rm profileFx4{ddd}.fbu
 
-# Load Sublime Text with default README.txt file
-"${APP_FOLDER}/Sublime Text 2/sublime_text" "${APP_FOLDER}/Sublime Text 2/README.txt"
+if [[ "${INSTALL_SUBLIME}" == true ]]; then
+  # Load Sublime Text with default README.txt file
+  "${APP_FOLDER}/Sublime Text 2/sublime_text" "${APP_FOLDER}/Sublime Text 2/README.txt"
+  final_message="Finally, close Sublime Text"
+fi
 
 # final size
 if [ "${EXTRA_DEBUG_INFO}" = true ]; then
@@ -40,6 +43,8 @@ fi
 
 # Manual config instructions.
 firefox ${HOME}/${DDD_PATH}/resources/manualconfig.txt
+
+zenity --info --text="Installation is complete.  Please complete final steps as listed in Firefox.  ${final_message}"
 
 stage_finished=0
 exit "$stage_finished"
