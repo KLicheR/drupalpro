@@ -115,14 +115,19 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 
 #======================================| INSTALL EXTRA INDICATORS
 if [ "${INSTALL_EXTRA_INDICATORS}" ]; then
-  new_indicators=""
-  sudo apt-add-repository -y ppa:indicator-multiload/stable-daily && new_indicators="${new_indicators}indicator-multiload "
-  #sudo apt-add-repository -y
-  #sudo apt-add-repository -y
+  unset new_indicators
+  sudo apt-add-repository -y ppa:alanbell/unity && new_indicators+="indicator-multiload"" "
+  sudo apt-add-repository -y ppa:bhdouglass/indicator-remindor && new_indicators+="indicator-remindor"" "
+  sudo add-apt-repository -y ppa:indicator-multiload/stable-daily && new_indicators+="indicator-multiload"" "
   #sudo apt-add-repository -y
   sudo apt-get update &
   wait
   sudo apt-get ${APTGET_VERBOSE} install "${new_indicators}"
+  if [ -f "/etc/xdg/autostart/unity-window-quicklists.desktop" ]; then # fix autostart bug if window quicklists is installed.  won't harm anything if ppa is already updated.
+    sudo sed -i 's/OnlyShowIn=UNITY/OnlyShowIn=Unity/g' /etc/xdg/autostart/unity-window-quicklists.desktop
+  fi
+  #show all autostart applications
+  sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 fi
 
 #======================================| FIREFOX
