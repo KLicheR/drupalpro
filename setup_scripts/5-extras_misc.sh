@@ -35,21 +35,24 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
   wait
   #======================================| Diodon clipboard and Autokey automation
 
-  sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk
+  sudo apt-get ${APTGET_VERBOSE} install diodon diodon-plugins autokey-gtk &
+  wait
   # Whitelist autokey for Unity panel
   if grep -iq 'autokey-gtk' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
     echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
   else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'autokey-gtk\']`"; fi
 
   #======================================| Xchat IRC
-  sudo apt-get ${APTGET_VERBOSE} install xchat
+  sudo apt-get ${APTGET_VERBOSE} install xchat &
+  wait
   # Whitelist xchat for Unity panel
   if grep -iq 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
     echo "'xchat' already exists in the Unity panel whitelist. Nothing to do here.";
   else echo "Adding 'xchat' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'xchat\']`"; fi
 fi
 if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
-  sudo apt-get ${APTGET_VERBOSE} install guake nautilus-open-terminal grsync
+  sudo apt-get ${APTGET_VERBOSE} install guake nautilus-open-terminal grsync &
+  wait
   #Set default values for guake
   gconftool -s /apps/guake/keybindings/global/show_hide --type=string "F4"
   gconftool -s /apps/guake/general/history_size --type=int 8192
@@ -59,7 +62,8 @@ if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
 fi
 if [[ ${INSTALL_GIT_POWER} == true ]]; then
   #======================================| Add GIT tools and configure GIT
-  sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk nautilus-compare
+  sudo apt-get ${APTGET_VERBOSE} install gitg meld git-gui gitk nautilus-compare &
+  wait
   # mostly based off http://cheat.errtheblog.com/s/git
   git config --global alias.st status
   git config --global alias.ci commit
@@ -67,10 +71,10 @@ if [[ ${INSTALL_GIT_POWER} == true ]]; then
   git config --global alias.co checkout
   git config --global alias.df diff
   git config --global alias.lg "log --graph --pretty=format:'%C(blue)%h %Creset%C(reverse bold blue)%d%Creset %C(white)%s %C(green bold)%cr%Creset %C(green)%aN' --abbrev-commit --decorate"
-  # can't seem to isolate ! in command > git config --global alias.clear "!git add -A && git reset --hard"
+  git config --global alias.clear '!git add -A && git reset --hard'
   git config --global alias.unstage "reset HEAD --"
   git config --global alias.ign "ls-files -o -i --exclude-standard"
-  # can't seem to isolate ! in command > git config --global alias.gitkconflict "!gitk --left-right HEAD...MERGE_HEAD"
+  git config --global alias.gitkconflict '!gitk --left-right HEAD...MERGE_HEAD'
   git config --global alias.alias "config --get-regexp alias"
   git config --global apply.whitespace error-all
   git config --global color.ui auto
