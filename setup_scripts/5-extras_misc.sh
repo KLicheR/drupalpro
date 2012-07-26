@@ -73,7 +73,7 @@ fi
 #======================================| Install packages
 sudo apt-get ${APTGET_VERBOSE} install gnome-activity-journal p7zip gnote &
 wait
-sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${new_indicators} ${GIMP_PKS} ${FLASH_PKS}
+sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${GIT_PKS} ${new_indicators} ${FLASH_PKS} ${GIMP_PKS} ${INKSCAPE_PKS}
 
 
 
