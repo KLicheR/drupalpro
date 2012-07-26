@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-clear   #clear screen
+
 # See README.txt for more information
 #
 #     To install Drupal Development Desktop:
@@ -60,8 +60,9 @@ fi
 #======================================| Test for network
 # if rebooting, short delay for environment to setup
 # @FIXME: better to test, but this is poormans solution for now
-if [ ! -z $1 ]; then sleep 15; fi
+if [ "$#" -gt 0 ]; then sleep 15; fi
 
+clear   #clear screen
 # Test for connection
 echo -n "`date +"%Y/%m/%d %H:%M:%S"`: testing for internet connection."
 until [  ${PINGRESULTS} -lt 1 ]; do
