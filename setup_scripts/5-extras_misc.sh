@@ -116,7 +116,7 @@ gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
 #======================================| INSTALL EXTRA INDICATORS
 if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then
   unset new_indicators
-  sudo apt-add-repository -y ppa:alanbell/unity && new_indicators+="indicator-multiload"" "
+  sudo apt-add-repository -y ppa:alanbell/unity && new_indicators+="unity-window-quicklists"" "
   sudo apt-add-repository -y ppa:bhdouglass/indicator-remindor && new_indicators+="indicator-remindor"" "
   sudo add-apt-repository -y ppa:indicator-multiload/stable-daily && new_indicators+="indicator-multiload"" "
   #sudo apt-add-repository -y
