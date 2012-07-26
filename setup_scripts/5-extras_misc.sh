@@ -122,7 +122,7 @@ if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then
   #sudo apt-add-repository -y
   sudo apt-get update &
   wait
-  sudo apt-get ${APTGET_VERBOSE} install "${new_indicators}"
+  sudo apt-get ${APTGET_VERBOSE} install ${new_indicators}
   if [ -f "/etc/xdg/autostart/unity-window-quicklists.desktop" ]; then # fix autostart bug if window quicklists is installed.  won't harm anything if ppa is already updated.
     sudo sed -i 's/OnlyShowIn=UNITY/OnlyShowIn=Unity/g' /etc/xdg/autostart/unity-window-quicklists.desktop
   fi
