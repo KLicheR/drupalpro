@@ -90,7 +90,7 @@ fi
 #======================================| Remove uneeded folders
 if [[ "${REMOVE_DEFAULT_FOLDERS}" == true ]]; then
   if [ -d "$HOME/Music" ]; then rm -R "$HOME/Music"; fi
-  if [ -d "$HOME/Pictures" ]; then rm -R "$HOME/Pictures"; fi
+  #if [ -d "$HOME/Pictures" ]; then rm -R "$HOME/Pictures"; fi  #don't do this is installing wallpaper
   if [ -d "$HOME/Public" ]; then rm -R "$HOME/Public"; fi
   if [ -d "$HOME/Templates" ]; then rm -R "$HOME/Templates"; fi
   if [ -d "$HOME/Videos" ]; then rm -R "$HOME/Videos"; fi
