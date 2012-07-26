@@ -19,8 +19,9 @@ if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
 #======================================| Error Checking
 function check_errs() {
-  # Parameter 1 is the return code
-  # Parameter 2 is text to display on failure.
+  # Parameter 1 is the exit return code from the last script
+  # Parameter 2 is text to display on failure
+  # Parameter 3 is any additional text to display
   if [ "${1}" -ne "0" ]; then
     echo "ERROR # ${1} : ${2} : ${3}
     " | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
@@ -82,7 +83,7 @@ done
 
 #======================================| Install it!
 # This case statment handles reboots
-cd
+cd ~
 STAGE="$1"
 case "$STAGE" in
 "")
@@ -101,36 +102,36 @@ case "$STAGE" in
   ;;
 "10")
   ${HOME}/${DDD_PATH}/setup_scripts/1-update.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_" "1-update.sh"
   reboot 20
   ;;
 "20")
   ${HOME}/${DDD_PATH}/setup_scripts/2-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_" "2-vbox-guest-additions.sh"
   reboot 30
   ;;
 "30")
   ${HOME}/${DDD_PATH}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ 3-lamp.sh"
+  check_errs "$?" "$_" "3-lamp.sh"
   ${HOME}/${DDD_PATH}/setup_scripts/4-ides.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ 4-ides.sh"
+  check_errs "$?" "$_" "4-ides.sh"
   reboot 40
   ;;
 "40")
-  ${HOME}/${DDD_PATH}/setup_scripts/extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ extras_misc.sh"
-  ${HOME}/${DDD_PATH}/setup_scripts/extras_development.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ extras_development.sh"
+  ${HOME}/${DDD_PATH}/setup_scripts/5-extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+  check_errs "$?" "$_" "5-extras_misc.sh"
+  ${HOME}/${DDD_PATH}/setup_scripts/6-extras_development.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+  check_errs "$?" "$_" "6-extras_development.sh"
   reboot 50
   ;;
 "50")
   ${HOME}/${DDD_PATH}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_ 7-config.sh"
+  check_errs "$?" "$_" "7-config.sh"
   reboot 60
   ;;
 "60")
   ${HOME}/${DDD_PATH}/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_"
+  check_errs "$?" "$_" "8-manualconfig.sh"
   ;;
 *)
   echo " *** BAD BAD BAD SOMETHING WENT WRONG!  CALL A DOCTOR! *** "
