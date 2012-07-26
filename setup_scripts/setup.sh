@@ -34,6 +34,18 @@ function check_errs() {
   fi
 }
 
+#======================================| Wait until apt-get locks are free
+function testlock() {
+  LOCK_1="/var/lib/dpkg/lock"
+  LOCK_2="/var/cache/apt/archives/lock"
+  LOCK_3="/var/lib/apt/lists/lock"
+  Locked=`fuser $LOCK_1 $LOCK_2 $LOCK_3`
+  while [ -n $Locked ]
+  do sleep 5
+    Locked=`fuser $LOCK_1 $LOCK_2 $LOCK_3`
+  done
+}
+
 #======================================| Reboot functions
 function reboot() {
   # update .profile file to continue the next step of the script.

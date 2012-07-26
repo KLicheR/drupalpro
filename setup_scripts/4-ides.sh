@@ -123,10 +123,10 @@ if [[ "${INSTALL_GEANY}" == true ]]; then
   # add ppa for 1.22 version of Geany which fixes a bug in Unity
   echo 'deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/geany-dev-precise.list > /dev/null
   echo 'deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/geany-dev-precise.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B3641232 &
-  wait
-  sudo apt-get update &
-  wait
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B3641232
+  testlock
+  sudo apt-get update
+  testlock
 
   sudo apt-get ${APTGET_VERBOSE} install geany geany-common geany-plugin-addons
   mkdir -p ${HOME}/.config/geany/tags
