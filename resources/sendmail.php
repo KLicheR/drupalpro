@@ -2,7 +2,8 @@
 <?php
 $content = file_get_contents('php://stdin');
 preg_match('|^To: (.*)|', $content, $address);
-$filename = "${HOME}/websites/logs/mail/" . date('Y-m-d_H:i:s') . '--' . $address[1] . '.txt';
+/* use a relative path, assuming normal drupalpro installation */
+$filename = "../../websites/logs/mail/" . date('Y-m-d_H:i:s') . '--' . $address[1] . '.txt';
 file_put_contents($filename, $content);
-chmod($filename, 0660);
+chmod($filename, 0640);
 ?>

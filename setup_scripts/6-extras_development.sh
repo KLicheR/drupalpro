@@ -87,9 +87,19 @@ fi
 if [[ "${INSTALL_EMAIL_CATCHER}" == true ]]; then
   # Configure email collector
   mkdir -p "${LOGS}/mail"
-  chmod -R ug=rwX,o= "${LOGS}/mail"
-  sudo sed -i 's|'";sendmail_path ="'|'"sendmail_path = ${CONFIGS}/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
-  chmod +x ${HOME}/${DDD_PATH}/resources/sendmail.php
+  # change group to apache (www-data)
+  sudo chown :www-data "${LOGS}"
+  sudo chown -R :www-data "${LOGS}/mail"
+  # setup permissions
+  sudo chmod -R ug=rwX,o= "${LOGS}/mail"
+  # uncomment sendmail_path in php.ini
+  sudo sed -i 's|'";.*sendmail_path.*="'|'"sendmail_path ="'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+  # replace any existing sendmail_path with path to drupalpro
+  sudo sed -i 's|'"sendmail_path =.*"'|'"sendmail_path = ${HOME}/${DDD_PATH}/resources/sendmail.php"'|g' /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+  # ensure its in apache group
+  sudo chown -R :www-data "${HOME}/${DDD_PATH}/resources/sendmail.php"
+  # ensure its readable by apache
+  sudo chmod o=,ug+x ${HOME}/${DDD_PATH}/resources/sendmail.php
 fi
 
 
