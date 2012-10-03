@@ -27,8 +27,8 @@ gsettings set org.gnome.desktop.interface icon-theme 'ubuntu-mono-light'
 gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars true # change to false for oldstyle thick scrollbars
 
 #setup nautilus
-gconftool-2 --type=Boolean --set /apps/nautilus/preferences/always_use_location_entry true
-gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+#gconftool-2 --type=Boolean --set /apps/nautilus/preferences/always_use_location_entry true
+#gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 # automatic updates.  apply security.  download updates
 echo "

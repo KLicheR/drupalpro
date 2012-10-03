@@ -134,9 +134,9 @@ if [ $? -eq 0 ]; then \
   else \
     # changes to working tree
     echo "'$IRed'"$(__git_ps1 " {%s}"); \
-  fi) '$BYellow$PathShort$Color_Off'\$ "; \
+  fi) '$BYellow$PathFull$Color_Off'\$ "; \
 else \
-  echo " '$Yellow$PathShort$Color_Off'\$ "; \
+  echo " '$Yellow$PathFull$Color_Off'\$ "; \
 fi)'
 
 # MDR - keep an eternal history file.
