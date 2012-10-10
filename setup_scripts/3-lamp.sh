@@ -60,7 +60,7 @@ sudo apt-get ${APTGET_VERBOSE} install $LAMP_MYSQL $LAMP_APACHE $LAMP_PHP
 sudo apt-get ${APTGET_VERBOSE} install $LAMP_TOOLS
 
 
-# ###### Configure APACHE
+#======================================| Configure APACHE
 echo "ServerName ${WWW_FQDN}" | sudo tee /etc/apache2/conf.d/fqdn
 sudo a2enmod ssl
 sudo a2enmod rewrite
@@ -107,11 +107,20 @@ echo "<IfModule mod_ssl.c>
 </IfModule>" | sudo tee /etc/apache2/sites-available/default-ssl > /dev/null
 sudo a2ensite default-ssl
 
+# todo: find a way to edit these values only in "<IfModule mpm_prefork_module>"
+sudo sed -i 's/StartServers          5/StartServers          1/g'          /etc/apache2/apache2.conf
+sudo sed -i 's/MinSpareServers       5/MinSpareServers       3/g'          /etc/apache2/apache2.conf
+sudo sed -i 's/MaxSpareServers      10/MaxSpareServers      3/g'          /etc/apache2/apache2.conf
+sudo sed -i 's/MaxClients          150/MaxClients          10/g'          /etc/apache2/apache2.conf
 
 #======================================| Configure MYSQL
 
-sudo sed -i 's/#log_slow_queries/log_slow_queries/g'          /etc/mysql/my.cnf
-sudo sed -i 's/#long_query_time/long_query_time/g'            /etc/mysql/my.cnf
+#sudo sed -i 's/#log_slow_queries/log_slow_queries/g'          /etc/mysql/my.cnf
+#sudo sed -i 's/#long_query_time/long_query_time/g'            /etc/mysql/my.cnf
+sudo sed -i 's/# Read the manual for more InnoDB related options. There are many!/# Read the manual for more InnoDB related options. There are many!\n#\ninnodb_buffer_pool_size = 512M/g'            /etc/mysql/my.cnf
+# change only the first occurence
+sudo sed -i '0,/key_buffer\t\t= 16M/s//key_buffer\t\t= 32M/'            /etc/mysql/my.cnf
+sudo sed -i 's/query_cache_size        = 16M/query_cache_size        = 64M/g'            /etc/mysql/my.cnf
 
 
 #======================================| Configure PHP
