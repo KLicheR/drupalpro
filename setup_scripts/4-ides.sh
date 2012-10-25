@@ -63,7 +63,7 @@ if [[ "${INSTALL_SUBLIME}" == true ]]; then
   tar jxf "${HOME}/sublime.tar.bz2" && rm "${HOME}/sublime.tar.bz2"
   cd "${APP_FOLDER}/Sublime Text 2"
   chmod u=rwx,o= "${APP_FOLDER}/Sublime Text 2/sublime_text"
-  ln -s "${APP_FOLDER}/Sublime Text 2/sublime_text ${HOME}/bin/sublime_text"
+  ln -s "${APP_FOLDER}/Sublime Text 2/sublime_text ${HOME}/bin/sublime"
   mkdir -p "${HOME}/.local/share/applications"
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
 #!/usr/bin/env xdg-open
@@ -72,7 +72,7 @@ Name=Sublime Text
 GenericName=Text Editor
 Comment=Edit source code
 Encoding=UTF-8
-Exec=sublime_text %F
+Exec=sublime %F
 Icon=${APP_FOLDER}/Sublime Text 2/Icon/48x48/sublime_text.png
 Categories=Application;Development;Utility
 Version=1.0
