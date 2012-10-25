@@ -68,19 +68,23 @@ if [[ "${INSTALL_SUBLIME}" == true ]]; then
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
 #!/usr/bin/env xdg-open
 [Desktop Entry]
+Version=1.0
 Name=Sublime Text
 GenericName=Text Editor
 Comment=Edit source code
 Encoding=UTF-8
 Exec=sublime %F
 Icon=${APP_FOLDER}/Sublime Text 2/Icon/48x48/sublime_text.png
-Categories=Application;Development;Utility
-Version=1.0
 Terminal=false
 Type=Application
 StartupNotify=true
 MimeType=text/plain;
 Categories=TextEditor;Development;Utility;
+Actions=NewWindow;
+
+[Desktop Action Window]
+Name=New Window
+Exec=sublime -n
 END
 
 chmod 750 "${HOME}/.local/share/applications/Sublime.desktop"
