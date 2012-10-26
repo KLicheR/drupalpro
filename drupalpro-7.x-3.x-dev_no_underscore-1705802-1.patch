@@ -1,0 +1,13 @@
+diff --git a/drush_addons/quickstart/quickstart.drush.inc b/drush_addons/quickstart/quickstart.drush.inc
+index 285de96..bb3c288 100644
+--- a/drush_addons/quickstart/quickstart.drush.inc
++++ b/drush_addons/quickstart/quickstart.drush.inc
+@@ -139,6 +139,8 @@ function _quickstart_params($required) {
+   // Domain always required
+   // remove /'s
+   $options['domain'] = str_replace('/', '', $options['domain']);
++  // remove _'s
++  $options['domain'] = str_replace('_', '', $options['domain']);
+   if (strlen($options['domain']) > 15) {
+     $ret['fail'] = true;
+     drush_log("  '--domain' must be less than 16 characters long, for mysql user name to work.", 'error');

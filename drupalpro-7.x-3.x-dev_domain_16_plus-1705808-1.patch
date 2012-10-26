@@ -1,0 +1,30 @@
+diff --git a/drush_addons/quickstart/quickstart.drush.inc b/drush_addons/quickstart/quickstart.drush.inc
+index 285de96..15af9de 100644
+--- a/drush_addons/quickstart/quickstart.drush.inc
++++ b/drush_addons/quickstart/quickstart.drush.inc
+@@ -139,10 +139,6 @@ function _quickstart_params($required) {
+   // Domain always required
+   // remove /'s
+   $options['domain'] = str_replace('/', '', $options['domain']);
+-  if (strlen($options['domain']) > 15) {
+-    $ret['fail'] = true;
+-    drush_log("  '--domain' must be less than 16 characters long, for mysql user name to work.", 'error');
+-  }
+   if (strlen($options['domain']) < 3) {
+     $ret['fail'] = true;
+     drush_log("  '--domain' must be at least 3 characters long.", 'error');
+@@ -153,7 +149,13 @@ function _quickstart_params($required) {
+   }
+ 
+   // defaults
+-  $defaults['domain_'] = $domain_ = str_replace('.','_',$options['domain']);
++  $domain_ = str_replace('.','_',$options['domain']);
++  $domain_len = strlen($domain_);
++  if ($domain_len > 8) {
++    $hash = sha1($options['domain']);
++    $domain_ = substr($domain_, 0, 8).substr($hash, 0, 7);
++  }
++  $defaults['domain_'] = $domain_;
+   // database
+   $defaults['dbuser'] = 'root';
+   $defaults['dbpassword'] = 'drupalpro';
