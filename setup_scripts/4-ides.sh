@@ -63,6 +63,7 @@ if [[ "${INSTALL_SUBLIME}" == true ]]; then
   tar jxf "${HOME}/sublime.tar.bz2" && rm "${HOME}/sublime.tar.bz2"
   cd "${APP_FOLDER}/Sublime Text 2"
   chmod u=rwx,o= "${APP_FOLDER}/Sublime Text 2/sublime_text"
+  mkdir -p "${HOME}/bin"
   ln -s "${APP_FOLDER}/Sublime Text 2/sublime_text ${HOME}/bin/sublime"
   mkdir -p "${HOME}/.local/share/applications"
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
@@ -82,7 +83,7 @@ MimeType=text/plain;
 Categories=TextEditor;Development;Utility;
 Actions=NewWindow;
 
-[Desktop Action Window]
+[Desktop Action NewWindow]
 Name=New Window
 Exec=sublime -n
 END
