@@ -17,15 +17,16 @@ sudo update-alternatives --set x-www-browser /usr/bin/firefox
 # gnome terminal
 gconftool-2 -s /apps/gnome-terminal/profiles/Default/scrollback_lines --type=int 8192
 
-# Change default theme (due to Netbeans / java)
-gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
-gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
-gconftool-2 -s /desktop/gnome/interface/icon_theme --type=string ubuntu-mono-light
-gsettings set org.gnome.desktop.wm.preferences theme 'Radiance'
-gsettings set org.gnome.desktop.interface gtk-theme 'Radiance'
-gsettings set org.gnome.desktop.interface icon-theme 'ubuntu-mono-light'
-gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars true # change to false for oldstyle thick scrollbars
-
+if [[ ${CHANGE_DEFAULT_THEME} == true ]]; then
+  # Change default theme (due to Netbeans / java)
+  gconftool-2 -s /apps/metacity/general/theme --type=string Radiance
+  gconftool-2 -s /desktop/gnome/interface/gtk_theme --type=string Radiance
+  gconftool-2 -s /desktop/gnome/interface/icon_theme --type=string ubuntu-mono-light
+  gsettings set org.gnome.desktop.wm.preferences theme 'Radiance'
+  gsettings set org.gnome.desktop.interface gtk-theme 'Radiance'
+  gsettings set org.gnome.desktop.interface icon-theme 'ubuntu-mono-light'
+  gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars true # change to false for oldstyle thick scrollbars
+fi
 #setup nautilus
 #gconftool-2 --type=Boolean --set /apps/nautilus/preferences/always_use_location_entry true
 #gsettings set org.gnome.nautilus.preferences always-use-location-entry true
