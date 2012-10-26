@@ -139,6 +139,11 @@ if [[ ${INSTALL_GIT_POWER} == true ]]; then
   git config --global merge.tool meld
 fi
 
+#======================================| KeePassX
+if [[ ${INSTALL_KEEPASSX} == true ]]; then
+  sudo apt-get ${APTGET_VERBOSE} install keepass2 xdotool
+fi
+
 #======================================| Download Cheatsheets
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT1##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT1}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT2##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT2}"
