@@ -6,13 +6,6 @@ set -e
 source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-# Create example site.  This done after previous reboot to avoid error.
-cd ${HOME}/websites
-if [[ ${INSTALL_DRUSH} == true ]]; then
-  drush qc --domain=example7.dev
-  drush qc --domain=example6.dev --makefile=d6.make
-fi
-
 firefox -CreateProfile temp &
 sleep 5
 # firefox -CreateProfile Default &
