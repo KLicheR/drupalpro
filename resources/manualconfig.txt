@@ -55,7 +55,7 @@ Drupal Development Desktop has been installed.  To complete the setup, there are
                   > Right-click the icon on the toolbar
                   > Select "Lock to Launcher"
 
-* Setup: Startup applications > Guake, Autokey
+* Setup: Startup applications > Guake (check it), Autokey (add it: command "/usr/bin/autokey-gtk")
 
 * Prepare for export:
    sudo bleachbit (everything except warnings)
