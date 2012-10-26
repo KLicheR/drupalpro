@@ -147,16 +147,16 @@ wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT4##*/}" --referer="${REFERER}" 
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT5##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT5}"
 
 if [[ ${CHANGE_DESKTOP_BACKGROUND} == true ]]; then
-#======================================|  Setup desktop
-gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${DEFAULT_BG}"
-gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
-gsettings set org.gnome.desktop.background draw-background true
-gsettings set org.gnome.desktop.background picture-opacity 100
-gsettings set org.gnome.desktop.background picture-options 'stretched'
-gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${DEFAULT_BG}"
-gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
-gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
-# to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
+  #======================================|  Setup desktop
+  gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${DEFAULT_BG}"
+  gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
+  gsettings set org.gnome.desktop.background draw-background true
+  gsettings set org.gnome.desktop.background picture-opacity 100
+  gsettings set org.gnome.desktop.background picture-options 'stretched'
+  gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${DEFAULT_BG}"
+  gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
+  gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
+  # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
 fi
 
 #======================================| INSTALL EXTRA INDICATORS
