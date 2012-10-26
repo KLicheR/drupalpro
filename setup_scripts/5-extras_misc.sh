@@ -135,6 +135,7 @@ if [[ ${INSTALL_GIT_POWER} == true ]]; then
   git config --global color.status.untracked "cyan bold"
   git config --global diff.tool meld
   git config --global gui.editor geany
+  git config --global instaweb.httpd 'apache2'
   git config --global merge.summary true
   git config --global merge.tool meld
 fi
