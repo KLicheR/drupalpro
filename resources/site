@@ -1,0 +1,102 @@
+#!/bin/bash
+<<info
+  Ajoute une ligne dans le fichier /etc/hosts.
+  
+  Bogues
+  -----------
+  site -d mon_site
+    Effacera tous les sites portant le nom "mon_site",
+    même s'il en existe plusieurs avec différents ip.
+info
+
+function usage
+{
+    echo "    Description:
+      Facilite l'édition du fichier hosts.
+
+    Usage:
+      site [--edit] [--list] [--help]
+      site [--comment] [--destroy] [--ip (dev|accept|labrute|vm|192.168.x.x)] <domain>
+    
+    Options:
+      -c | --comment      Ajoute un commentaire à la fun de la ligne
+                          Défaut: drupalpro
+                          Exemple:
+                            $ site -i 192.168.1.5 -c monserveur mondomaine.com
+      -d | --destroy      Détruit une ligne
+                          Exemple:
+                            $ site -d mondomaine.com
+      -e | --edit         Ouvre le fichier hosts
+      -h | --help | help  Affiche cette aide
+      -i | --ip           Spécifie le IP
+                          Défaut: 192.168.56.101
+                          Les mots-clés suivant peuvent également être utilisé:
+                          dev, accept, labrute, vm
+                          Exemples:
+                            $ site -i labrute wiki.dims
+                            $ site -i 192.168.1.5 -c monserveur mondomaine.com
+      -l | --list         Liste les entrées du fichier \"hosts\"
+    
+    Exemples:
+      $ site test.dev
+      $ site -d test.dev"
+}
+
+op="create"
+ip="192.168.56.101"
+comment="drupalpro"
+domain=
+
+while [ "$1" != "" ]; do
+  case $1 in
+    -d | --destroy )  op="destroy"
+                      ;;
+    -i | --ip )       shift
+                      case $1 in
+                        dev )     ip='10.96.20.107'
+                                  comment='dev'
+                                  ;;
+                        accept )  ip='10.96.4.48'
+                                  comment='accept'
+                                  ;;
+                        labrute ) ip='10.15.34.108'
+                                  comment='labrute'
+                                  ;;
+                        vm )      ip='192.168.56.101'
+                                  comment='drupalpro'
+                                  ;;
+                        * )       ip=$1
+                                  ;;
+                      esac
+                      ;;
+    -l | --list )     cat /etc/hosts
+                      exit
+                      ;;
+    -e | --edit )     gksudo gedit /etc/hosts
+                      exit
+                      ;;
+    -c | --comment )  shift
+                      comment=$1
+                      ;;
+    -h | --help | help) usage
+                      exit
+                      ;;
+    * )               domain=$1
+                      ;;
+  esac
+  shift
+done
+
+if [ "$domain" = "" ]; then
+	echo "Le domaine doit être spécifié.
+Pour l'aide: $ site --help"
+	exit
+fi
+
+case $op in
+  "create" )  echo "$ip $domain #$comment" | tee -a /etc/hosts
+              ;;
+  "destroy" ) sudo sed -i "/ $domain .*#.*/d" /etc/hosts
+              echo "Domaine $domain supprimé."
+              ;;
+esac

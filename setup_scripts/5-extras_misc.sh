@@ -144,6 +144,9 @@ if [[ ${INSTALL_KEEPASSX} == true ]]; then
   sudo apt-get ${APTGET_VERBOSE} install keepass2 xdotool
 fi
 
+#======================================| site: for hosts file rapid edition (french version)
+ln -s ${HOME}/${DDD_PATH}/resources/site ${HOME}/bin/site
+
 #======================================| Download Cheatsheets
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT1##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT1}"
 wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT2##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT2}"
