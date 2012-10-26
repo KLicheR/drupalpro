@@ -64,7 +64,7 @@ if [[ "${INSTALL_SUBLIME}" == true ]]; then
   cd "${APP_FOLDER}/Sublime Text 2"
   chmod u=rwx,o= "${APP_FOLDER}/Sublime Text 2/sublime_text"
   mkdir -p "${HOME}/bin"
-  ln -s "${APP_FOLDER}/Sublime Text 2/sublime_text ${HOME}/bin/sublime"
+  ln -s "${APP_FOLDER}/Sublime Text 2/sublime_text" "${HOME}/bin/sublime"
   mkdir -p "${HOME}/.local/share/applications"
   cat > "${HOME}/.local/share/applications/Sublime.desktop" <<END
 #!/usr/bin/env xdg-open
