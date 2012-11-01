@@ -40,6 +40,8 @@ APT::Periodic::AutocleanInterval \"5\";
 APT::Periodic::Unattended-Upgrade \"1\";
 " | sudo tee /etc/apt/apt.conf.d/10periodic > /dev/null
 
+#======================================| Config /etc/ssh/ssh_config: http://drupal.org/node/1829126
+sudo sed -i 's/#   GSSAPIAuthentication no/GSSAPIAuthentication no/g' /etc/ssh/ssh_config
 
 #======================================| Replace localhost/index.html
 # Add interesting default document for localhost
