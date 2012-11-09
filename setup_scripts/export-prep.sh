@@ -18,25 +18,9 @@ sudo apt-get clean
 sudo find /var/lib/apt/lists -type f -maxdepth 1 -exec rm {} \;
 sudo find /var/lib/apt/lists/partial -type f -maxdepth 1 -exec rm {} \;
 
-# empty trash
-if [ -f "${HOME}"/profile*.fbu ]; then rm "${HOME}"/profile*.fbu; fi
-sudo rm -rf ${HOME}/.local/share/Trash/files/*
-sudo rm -rf ${HOME}/.local/share/Trash/info/*
-
 #clear bash history
-killall guake
-killall gnome-terminal
-killall x-terminal-emulator
 cat /dev/null > ${HOME}/.bash_history
 cat /dev/null > ${HOME}/.bash_eternal_history
-
-#clear gnome history
-cat /dev/null > ${HOME}/.local/share/recently-used.xbel
-
-#clean cache
-find ${HOME} -name "cache" -print0 | xargs -0 -I {} find {} -type f | xargs /bin/rm
-#find ${HOME}/.cache -type f -exec rm '{}' \;
-
 
 #clear logs
 sudo logrotate -f -s ${HOME}/${DDD_PATH}/setup_scripts/logs/logrotate-status.log ${HOME}/${DDD_PATH}/resources/clear-all-logs.conf

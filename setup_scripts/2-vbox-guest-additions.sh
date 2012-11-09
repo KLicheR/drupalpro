@@ -15,15 +15,15 @@ then
   sudo apt-get ${APTGET_VERBOSE} purge "linux.*generic" "linux.*pae" "linux-headers.*" "linux-image.*" # Uninstall ALL linux kernels
   sudo apt-get ${APTGET_VERBOSE} install linux-virtual linux-headers-virtual linux-image-virtual linux-image-extra-virtual
 
-	## install guest additions
+	## install guest additions (useful only for USB 2.0 support, which is maybe not needed for server)
 
 	# dkms recommended on virtualbox.org for upgrade compatibility
-	sudo apt-get ${APTGET_VERBOSE} install build-essential
-	sudo apt-get ${APTGET_VERBOSE} install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virtualbox-ose-guest-source
+	#sudo apt-get ${APTGET_VERBOSE} install build-essential
+	#sudo apt-get ${APTGET_VERBOSE} install virtualbox-ose-guest-x11 virtualbox-ose-guest-dkms virtualbox-ose-guest-source
 	#if that doesnt work, try manual install per http://www.webupd8.org/2012/02/virtualbox-ubuntu-1204-guest-fixes.html
 
-	## Shared folders
-
+	## Shared folders (maybe not useful for server, ssh is normally used)
+<<comment
 	# Setup shared folders between virtualbox host and virtualbox guest
 	# Note difference between shared and vbox-host.  That's important.  Requires reboot
 	sudo sed -i 's|# By default this script does nothing.|mount -t vboxsf -o uid=1000,gid=1000 '"${HOSTSHARE} \/mnt\/${HOSTSHARE}"'|g'  /etc/rc.local
@@ -42,6 +42,7 @@ then
 
 	When completed correctly, this file will disappear and you'll have access to files on the host.
 END
+comment
 fi
 
 stage_finished=0

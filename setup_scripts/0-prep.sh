@@ -17,39 +17,41 @@ set -e
 source "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 if [[ ${DEBUG} == true ]]; then set -x -v; fi
 
-
-#======================================| Update Zenity (12.04 has a bug)
-sudo apt-get ${APTGET_VERBOSE} install zenity
-
 ################################################################################
 # Prompt for installation type or to abort (to avoid borking system)
 ################################################################################
-INSTALLTYPE=$(zenity \
-  --list \
-  --radiolist  \
-  --hide-column=2 \
-  --column "" true abort "Abort Installation" false virtual "Install Virtual Kernel" false standard "Install Standard Kernel (physical hardware)" \
-  --column value \
-  --column Description \
-  --width=400 \
-  --height=300 \
-  --title="Danger!" \
-  --text="\
+echo "Choose an option
+-----------------------------
+(1) abort:    Abort Installation
+(2) virtual:  Install Virtual Kernel
+(3) standard: Install Standard Kernel (physical hardware)
+
 Danger!  Do you really want to continue?  Be aware this script destructively
 loosens permissions for the current user, changes system settings, uninstalls
 *many* applications, and installs *many* applications not supported by Cannonical
 (the makers of Ubuntu).   This is much safer to do in a test environment (first),
 such as a virtual machine (VM) inside VirtualBox.
 
-Are you really, really, ... and I mean *really* sure you want to do this?" \
-)
+Are you really, really, ... and I mean *really* sure you want to do this?"
+INSTALLTYPE=
 
-UserAbort=$?
-if [ "$INSTALLTYPE" == "abort" ]; then UserAbort=3; fi
-if [ "$UserAbort" -eq 5 ]; then UserAbort=0; fi # @FIXME: reset to 0 because zenity has a bug & timeout disabled
-if [ "$UserAbort" -ne 0 ]; then # if cancel button(1), choose abort(3), or timeout(5) then exit with code
-  echo "Aborted: $UserAbort (key: cancel=1, abort=2, time out=5).  Nothing was changed."
-  exit $UserAbort;
+while [ "$INSTALLTYPE" != "abort" ] && [ "$INSTALLTYPE" != "virtual" ] && [ "$INSTALLTYPE" != "standard" ]; do
+  read INSTALLTYPE
+  case $INSTALLTYPE in
+    "1" ) INSTALLTYPE="abort"
+          ;;
+    "2" ) INSTALLTYPE="virtual"
+          ;;
+    "3" ) INSTALLTYPE="standard"
+          ;;
+    * )   echo "\"$INSTALLTYPE\" is not a correct choice."
+          ::
+  esac
+done
+
+if [ "$INSTALLTYPE" == "abort" ]; then
+  echo "Aborted. Nothing was changed."
+  exit 1;
 fi
 
 #======================================| ok, lets do it
@@ -58,9 +60,12 @@ echo "
 # ################## START_USER_CONFIG
 INSTALLTYPE=${INSTALLTYPE}" >> "${HOME}/${DDD_PATH}/setup_scripts/config.ini"
 
-zenity --info --text="This script can take a long time to run, plus multiple automated reboots. At the end there are some manual steps, guided by popups like this.
+echo "This script can take a long time to run, plus multiple automated reboots.
 
-Note: This script shouldn't be run more than once." &
+Note: This script shouldn't be run more than once.
+
+Press \"Enter\" to continue" &
+read
 
 #======================================| Disk size Accounting
 # Starting size:
@@ -78,13 +83,6 @@ if [[ "${INSTALL_ETCKEEPER}" == true ]]; then
   sudo sed -i 's/VCS="bzr"/#VCS="bzr"/g'          /etc/etckeeper/etckeeper.conf
   sudo sed -i 's/#AVOID_DAILY_AUTOCOMMITS=1/AVOID_DAILY_AUTOCOMMITS=1/g'  /etc/etckeeper/etckeeper.conf
   sudo etckeeper init
-fi
-if [[ ${INSTALL_FIREWALL} == true ]]; then
-  #======================================| Install and setup Firewall  @TODO: isolate samba ports for bridged subnet
-  sudo apt-get ${APTGET_VERBOSE} install gufw
-  sudo ufw enable
-  sudo ufw allow in proto tcp from any to any port 443
-  sudo ufw allow in proto tcp from any to any port 80
 fi
 if [[ ${OVERRIDE_UBUNTU_SECURITY} == true ]]; then
   #======================================| The last password you'll ever need.

@@ -47,7 +47,7 @@ function reboot() {
       echo "Allow time to interrupt reboot"
       sleep 10
     fi
-  sudo reboot now
+    sudo reboot now
   fi
   exit
 }
@@ -90,9 +90,9 @@ case "$STAGE" in
   ${HOME}/${DDD_PATH}/setup_scripts/0-prep.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_"
   EXIT_CODE=$?
-  if [[ "$EXIT_CODE" -eq 1 ]] || [[ "$EXIT_CODE" -eq 3 ]] || [[ "$EXIT_CODE" -eq 5 ]]
+  if [[ "$EXIT_CODE" -eq 1 ]]
   then  # if exit code not 0 then abort, otherwise continue and reboot
-    zenity --info --text='Aborted.  Nothing was changed. '
+    echo 'Aborted.  Nothing was changed. '
     exit
   else
       ${HOME}/${DDD_PATH}/setup_scripts/0-slim.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
@@ -113,8 +113,6 @@ case "$STAGE" in
 "30")
   ${HOME}/${DDD_PATH}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "3-lamp.sh"
-  ${HOME}/${DDD_PATH}/setup_scripts/4-ides.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_" "4-ides.sh"
   reboot 40
   ;;
 "40")
