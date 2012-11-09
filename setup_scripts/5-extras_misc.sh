@@ -44,6 +44,7 @@ if [[ ${INSTALL_GIT_POWER} == true ]]; then
 fi
 
 #======================================| site: for hosts file rapid edition (french version)
+mkdir ${HOME}/bin
 ln -s ${HOME}/${DDD_PATH}/resources/site ${HOME}/bin/site
 
 stage_finished=0
