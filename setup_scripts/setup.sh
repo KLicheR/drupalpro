@@ -37,7 +37,7 @@ function check_errs() {
 #======================================| Reboot functions
 function reboot() {
   # update .profile file to continue the next step of the script.
-  echo "gnome-terminal -x bash -c \"${HOME}/${DDD_PATH}/setup_scripts/setup.sh $1\" &" >> ${HOME}/.profile
+  echo "bash -c \"${HOME}/${DDD_PATH}/setup_scripts/setup.sh $1\" &" >> ${HOME}/.profile
   echo "*** REBOOTING ***" | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   echo "
 
@@ -55,7 +55,7 @@ function reboot() {
 # Undo any previous reboot script
 if [ -n "$1" ] ; then  # sleep if rebooted
   echo "Starting Stage: $1"
-  sed -i 's/gnome-terminal -x bash -c/# deleteme /g' ${HOME}/.profile
+  sed -i 's/bash -c/# deleteme /g' ${HOME}/.profile
 fi
 
 #======================================| Test for network
