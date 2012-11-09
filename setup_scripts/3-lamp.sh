@@ -141,7 +141,7 @@ sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/mcrypt.ini
 sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/imap.ini
 
 # "build-essential" is required to install "upload progress": http://drupal.org/node/1332446
-sudo apt-get install build-essential
+sudo apt-get ${APTGET_VERBOSE} install build-essential
 # Install upload progress (warning in D7)
 sudo pecl -q install uploadprogress
 echo "extension=uploadprogress.so" | sudo tee /etc/php5/apache2/conf.d/uploadprogress.ini > /dev/null
