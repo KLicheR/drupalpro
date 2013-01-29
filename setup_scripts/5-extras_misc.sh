@@ -71,10 +71,7 @@ if [ "$Update_APT" -gt 0 ]; then
 fi
 
 #======================================| Install packages
-sudo apt-get ${APTGET_VERBOSE} install gnome-activity-journal p7zip gnote &
-wait
 sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${GIT_PKS} ${new_indicators} ${FLASH_PKS} ${GIMP_PKS} ${INKSCAPE_PKS}
-
 
 
 #======================================| PART2
@@ -87,12 +84,6 @@ if [[ ${INSTALL_POWER_UTILS} == true ]]; then
     echo "'Autokey' already exists in the Unity panel whitelist. Nothing to do here.";
   else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'autokey-gtk\']`";
   fi
-
-  #======================================| Xchat IRC
-  # Whitelist xchat for Unity panel
-  if grep -iq 'xchat' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then
-    echo "'xchat' already exists in the Unity panel whitelist. Nothing to do here.";
-  else echo "Adding 'xchat' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'xchat\']`"; fi
 fi
 if [[ ${INSTALL_TERMINAL_UTILS} == true ]]; then
   #Change Defaults for guake
@@ -147,26 +138,6 @@ fi
 
 #======================================| site: for hosts file rapid edition (french version)
 ln -s ${HOME}/${DDD_PATH}/resources/site ${HOME}/bin/site
-
-#======================================| Download Cheatsheets
-wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT1##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT1}"
-wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT2##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT2}"
-wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT3##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT3}"
-wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT4##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT4}"
-wget ${WGET_VERBOSE} -O "${HOME}/Pictures/${CHEAT5##*/}" --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${CHEAT5}"
-
-if [[ ${CHANGE_DESKTOP_BACKGROUND} == true ]]; then
-  #======================================|  Setup desktop
-  gconftool -s /desktop/gnome/background/picture_filename --type=string "${HOME}/Pictures/${DEFAULT_BG}"
-  gsettings set org.gnome.desktop.background primary-color '#adad7f7fa8a7'
-  gsettings set org.gnome.desktop.background draw-background true
-  gsettings set org.gnome.desktop.background picture-opacity 100
-  gsettings set org.gnome.desktop.background picture-options 'stretched'
-  gsettings set org.gnome.desktop.background picture-uri "file:///${HOME}/Pictures/${DEFAULT_BG}"
-  gsettings set org.gnome.desktop.background secondary-color '#201f4a4a8787'
-  gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
-  # to monitor changes, use this:  gsettings monitor org.gnome.desktop.background
-fi
 
 #======================================| INSTALL EXTRA INDICATORS
 if [ "${INSTALL_EXTRA_INDICATORS}" == true ]; then

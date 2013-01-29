@@ -80,7 +80,6 @@ We are soooo connected!"
 done
 
 
-
 #======================================| Install it!
 # This case statment handles reboots
 cd ~
@@ -103,16 +102,16 @@ case "$STAGE" in
 "10")
   ${HOME}/${DDD_PATH}/setup_scripts/1-update.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "1-update.sh"
-  reboot 20
-  ;;
-"20")
-  ${HOME}/${DDD_PATH}/setup_scripts/2-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_" "2-vbox-guest-additions.sh"
   reboot 30
   ;;
+#"20")
+#  ${HOME}/${DDD_PATH}/setup_scripts/2-vbox-guest-additions.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  check_errs "$?" "$_" "2-vbox-guest-additions.sh"
+#  reboot 30
+#  ;;
 "30")
-  ${HOME}/${DDD_PATH}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
-  check_errs "$?" "$_" "3-lamp.sh"
+#  ${HOME}/${DDD_PATH}/setup_scripts/3-lamp.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  check_errs "$?" "$_" "3-lamp.sh"
   ${HOME}/${DDD_PATH}/setup_scripts/4-ides.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "4-ides.sh"
   reboot 40
