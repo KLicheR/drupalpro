@@ -63,8 +63,7 @@ if [[ ${INSTALL_COMPASS} == true ]]; then
   sudo gem1.9.1 install compass
 fi
 # Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
-# sudo apt-get ${APTGET_VERBOSE} install chromium-browser
-# sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
+sudo apt-get ${APTGET_VERBOSE} install chromium-browser flashplugin-installer
 
 if [ "$Update_APT" -gt 0 ]; then
   sudo apt-get update
@@ -72,6 +71,13 @@ fi
 
 #======================================| Install packages
 sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${GIT_PKS} ${new_indicators} ${FLASH_PKS} ${GIMP_PKS} ${INKSCAPE_PKS}
+
+#======================================| IMS
+ANTIVIRUS = "clamav clamtk"
+UBUNTU_TWEAKS = "compiz"
+UTILITIES = "meld pidgin vlc grsync gparted nautilus-dropbox virtualbox-4.2"
+# To-do: Download and install appropriate VirtualBox Extension pack
+sudo apt-get ${APTGET_VERBOSE} install ${ANTIVIRUS} ${UBUNTU_TWEAKS} ${UTILITIES}
 
 
 #======================================| PART2
