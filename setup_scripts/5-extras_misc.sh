@@ -73,9 +73,9 @@ fi
 sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL_PKS} ${GIT_PKS} ${new_indicators} ${FLASH_PKS} ${GIMP_PKS} ${INKSCAPE_PKS}
 
 #======================================| IMS
-ANTIVIRUS = "clamav clamtk"
-UBUNTU_TWEAKS = "compiz"
-UTILITIES = "meld pidgin vlc gparted nautilus-dropbox virtualbox-4.2"
+ANTIVIRUS="clamav clamtk"
+UBUNTU_TWEAKS="compiz"
+UTILITIES="meld pidgin vlc gparted nautilus-dropbox virtualbox-4.2"
 # To-do: Download and install appropriate VirtualBox Extension pack
 sudo apt-get ${APTGET_VERBOSE} install ${ANTIVIRUS} ${UBUNTU_TWEAKS} ${UTILITIES}
 

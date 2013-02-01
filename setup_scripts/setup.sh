@@ -117,19 +117,19 @@ case "$STAGE" in
   reboot 40
   ;;
 "40")
-  ${HOME}/${DDD_PATH}/setup_scripts/5-extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  ${HOME}/${DDD_PATH}/setup_scripts/5-extras_misc.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "5-extras_misc.sh"
-  ${HOME}/${DDD_PATH}/setup_scripts/6-extras_development.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  ${HOME}/${DDD_PATH}/setup_scripts/6-extras_development.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "6-extras_development.sh"
   reboot 50
   ;;
 "50")
-  ${HOME}/${DDD_PATH}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  ${HOME}/${DDD_PATH}/setup_scripts/7-config.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "7-config.sh"
   reboot 60
   ;;
 "60")
-  ${HOME}/${DDD_PATH}/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
+#  ${HOME}/${DDD_PATH}/setup_scripts/8-manualconfig.sh  2>&1 | tee -a ${HOME}/${DDD_PATH}/setup_scripts/logs/install.log
   check_errs "$?" "$_" "8-manualconfig.sh"
   ;;
 *)
