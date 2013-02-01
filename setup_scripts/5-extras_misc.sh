@@ -46,7 +46,7 @@ fi
 FLASH_PKS="flashplugin-installer"
 if [[ ${INSTALL_GIMP} == true ]]; then
   # Install graphics editors - weights about 25mb
-  GIMP_PKS="gimp gimp-data gimp-extras icc-profiles-free" #  @TODO: suggest to user of non-free icc profiles
+  GIMP_PKS="gimp gimp-data icc-profiles-free" #  @TODO: suggest to user of non-free icc profiles
   # sudo add-apt-repository ppa:otto-kesselgulasch/gimp
   # setup gimp ppa
   echo 'deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu precise main' | sudo tee -a /etc/apt/sources.list.d/otto-kesselgulasch-gimp-precise.list > /dev/null
