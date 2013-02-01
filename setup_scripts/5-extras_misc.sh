@@ -63,7 +63,7 @@ if [[ ${INSTALL_COMPASS} == true ]]; then
   sudo gem1.9.1 install compass
 fi
 # Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
-sudo apt-get ${APTGET_VERBOSE} install chromium-browser flashplugin-installer
+sudo apt-get ${APTGET_VERBOSE} install chromium-browser
 
 if [ "$Update_APT" -gt 0 ]; then
   sudo apt-get update
@@ -75,7 +75,7 @@ sudo apt-get ${APTGET_VERBOSE} install ${GRAPHIC_PKS} ${PWR_UTLS_PKS} ${TERMINAL
 #======================================| IMS
 ANTIVIRUS = "clamav clamtk"
 UBUNTU_TWEAKS = "compiz"
-UTILITIES = "meld pidgin vlc grsync gparted nautilus-dropbox virtualbox-4.2"
+UTILITIES = "meld pidgin vlc gparted nautilus-dropbox virtualbox-4.2"
 # To-do: Download and install appropriate VirtualBox Extension pack
 sudo apt-get ${APTGET_VERBOSE} install ${ANTIVIRUS} ${UBUNTU_TWEAKS} ${UTILITIES}
 
@@ -156,10 +156,6 @@ fi
 
 # Download FEBE backup file
 wget ${WGET_VERBOSE} -O ${HOME}/profileFx4{ddd}.fbu --referer="${REFERER}" --user-agent="${USERAGENT}" --header="${HEAD1}" --header="${HEAD2}" --header="${HEAD3}" --header="${HEAD4}" --header="${HEAD5}" "${FEBE_URL}"
-
-# Install chrome browser (Webkit - fork of KHTML/Konquerer, also used by Safari)
-sudo apt-get ${APTGET_VERBOSE} install chromium-browser
-# sudo ln -s /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/chromium-browser/plugins/
 
 stage_finished=0
 exit "$stage_finished"

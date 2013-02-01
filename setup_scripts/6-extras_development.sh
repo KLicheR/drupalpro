@@ -10,6 +10,7 @@ cd ~
 
 #======================================| Drush
 if [[ ${INSTALL_DRUSH} == true ]]; then
+  sudo apt-get ${APTGET_VERBOSE} install php5-cli
   mkdir -p "${APP_FOLDER}"
   cd ${APP_FOLDER}
   git clone http://git.drupal.org/project/drush.git
