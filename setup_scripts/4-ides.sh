@@ -119,6 +119,9 @@ Please submit feature requests to http://sublimetext.userecho.com/.
 For notification about new versions, follow sublimehq on twitter.
 END
 
+# Install Sublime Text 2 Package Control (http://wbond.net/sublime_packages/package_control)
+cd "${HOME}/.config/sublime-text-2/Installed Packages"
+wget https://sublime.wbond.net/Package%20Control.sublime-package
 fi
 
 #======================================| GEANY
