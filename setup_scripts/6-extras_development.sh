@@ -180,5 +180,13 @@ fi
 #======================================| Restart apache
 sudo /etc/init.d/apache2 restart #use sysvinit scripts instead of upstart for more compatibility (debian, older ubuntu, etc)
 
+#======================================| Fabric (and Pip)
+if [[ "${INSTALL_FABRIC}" == true ]]; then
+  # Install "pip" to facilitate the installation of "Fabric".
+  sudo apt-get ${APTGET_VERBOSE} install python-pip
+  # Install "Fabric".
+  sudo pip install fabric
+fi
+
 stage_finished=0
 exit "$stage_finished"
