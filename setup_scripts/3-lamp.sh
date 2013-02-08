@@ -135,6 +135,7 @@ sudo sed -i 's/;error_log = filename/error_log = \/var\/log\/php-error.log/g'   
 sudo sed -i 's/;error_log = php_errors.log/error_log = \/var\/log\/php-error.log/g'  /etc/php5/apache2/php.ini /etc/php5/cli/php.ini # php 5.3
 sudo sed -i 's/display_errors = Off/display_errors = On/g'                           /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
 sudo sed -i 's/display_startup_errors = Off/display_startup_errors = On/g'           /etc/php5/apache2/php.ini /etc/php5/cli/php.ini
+sudo sed -i 's/apc.shm_size=64M/apc.shm_size=256M/g'                                 /etc/php5/conf.d/apc.ini
 
 # Fix comment bug that will show warning on command line
 sudo sed -i 's/# /\/\/ /g'            /etc/php5/cli/conf.d/mcrypt.ini
